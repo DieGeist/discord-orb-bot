@@ -59,15 +59,5 @@ client.on('messageCreate', (message) => {
     }
 });
 
-// Debug logging
-console.log('Checking for bot token...');
-console.log('DISCORD_TOKEN exists:', !!process.env.DISCORD_TOKEN);
-console.log('BOT_TOKEN exists:', !!process.env.BOT_TOKEN);
-
 // Login to Discord with your bot's token from environment variable
-const token = process.env.BOT_TOKEN || process.env.DISCORD_TOKEN;
-if (!token) {
-    console.error('No bot token found! Please check your environment variables.');
-    process.exit(1);
-}
-client.login(token);
+client.login(process.env.DISCORD_TOKEN);
