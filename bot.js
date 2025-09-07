@@ -33,6 +33,27 @@ const orbSentences = [
     "Legend speaks of this very orb! 🌟",
     "The orb hums with arcane magic!",
     "A mystical orb materializes in response to your call!"
+    "The orb regards you in silence... and hunger.",
+    "Whispers spiral within the orb, too faint to be human.",
+    "The orb trembles, as if remembering something older than time.",
+    "You feel the orb’s gaze — though it has no eyes.",
+    "The orb hums in frequencies that shake your bones.",
+    "The orb does not glow... it *breathes*.",
+    "A crack forms across the orb, leaking shadows instead of light.",
+    "The orb reveals nothing... and in that nothing, everything.",
+    "The orb spins slowly, dragging reality with it.",
+    "You sense the orb is aware of your true name.",
+    "The orb pulses in time with your heartbeat — until it doesn’t.",
+    "The orb reflects not your face, but something watching from behind it.",
+    "The orb glistens wetly, as if alive.",
+    "The orb rolls a fraction closer, though you did not touch it.",
+    "From deep within the orb, something scratches to get out.",
+    "The orb offers comfort... but you know it is lying.",
+    "The orb is older than stars, and far less forgiving.",
+    "The orb thirsts.",
+    "In the orb’s light, shadows move the wrong way.",
+    "The orb speaks in silence louder than screams.",
+
 ];
 
 // Function to get a random sentence
