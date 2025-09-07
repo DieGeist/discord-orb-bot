@@ -32,7 +32,7 @@ const orbSentences = [
     "The orb's light pierces through the darkness!",
     "Legend speaks of this very orb! 🌟",
     "The orb hums with arcane magic!",
-    "A mystical orb materializes in response to your call!"
+    "A mystical orb materializes in response to your call!",
     "The orb regards you in silence... and hunger.",
     "Whispers spiral within the orb, too faint to be human.",
     "The orb trembles, as if remembering something older than time.",
