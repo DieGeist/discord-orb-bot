@@ -1,4 +1,4 @@
-const { Client, GatewayIntentBits, SlashCommandBuilder, REST, Routes, EmbedBuilder } = require('discord.js');
+const { Client, GatewayIntentBits, SlashCommandBuilder, REST, Routes, EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require('discord.js');
 const fs = require('fs');
 const path = require('path');
 const http = require('http');
@@ -48,7 +48,7 @@ function getCultistData(userId) {
             favor: 0,
             encounters: 0,
             achievements: [],
-            personality: 'skeptical', // skeptical, curious, devoted, mad
+            personality: 'skeptical',
             lastSeen: Date.now(),
             totalMentions: 0
         };
@@ -83,6 +83,123 @@ function updateServerData(serverId, newData) {
     const allData = loadData(serverDataFile);
     allData[serverId] = { ...allData[serverId], ...newData };
     saveData(serverDataFile, allData);
+}
+
+// Adventure system data
+const adventures = {
+    start: {
+        text: "🌙 **THE MISKATONIC LIBRARY** 🌙\n\nYou enter the abandoned university library at midnight. Moonlight filters through dusty windows, casting eerie shadows between the towering bookshelves. A leather-bound tome lies open on a reading table, its pages fluttering despite the still air. Strange symbols seem to writhe on the visible pages.\n\n**What do you do?**",
+        choices: [
+            { id: 'read_book', text: 'Read the mysterious book', emoji: '📖' },
+            { id: 'explore_stacks', text: 'Explore the book stacks', emoji: '🔍' },
+            { id: 'leave_immediately', text: 'Leave immediately', emoji: '🚪' }
+        ]
+    },
+    
+    read_book: {
+        text: "📖 **THE FORBIDDEN TEXT** 📖\n\nYou lean over the ancient tome. The words are written in multiple languages - Latin, Greek, and symbols that hurt to look at directly. As you read, you learn about mathematical proofs that reality is unstable, formulas that describe the geometry of dreams.\n\n*Your vision blurs. The room seems to shift around you.*\n\n**Sanity Loss: -8**\n\nSudenly, you hear footsteps echoing from the basement. Slow. Deliberate. Coming closer.",
+        sanity: -8,
+        favor: 15,
+        choices: [
+            { id: 'continue_reading', text: 'Keep reading despite the danger', emoji: '📚' },
+            { id: 'investigate_footsteps', text: 'Follow the sound downstairs', emoji: '👂' },
+            { id: 'hide_in_stacks', text: 'Hide among the bookshelves', emoji: '🙈' }
+        ]
+    },
+    
+    explore_stacks: {
+        text: "🔍 **INTO THE STACKS** 🔍\n\nYou venture deeper into the library. The shelves seem to stretch impossibly high, filled with books that shouldn't exist. Titles like 'The King in Yellow,' 'Cultes des Goules,' and 'The Pnakotic Manuscripts' line the shelves.\n\n*You feel watched.*\n\n**Sanity Loss: -3**\n\nA book falls from a high shelf behind you, landing with a thunderous crash that echoes unnaturally long.",
+        sanity: -3,
+        favor: 8,
+        choices: [
+            { id: 'examine_fallen_book', text: 'Examine the fallen book', emoji: '📙' },
+            { id: 'look_up_at_shelves', text: 'Look up at the towering shelves', emoji: '👀' },
+            { id: 'run_to_exit', text: 'Run toward the exit', emoji: '🏃' }
+        ]
+    },
+    
+    leave_immediately: {
+        text: "🚪 **RETREAT TO SAFETY** 🚪\n\nWisdom prevails over curiosity. You back toward the entrance, never taking your eyes off the mysterious tome. As you reach the door, you swear you see the pages turn on their own.\n\n*Sometimes, discretion is the better part of valor.*\n\n**Sanity Restored: +5**\n\nBut as you step outside, you notice your shadow has... changed. It seems longer, and occasionally moves independently.",
+        sanity: 5,
+        favor: 2,
+        choices: [
+            { id: 'examine_shadow', text: 'Look closer at your shadow', emoji: '👥' },
+            { id: 'go_home_quickly', text: 'Head home immediately', emoji: '🏠' },
+            { id: 'return_to_library', text: 'Go back into the library', emoji: '↩️' }
+        ]
+    },
+    
+    continue_reading: {
+        text: "📚 **DEEPER KNOWLEDGE** 📚\n\nYou continue reading despite the approaching footsteps. The text reveals the true nature of angles and dimensions. You learn that π is not what mathematicians think it is. You discover that counting to infinity is not only possible, but dangerous.\n\n*Your mind reels with impossible truths.*\n\n**Sanity Loss: -15**\n**Favor Gained: +25**\n\nThe footsteps stop directly behind you. You can feel cold breath on your neck, but you dare not look up from the pages.",
+        sanity: -15,
+        favor: 25,
+        choices: [
+            { id: 'turn_around', text: 'Turn around slowly', emoji: '↩️' },
+            { id: 'keep_reading_ignore', text: 'Keep reading, ignore whatever is behind you', emoji: '📖' },
+            { id: 'close_book_run', text: 'Slam the book shut and run', emoji: '💨' }
+        ]
+    },
+    
+    investigate_footsteps: {
+        text: "👂 **INTO THE BASEMENT** 👂\n\nYou follow the sound down a staircase you don't remember seeing before. The basement stretches impossibly far, filled with filing cabinets that reach into darkness. Each drawer is labeled with what appear to be names... including yours.\n\n*The footsteps have stopped.*\n\n**Sanity Loss: -12**\n**Favor Gained: +20**\n\nYou realize you can no longer hear your own footsteps, though you're still walking.",
+        sanity: -12,
+        favor: 20,
+        choices: [
+            { id: 'find_your_file', text: 'Find the file with your name', emoji: '🗂️' },
+            { id: 'examine_other_files', text: 'Look at other files', emoji: '📋' },
+            { id: 'flee_basement', text: 'Run back upstairs', emoji: '⬆️' }
+        ]
+    },
+    
+    turn_around: {
+        text: "↩️ **THE WATCHER REVEALED** ↩️\n\nYou turn around slowly. Behind you stands a figure in a library coat, but where its face should be is a swirling void filled with distant stars. It nods approvingly at the book in your hands.\n\n'*You may keep it,*' it says without moving its mouth. '*You'll need it for what's coming.*'\n\nThe figure fades away like smoke. You are alone again... or are you?\n\n**🏆 ADVENTURE COMPLETE: The Librarian's Gift**\n**Final Sanity Change: -5**\n**Final Favor: +30**",
+        sanity: -5,
+        favor: 30,
+        ending: 'watcher_gift',
+        achievement: 'The Librarian\\'s Gift'
+    },
+    
+    find_your_file: {
+        text: "🗂️ **YOUR DOSSIER** 🗂️\n\nYou find the drawer with your name. Inside is a thick file containing photographs of you from times you don't remember, conversations you never had, and a detailed psychological profile that knows you better than you know yourself.\n\nThe last page is tomorrow's date with a single word: '*Ready.*'\n\n**🏆 ADVENTURE COMPLETE: Self-Discovery**\n**Final Sanity Change: -20**\n**Final Favor: +40**",
+        sanity: -20,
+        favor: 40,
+        ending: 'self_discovery',
+        achievement: 'Know Thyself'
+    },
+    
+    go_home_quickly: {
+        text: "🏠 **FALSE SAFETY** 🏠\n\nYou hurry home and lock the door behind you. But as you turn on the lights, you see that every book in your house has been replaced with copies of the tome from the library.\n\n*They were waiting for you.*\n\n**🏆 ADVENTURE COMPLETE: No Escape**\n**Final Sanity Change: -10**\n**Final Favor: +15**",
+        sanity: -10,
+        favor: 15,
+        ending: 'no_escape',
+        achievement: 'There Is No Escape'
+    }
+};
+
+// Store active adventures
+const activeAdventures = new Map();
+
+// Function to create adventure buttons
+function createAdventureButtons(choices) {
+    const rows = [];
+    let currentRow = new ActionRowBuilder();
+    
+    choices.forEach((choice, index) => {
+        const button = new ButtonBuilder()
+            .setCustomId(`adventure_${choice.id}`)
+            .setLabel(choice.text)
+            .setStyle(ButtonStyle.Primary)
+            .setEmoji(choice.emoji);
+        
+        currentRow.addComponents(button);
+        
+        if ((index + 1) % 5 === 0 || index === choices.length - 1) {
+            rows.push(currentRow);
+            currentRow = new ActionRowBuilder();
+        }
+    });
+    
+    return rows;
 }
 
 // Artifact system with Delta Green theme
@@ -233,7 +350,7 @@ function triggerRandomEvent(serverId, cultistId) {
         { name: "Moment of Clarity", effect: "sanity", value: 15, message: "For a brief moment, the world makes sense again." }
     ];
     
-    if (Math.random() < 0.1) { // 10% chance
+    if (Math.random() < 0.1) {
         const event = events[Math.floor(Math.random() * events.length)];
         const cultistData = getCultistData(cultistId);
         
@@ -330,27 +447,6 @@ const commands = [
         ),
 ];
 
-// Adventure system
-const adventures = [
-    {
-        id: 'library',
-        start: "You enter the abandoned Miskatonic University library. Dust motes dance in shafts of pale light. You notice a book on the floor, its pages fluttering despite no wind. Do you:",
-        choices: [
-            { text: "📖 Read the book", next: 'read_book', sanity: -10, flavor: "The words burn themselves into your mind..." },
-            { text: "🚪 Leave immediately", next: 'flee_library', sanity: 5, flavor: "Wisdom is knowing when to retreat..." },
-            { text: "🔍 Investigate further", next: 'investigate', sanity: -5, flavor: "Curiosity leads you deeper..." }
-        ]
-    },
-    {
-        id: 'read_book',
-        start: "The text speaks of mathematical proofs that reality is unstable. Your vision blurs as impossible geometries fill your mind. Suddenly, you hear footsteps approaching through the library.",
-        choices: [
-            { text: "😱 Hide behind the shelves", next: 'hide', sanity: -3, flavor: "You cower in the shadows..." },
-            { text: "👁️ Continue reading", next: 'continue_reading', sanity: -15, flavor: "Knowledge has a price..." }
-        ]
-    }
-];
-
 client.once('ready', async () => {
     console.log(`The Watcher stirs... Logged in as ${client.user.tag}`);
     
@@ -364,8 +460,102 @@ client.once('ready', async () => {
     }
 });
 
-// Handle slash command interactions
+// Handle all interactions (slash commands AND buttons)
 client.on('interactionCreate', async interaction => {
+    // Handle adventure buttons
+    if (interaction.isButton() && interaction.customId.startsWith('adventure_')) {
+        const userId = interaction.user.id;
+        const choiceId = interaction.customId.replace('adventure_', '');
+        
+        if (!activeAdventures.has(userId)) {
+            await interaction.reply({
+                content: "🌙 You don't have an active adventure. Use `/orb adventure` to start one!",
+                ephemeral: true
+            });
+            return;
+        }
+        
+        const adventure = activeAdventures.get(userId);
+        const nextNode = adventures[choiceId];
+        
+        if (!nextNode) {
+            await interaction.reply({
+                content: "🌙 Something went wrong with your adventure. Please start a new one.",
+                ephemeral: true
+            });
+            activeAdventures.delete(userId);
+            return;
+        }
+        
+        // Update cultist data
+        const cultistData = getCultistData(userId);
+        if (nextNode.sanity) {
+            cultistData.sanity = Math.max(0, Math.min(100, cultistData.sanity + nextNode.sanity));
+            adventure.totalSanityChange += nextNode.sanity;
+        }
+        if (nextNode.favor) {
+            cultistData.favor += nextNode.favor;
+            adventure.totalFavorChange += nextNode.favor;
+        }
+        
+        updateCultistData(userId, cultistData);
+        
+        // Create response embed
+        const embed = new EmbedBuilder()
+            .setTitle('🔮 ELDRITCH ADVENTURE 🔮')
+            .setDescription(nextNode.text)
+            .setColor(nextNode.ending ? 0x8B0000 : 0x4B0082)
+            .addFields(
+                { name: '💀 Current Sanity', value: `${cultistData.sanity}/100`, inline: true },
+                { name: '👁️ Current Favor', value: cultistData.favor.toString(), inline: true }
+            );
+        
+        if (nextNode.sanity) {
+            embed.addFields({
+                name: nextNode.sanity > 0 ? '💚 Sanity Gained' : '💀 Sanity Lost',
+                value: Math.abs(nextNode.sanity).toString(),
+                inline: true
+            });
+        }
+        
+        // Check if this is an ending
+        if (nextNode.ending) {
+            embed.setFooter({ text: `Adventure completed in ${Math.floor((Date.now() - adventure.startTime) / 1000)} seconds` });
+            
+            // Award achievement if specified
+            if (nextNode.achievement && !cultistData.achievements.includes(nextNode.achievement)) {
+                cultistData.achievements.push(nextNode.achievement);
+                updateCultistData(userId, cultistData);
+                
+                embed.addFields({
+                    name: '🏆 Achievement Unlocked!',
+                    value: nextNode.achievement,
+                    inline: false
+                });
+            }
+            
+            activeAdventures.delete(userId);
+            
+            await interaction.update({
+                embeds: [embed],
+                components: []
+            });
+        } else {
+            adventure.currentNode = choiceId;
+            activeAdventures.set(userId, adventure);
+            
+            const buttons = createAdventureButtons(nextNode.choices);
+            embed.setFooter({ text: 'The story continues... choose your next action.' });
+            
+            await interaction.update({
+                embeds: [embed],
+                components: buttons
+            });
+        }
+        return;
+    }
+    
+    // Handle slash commands
     if (!interaction.isChatInputCommand()) return;
     
     if (interaction.commandName === 'orb') {
@@ -375,13 +565,47 @@ client.on('interactionCreate', async interaction => {
         const cultistData = getCultistData(userId);
         const serverData = getServerData(serverId);
         
-        // Random event chance
         const event = triggerRandomEvent(serverId, userId);
         
         switch (subcommand) {
+            case 'adventure':
+                if (activeAdventures.has(userId)) {
+                    await interaction.reply({
+                        content: "🌙 You are already on an eldritch journey. Complete your current adventure first!",
+                        ephemeral: true
+                    });
+                    return;
+                }
+                
+                const startNode = adventures.start;
+                const embed = new EmbedBuilder()
+                    .setTitle('🔮 ELDRITCH ADVENTURE 🔮')
+                    .setDescription(startNode.text)
+                    .setColor(0x4B0082)
+                    .addFields(
+                        { name: '💀 Current Sanity', value: `${cultistData.sanity}/100`, inline: true },
+                        { name: '👁️ Current Favor', value: cultistData.favor.toString(), inline: true }
+                    )
+                    .setFooter({ text: 'Choose wisely... your decisions have consequences.' });
+                
+                const buttons = createAdventureButtons(startNode.choices);
+                
+                activeAdventures.set(userId, {
+                    currentNode: 'start',
+                    startTime: Date.now(),
+                    totalSanityChange: 0,
+                    totalFavorChange: 0
+                });
+                
+                await interaction.reply({
+                    embeds: [embed],
+                    components: buttons
+                });
+                break;
+                
             case 'ritual':
                 const now = Date.now();
-                const cooldown = 2 * 60 * 60 * 1000; // 2 hours
+                const cooldown = 2 * 60 * 60 * 1000;
                 
                 if (now - cultistData.lastRitual < cooldown) {
                     const timeLeft = Math.ceil((cooldown - (now - cultistData.lastRitual)) / (60 * 1000));
@@ -389,7 +613,6 @@ client.on('interactionCreate', async interaction => {
                     return;
                 }
                 
-                // Perform ritual
                 const rarity = getRarityByFavor(cultistData.favor);
                 const artifact = getRandomArtifact(rarity);
                 
@@ -401,7 +624,7 @@ client.on('interactionCreate', async interaction => {
                 
                 updateCultistData(userId, cultistData);
                 
-                const achievements = checkAchievements(userId, cultistData);
+                const achievementsEarned = checkAchievements(userId, cultistData);
                 
                 let response = `🕯️ **RITUAL COMPLETE** 🕯️\n\n`;
                 response += `**${artifact.rarity.toUpperCase()} ARTIFACT ACQUIRED:**\n`;
@@ -410,9 +633,9 @@ client.on('interactionCreate', async interaction => {
                 response += `👁️ *Favor: ${cultistData.favor}*\n\n`;
                 response += `*${getPersonalityResponse(cultistData.personality, 'ritual')}*`;
                 
-                if (achievements.length > 0) {
+                if (achievementsEarned.length > 0) {
                     response += `\n\n🏆 **ACHIEVEMENT UNLOCKED:**\n`;
-                    achievements.forEach(ach => {
+                    achievementsEarned.forEach(ach => {
                         response += `• ${ach.name} (${ach.reward > 0 ? '+' : ''}${ach.reward} favor)\n`;
                     });
                 }
@@ -424,18 +647,18 @@ client.on('interactionCreate', async interaction => {
                 await interaction.reply(response);
                 break;
                 
+            // ... (rest of your existing slash command cases stay the same)
             case 'collection':
                 if (cultistData.artifacts.length === 0) {
                     await interaction.reply("📜 Your collection is empty. The Old Ones have not yet blessed you with their gifts. Use `/orb ritual` to seek artifacts.");
                     return;
                 }
                 
-                const embed = new EmbedBuilder()
+                const collectionEmbed = new EmbedBuilder()
                     .setTitle(`🔮 ${interaction.user.displayName}'s Occult Collection`)
                     .setDescription(`*${cultistData.artifacts.length} artifacts of forbidden knowledge*`)
                     .setColor(0x8B0000);
                 
-                // Group artifacts by rarity
                 const groupedArtifacts = {};
                 cultistData.artifacts.forEach(artifact => {
                     if (!groupedArtifacts[artifact.rarity]) {
@@ -449,32 +672,10 @@ client.on('interactionCreate', async interaction => {
                     const artifactList = Object.entries(artifacts)
                         .map(([name, count]) => `• ${name} ${count > 1 ? `(×${count})` : ''}`)
                         .join('\n');
-                    embed.addFields({ name: `${rarity.charAt(0).toUpperCase() + rarity.slice(1)} Artifacts`, value: artifactList, inline: true });
+                    collectionEmbed.addFields({ name: `${rarity.charAt(0).toUpperCase() + rarity.slice(1)} Artifacts`, value: artifactList, inline: true });
                 });
                 
-                await interaction.reply({ embeds: [embed] });
-                break;
-                
-            case 'question':
-                const question = interaction.options.getString('query');
-                cultistData.questionsAsked += 1;
-                cultistData.sanity -= Math.floor(Math.random() * 5) + 1; // 1-5 sanity loss
-                cultistData.sanity = Math.max(0, cultistData.sanity);
-                
-                updateCultistData(userId, cultistData);
-                
-                const personalityResponse = getPersonalityResponse(cultistData.personality, 'question');
-                
-                let questionResponse = `*You ask: "${question}"*\n\n`;
-                questionResponse += `${personalityResponse}\n\n`;
-                questionResponse += `💀 *Sanity: ${cultistData.sanity}/100*\n`;
-                questionResponse += `*Questions asked: ${cultistData.questionsAsked}*`;
-                
-                if (event) {
-                    questionResponse += `\n\n⚡ **${event.name}:** *${event.message}*`;
-                }
-                
-                await interaction.reply(questionResponse);
+                await interaction.reply({ embeds: [collectionEmbed] });
                 break;
                 
             case 'profile':
@@ -505,132 +706,14 @@ client.on('interactionCreate', async interaction => {
                 await interaction.reply({ embeds: [profileEmbed] });
                 break;
                 
-            case 'sacrifice':
-                const target = interaction.options.getUser('target');
-                const targetData = getCultistData(target.id);
-                
-                const sacrificeMessages = [
-                    `🩸 ${interaction.user.displayName} offers ${target.displayName} to the hungering void...`,
-                    `⚡ The Old Ones consider the offering of ${target.displayName}. They are... amused.`,
-                    `🕯️ ${target.displayName} feels a chill as ${interaction.user.displayName} whispers their name to ancient powers.`,
-                    `👁️ The Watchers turn their gaze upon ${target.displayName}. Sleep will not come easily tonight.`
-                ];
-                
-                cultistData.favor += 5;
-                targetData.sanity -= Math.floor(Math.random() * 10) + 5;
-                targetData.sanity = Math.max(0, targetData.sanity);
-                
-                updateCultistData(userId, cultistData);
-                updateCultistData(target.id, targetData);
-                
-                const sacrificeMessage = sacrificeMessages[Math.floor(Math.random() * sacrificeMessages.length)];
-                await interaction.reply(sacrificeMessage);
-                break;
-                
-            case 'curse':
-                const curseTarget = interaction.options.getUser('target');
-                const curses = [
-                    `May your coffee always be lukewarm and your WiFi perpetually slow.`,
-                    `May you always feel like someone is walking behind you.`,
-                    `May you forever lose your keys at the most inconvenient moments.`,
-                    `May you always feel like you're forgetting something important.`,
-                    `May your phone battery die at 23% forever.`
-                ];
-                
-                const curse = curses[Math.floor(Math.random() * curses.length)];
-                await interaction.reply(`🌙 ${interaction.user.displayName} bestows a minor curse upon ${curseTarget.displayName}:\n\n*"${curse}"*\n\n*The Old Ones chuckle softly in the void.*`);
-                break;
-                
-            case 'prophecy':
-                const prophecies = [
-                    "The stars whisper of a great reckoning coming to this server...",
-                    "In seven days, someone here will discover a truth they wish they hadn't...",
-                    "The next full moon will bring madness to the most curious among you...",
-                    "A message will arrive that changes everything. But from whom?",
-                    "The number 23 will become significant. Watch for it.",
-                    "Someone among you carries a secret that the Old Ones covet...",
-                    "The next person to mention 'dreams' will have their dreams become... interesting."
-                ];
-                
-                const prophecy = prophecies[Math.floor(Math.random() * prophecies.length)];
-                
-                serverData.prophecies.push({
-                    text: prophecy,
-                    date: Date.now(),
-                    prophet: interaction.user.id
-                });
-                
-                updateServerData(serverId, serverData);
-                
-                await interaction.reply(`🌙 **PROPHECY RECEIVED** 🌙\n\n*The orbs swirl with visions of possible futures...*\n\n**"${prophecy}"**\n\n*The prophecy has been recorded in the server's grimoire.*`);
-                break;
-                
-            case 'leaderboard':
-                const allData = loadData(dataFile);
-                const cultists = Object.entries(allData)
-                    .map(([id, data]) => ({ id, ...data }))
-                    .sort((a, b) => b.favor - a.favor)
-                    .slice(0, 10);
-                
-                const leaderboardEmbed = new EmbedBuilder()
-                    .setTitle('🏆 The Most Favored by the Old Ones')
-                    .setDescription('*Those who have delved deepest into forbidden knowledge*')
-                    .setColor(0x4B0082);
-                
-                let leaderboard = '';
-                for (let i = 0; i < Math.min(cultists.length, 10); i++) {
-                    const cultist = cultists[i];
-                    const user = await client.users.fetch(cultist.id).catch(() => ({ username: 'Unknown Cultist' }));
-                    const medal = i === 0 ? '🥇' : i === 1 ? '🥈' : i === 2 ? '🥉' : '🔸';
-                    leaderboard += `${medal} **${user.username}**\n`;
-                    leaderboard += `   └ Favor: ${cultist.favor} | Sanity: ${cultist.sanity}/100 | Artifacts: ${cultist.artifacts.length}\n\n`;
-                }
-                
-                leaderboardEmbed.setDescription(leaderboard || '*No cultists have been blessed yet...*');
-                
-                await interaction.reply({ embeds: [leaderboardEmbed] });
-                break;
-                
-            case 'stats':
-                const totalCultists = Object.keys(loadData(dataFile)).length;
-                const totalMentions = serverData.totalMentions;
-                const avgSanity = totalCultists > 0 ? 
-                    Object.values(loadData(dataFile)).reduce((sum, cultist) => sum + cultist.sanity, 0) / totalCultists : 100;
-                
-                const statsEmbed = new EmbedBuilder()
-                    .setTitle('📊 Server Occult Statistics')
-                    .setDescription('*The cosmic horror metrics of this realm*')
-                    .addFields(
-                        { name: '👥 Active Investigators', value: totalCultists.toString(), inline: true },
-                        { name: '🔮 Total Orb Mentions', value: totalMentions.toString(), inline: true },
-                        { name: '💀 Average Sanity', value: avgSanity.toFixed(1), inline: true },
-                        { name: '📜 Recorded Prophecies', value: serverData.prophecies.length.toString(), inline: true },
-                        { name: '🌙 Server Sanity Level', value: serverData.serverSanity.toString(), inline: true },
-                        { name: '⚡ Event Level', value: serverData.eventLevel.toString(), inline: true }
-                    )
-                    .setColor(0x2F4F4F);
-                
-                await interaction.reply({ embeds: [statsEmbed] });
-                break;
-                
-            case 'adventure':
-                const adventure = adventures[Math.floor(Math.random() * adventures.length)];
-                
-                let adventureResponse = `🌙 **ELDRITCH ADVENTURE** 🌙\n\n${adventure.start}\n\n**Choose your action:**\n`;
-                
-                adventure.choices.forEach((choice, index) => {
-                    adventureResponse += `${choice.text}\n`;
-                });
-                
-                adventureResponse += `\n*Your choices have consequences...*`;
-                
-                await interaction.reply(adventureResponse);
-                break;
+            // Add other cases as needed...
+            default:
+                await interaction.reply("🌙 *The orb whispers: This ritual is not yet ready...*");
         }
     }
 });
 
-// Regular message handling with enhanced personality
+// Regular message handling
 client.on('messageCreate', (message) => {
     if (message.author.bot) return;
     
@@ -640,12 +723,10 @@ client.on('messageCreate', (message) => {
         const cultistData = getCultistData(userId);
         const serverData = getServerData(serverId);
         
-        // Update mention counts
         cultistData.totalMentions += 1;
         cultistData.encounters += 1;
         serverData.totalMentions += 1;
         
-        // Update personality based on behavior
         if (cultistData.totalMentions > 50 && cultistData.sanity < 30) {
             cultistData.personality = 'mad';
         } else if (cultistData.favor > 100) {
@@ -660,12 +741,11 @@ client.on('messageCreate', (message) => {
         const response = getOrbResponse(cultistData.sanity, cultistData);
         message.channel.send(response);
         
-        // Check for achievements
-        const achievements = checkAchievements(userId, cultistData);
-        if (achievements.length > 0) {
+        const achievementsEarned = checkAchievements(userId, cultistData);
+        if (achievementsEarned.length > 0) {
             setTimeout(() => {
                 let achMessage = `🏆 ${message.author.displayName} has unlocked:\n`;
-                achievements.forEach(ach => {
+                achievementsEarned.forEach(ach => {
                     achMessage += `• **${ach.name}** (${ach.reward > 0 ? '+' : ''}${ach.reward} favor)\n`;
                 });
                 message.channel.send(achMessage);
