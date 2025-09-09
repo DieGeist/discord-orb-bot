@@ -156,7 +156,7 @@ const adventures = {
         sanity: -5,
         favor: 30,
         ending: 'watcher_gift',
-        achievement: 'The Librarian\\'s Gift'
+        achievement: "The Librarian's Gift"
     },
     
     find_your_file: {
