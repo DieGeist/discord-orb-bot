@@ -706,7 +706,136 @@ client.on('interactionCreate', async interaction => {
                 await interaction.reply({ embeds: [profileEmbed] });
                 break;
                 
-            // Add other cases as needed...
+            case 'question':
+                const question = interaction.options.getString('query');
+                cultistData.questionsAsked += 1;
+                cultistData.sanity -= Math.floor(Math.random() * 5) + 1; // 1-5 sanity loss
+                cultistData.sanity = Math.max(0, cultistData.sanity);
+                
+                updateCultistData(userId, cultistData);
+                
+                const personalityResponse = getPersonalityResponse(cultistData.personality, 'question');
+                
+                let questionResponse = `*You ask: "${question}"*\n\n`;
+                questionResponse += `${personalityResponse}\n\n`;
+                questionResponse += `💀 *Sanity: ${cultistData.sanity}/100*\n`;
+                questionResponse += `*Questions asked: ${cultistData.questionsAsked}*`;
+                
+                if (event) {
+                    questionResponse += `\n\n⚡ **${event.name}:** *${event.message}*`;
+                }
+                
+                await interaction.reply(questionResponse);
+                break;
+                
+            case 'sacrifice':
+                const target = interaction.options.getUser('target');
+                const targetData = getCultistData(target.id);
+                
+                const sacrificeMessages = [
+                    `🩸 ${interaction.user.displayName} offers ${target.displayName} to the hungering void...`,
+                    `⚡ The Old Ones consider the offering of ${target.displayName}. They are... amused.`,
+                    `🕯️ ${target.displayName} feels a chill as ${interaction.user.displayName} whispers their name to ancient powers.`,
+                    `👁️ The Watchers turn their gaze upon ${target.displayName}. Sleep will not come easily tonight.`
+                ];
+                
+                cultistData.favor += 5;
+                targetData.sanity -= Math.floor(Math.random() * 10) + 5;
+                targetData.sanity = Math.max(0, targetData.sanity);
+                
+                updateCultistData(userId, cultistData);
+                updateCultistData(target.id, targetData);
+                
+                const sacrificeMessage = sacrificeMessages[Math.floor(Math.random() * sacrificeMessages.length)];
+                await interaction.reply(sacrificeMessage);
+                break;
+                
+            case 'curse':
+                const curseTarget = interaction.options.getUser('target');
+                const curses = [
+                    `May your coffee always be lukewarm and your WiFi perpetually slow.`,
+                    `May you always feel like someone is walking behind you.`,
+                    `May you forever lose your keys at the most inconvenient moments.`,
+                    `May you always feel like you're forgetting something important.`,
+                    `May your phone battery die at 23% forever.`
+                ];
+                
+                const curse = curses[Math.floor(Math.random() * curses.length)];
+                await interaction.reply(`🌙 ${interaction.user.displayName} bestows a minor curse upon ${curseTarget.displayName}:\n\n*"${curse}"*\n\n*The Old Ones chuckle softly in the void.*`);
+                break;
+                
+            case 'prophecy':
+                const prophecies = [
+                    "The stars whisper of a great reckoning coming to this server...",
+                    "In seven days, someone here will discover a truth they wish they hadn't...",
+                    "The next full moon will bring madness to the most curious among you...",
+                    "A message will arrive that changes everything. But from whom?",
+                    "The number 23 will become significant. Watch for it.",
+                    "Someone among you carries a secret that the Old Ones covet...",
+                    "The next person to mention 'dreams' will have their dreams become... interesting."
+                ];
+                
+                const prophecy = prophecies[Math.floor(Math.random() * prophecies.length)];
+                
+                serverData.prophecies.push({
+                    text: prophecy,
+                    date: Date.now(),
+                    prophet: interaction.user.id
+                });
+                
+                updateServerData(serverId, serverData);
+                
+                await interaction.reply(`🌙 **PROPHECY RECEIVED** 🌙\n\n*The orbs swirl with visions of possible futures...*\n\n**"${prophecy}"**\n\n*The prophecy has been recorded in the server's grimoire.*`);
+                break;
+                
+            case 'leaderboard':
+                const allData = loadData(dataFile);
+                const cultists = Object.entries(allData)
+                    .map(([id, data]) => ({ id, ...data }))
+                    .sort((a, b) => b.favor - a.favor)
+                    .slice(0, 10);
+                
+                const leaderboardEmbed = new EmbedBuilder()
+                    .setTitle('🏆 The Most Favored by the Old Ones')
+                    .setDescription('*Those who have delved deepest into forbidden knowledge*')
+                    .setColor(0x4B0082);
+                
+                let leaderboard = '';
+                for (let i = 0; i < Math.min(cultists.length, 10); i++) {
+                    const cultist = cultists[i];
+                    const user = await client.users.fetch(cultist.id).catch(() => ({ username: 'Unknown Cultist' }));
+                    const medal = i === 0 ? '🥇' : i === 1 ? '🥈' : i === 2 ? '🥉' : '🔸';
+                    leaderboard += `${medal} **${user.username}**\n`;
+                    leaderboard += `   └ Favor: ${cultist.favor} | Sanity: ${cultist.sanity}/100 | Artifacts: ${cultist.artifacts.length}\n\n`;
+                }
+                
+                leaderboardEmbed.setDescription(leaderboard || '*No cultists have been blessed yet...*');
+                
+                await interaction.reply({ embeds: [leaderboardEmbed] });
+                break;
+                
+            case 'stats':
+                const totalCultists = Object.keys(loadData(dataFile)).length;
+                const totalMentions = serverData.totalMentions;
+                const avgSanity = totalCultists > 0 ? 
+                    Object.values(loadData(dataFile)).reduce((sum, cultist) => sum + cultist.sanity, 0) / totalCultists : 100;
+                
+                const statsEmbed = new EmbedBuilder()
+                    .setTitle('📊 Server Occult Statistics')
+                    .setDescription('*The cosmic horror metrics of this realm*')
+                    .addFields(
+                        { name: '👥 Active Investigators', value: totalCultists.toString(), inline: true },
+                        { name: '🔮 Total Orb Mentions', value: totalMentions.toString(), inline: true },
+                        { name: '💀 Average Sanity', value: avgSanity.toFixed(1), inline: true },
+                        { name: '📜 Recorded Prophecies', value: serverData.prophecies.length.toString(), inline: true },
+                        { name: '🌙 Server Sanity Level', value: serverData.serverSanity.toString(), inline: true },
+                        { name: '⚡ Event Level', value: serverData.eventLevel.toString(), inline: true }
+                    )
+                    .setColor(0x2F4F4F);
+                
+                await interaction.reply({ embeds: [statsEmbed] });
+                break;
+                
             default:
                 await interaction.reply("🌙 *The orb whispers: This ritual is not yet ready...*");
         }
