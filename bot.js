@@ -17,6 +17,7 @@ server.listen(PORT, () => {
 // Data storage functions
 const dataFile = path.join(__dirname, 'cultistData.json');
 const serverDataFile = path.join(__dirname, 'serverData.json');
+const adventureDataFile = path.join(__dirname, 'adventureData.json');
 
 function loadData(file) {
     try {
@@ -35,6 +36,23 @@ function saveData(file, data) {
     } catch (error) {
         console.error(`Error saving data to ${file}:`, error);
     }
+}
+
+function getActiveAdventure(userId) {
+    const adventures = loadData(adventureDataFile);
+    return adventures[userId] || null;
+}
+
+function setActiveAdventure(userId, adventureData) {
+    const adventures = loadData(adventureDataFile);
+    adventures[userId] = adventureData;
+    saveData(adventureDataFile, adventures);
+}
+
+function deleteActiveAdventure(userId) {
+    const adventures = loadData(adventureDataFile);
+    delete adventures[userId];
+    saveData(adventureDataFile, adventures);
 }
 
 function getCultistData(userId) {
@@ -175,9 +193,6 @@ const adventures = {
         achievement: 'There Is No Escape'
     }
 };
-
-// Store active adventures
-const activeAdventures = new Map();
 
 // Function to create adventure buttons
 function createAdventureButtons(choices) {
@@ -467,7 +482,10 @@ client.on('interactionCreate', async interaction => {
         const userId = interaction.user.id;
         const choiceId = interaction.customId.replace('adventure_', '');
         
+        console.log(`Button clicked by ${userId}, choice: ${choiceId}`); // Debug log
+        
         if (!activeAdventures.has(userId)) {
+            console.log(`No active adventure found for user ${userId}`); // Debug log
             await interaction.reply({
                 content: "🌙 You don't have an active adventure. Use `/orb adventure` to start one!",
                 ephemeral: true
@@ -475,15 +493,32 @@ client.on('interactionCreate', async interaction => {
             return;
         }
         
-        const adventure = activeAdventures.get(userId);
+    // Handle adventure buttons
+    if (interaction.isButton() && interaction.customId.startsWith('adventure_')) {
+        const userId = interaction.user.id;
+        const choiceId = interaction.customId.replace('adventure_', '');
+        
+        console.log(`Button clicked by ${userId}, choice: ${choiceId}`); // Debug log
+        
+        const adventure = getActiveAdventure(userId);
+        if (!adventure) {
+            console.log(`No active adventure found for user ${userId}`); // Debug log
+            await interaction.reply({
+                content: "🌙 You don't have an active adventure. Use `/orb adventure` to start one!",
+                ephemeral: true
+            });
+            return;
+        }
+        
         const nextNode = adventures[choiceId];
         
         if (!nextNode) {
+            console.log(`Invalid choice ${choiceId} for user ${userId}`); // Debug log
             await interaction.reply({
                 content: "🌙 Something went wrong with your adventure. Please start a new one.",
                 ephemeral: true
             });
-            activeAdventures.delete(userId);
+            deleteActiveAdventure(userId);
             return;
         }
         
@@ -534,23 +569,39 @@ client.on('interactionCreate', async interaction => {
                 });
             }
             
-            activeAdventures.delete(userId);
+            deleteActiveAdventure(userId);
             
-            await interaction.update({
-                embeds: [embed],
-                components: []
-            });
+            try {
+                await interaction.update({
+                    embeds: [embed],
+                    components: []
+                });
+            } catch (error) {
+                console.error('Error updating interaction:', error);
+                await interaction.followUp({
+                    embeds: [embed],
+                    components: []
+                });
+            }
         } else {
             adventure.currentNode = choiceId;
-            activeAdventures.set(userId, adventure);
+            setActiveAdventure(userId, adventure);
             
             const buttons = createAdventureButtons(nextNode.choices);
             embed.setFooter({ text: 'The story continues... choose your next action.' });
             
-            await interaction.update({
-                embeds: [embed],
-                components: buttons
-            });
+            try {
+                await interaction.update({
+                    embeds: [embed],
+                    components: buttons
+                });
+            } catch (error) {
+                console.error('Error updating interaction:', error);
+                await interaction.followUp({
+                    embeds: [embed],
+                    components: buttons
+                });
+            }
         }
         return;
     }
@@ -569,7 +620,7 @@ client.on('interactionCreate', async interaction => {
         
         switch (subcommand) {
             case 'adventure':
-                if (activeAdventures.has(userId)) {
+                if (getActiveAdventure(userId)) {
                     await interaction.reply({
                         content: "🌙 You are already on an eldritch journey. Complete your current adventure first!",
                         ephemeral: true
@@ -590,12 +641,14 @@ client.on('interactionCreate', async interaction => {
                 
                 const buttons = createAdventureButtons(startNode.choices);
                 
-                activeAdventures.set(userId, {
+                setActiveAdventure(userId, {
                     currentNode: 'start',
                     startTime: Date.now(),
                     totalSanityChange: 0,
                     totalFavorChange: 0
                 });
+                
+                console.log(`Adventure started for user ${userId}`); // Debug log
                 
                 await interaction.reply({
                     embeds: [embed],
