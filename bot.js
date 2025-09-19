@@ -482,27 +482,11 @@ client.on('interactionCreate', async interaction => {
         const userId = interaction.user.id;
         const choiceId = interaction.customId.replace('adventure_', '');
         
-        console.log(`Button clicked by ${userId}, choice: ${choiceId}`); // Debug log
-        
-        if (!activeAdventures.has(userId)) {
-            console.log(`No active adventure found for user ${userId}`); // Debug log
-            await interaction.reply({
-                content: "🌙 You don't have an active adventure. Use `/orb adventure` to start one!",
-                ephemeral: true
-            });
-            return;
-        }
-        
-    // Handle adventure buttons
-    if (interaction.isButton() && interaction.customId.startsWith('adventure_')) {
-        const userId = interaction.user.id;
-        const choiceId = interaction.customId.replace('adventure_', '');
-        
-        console.log(`Button clicked by ${userId}, choice: ${choiceId}`); // Debug log
+        console.log(`Button clicked by ${userId}, choice: ${choiceId}`);
         
         const adventure = getActiveAdventure(userId);
         if (!adventure) {
-            console.log(`No active adventure found for user ${userId}`); // Debug log
+            console.log(`No active adventure found for user ${userId}`);
             await interaction.reply({
                 content: "🌙 You don't have an active adventure. Use `/orb adventure` to start one!",
                 ephemeral: true
@@ -513,7 +497,7 @@ client.on('interactionCreate', async interaction => {
         const nextNode = adventures[choiceId];
         
         if (!nextNode) {
-            console.log(`Invalid choice ${choiceId} for user ${userId}`); // Debug log
+            console.log(`Invalid choice ${choiceId} for user ${userId}`);
             await interaction.reply({
                 content: "🌙 Something went wrong with your adventure. Please start a new one.",
                 ephemeral: true
@@ -648,7 +632,7 @@ client.on('interactionCreate', async interaction => {
                     totalFavorChange: 0
                 });
                 
-                console.log(`Adventure started for user ${userId}`); // Debug log
+                console.log(`Adventure started for user ${userId}`);
                 
                 await interaction.reply({
                     embeds: [embed],
@@ -700,7 +684,6 @@ client.on('interactionCreate', async interaction => {
                 await interaction.reply(response);
                 break;
                 
-            // ... (rest of your existing slash command cases stay the same)
             case 'collection':
                 if (cultistData.artifacts.length === 0) {
                     await interaction.reply("📜 Your collection is empty. The Old Ones have not yet blessed you with their gifts. Use `/orb ritual` to seek artifacts.");
@@ -762,7 +745,7 @@ client.on('interactionCreate', async interaction => {
             case 'question':
                 const question = interaction.options.getString('query');
                 cultistData.questionsAsked += 1;
-                cultistData.sanity -= Math.floor(Math.random() * 5) + 1; // 1-5 sanity loss
+                cultistData.sanity -= Math.floor(Math.random() * 5) + 1;
                 cultistData.sanity = Math.max(0, cultistData.sanity);
                 
                 updateCultistData(userId, cultistData);
