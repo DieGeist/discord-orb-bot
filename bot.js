@@ -229,6 +229,233 @@ const adventures = {
         favor: 15,
         ending: 'no_escape',
         achievement: 'There Is No Escape'
+    },
+    
+    examine_fallen_book: {
+        text: "📙 **THE FALLEN TOME** 📙\n\nThe book that fell is 'De Vermis Mysteriis' - the Mysteries of the Worm. As you pick it up, you feel it pulsing like a living thing. The pages flip open on their own to an illustration that shouldn't exist: a perfect drawing of you, reading this very book, in this very moment.\n\n*Behind you in the drawing, something vast and tentacled looms.*\n\n**Sanity Loss: -10**\n**Favor Gained: +20**",
+        sanity: -10,
+        favor: 20,
+        choices: [
+            { id: 'look_behind', text: 'Turn around immediately', emoji: '😱' },
+            { id: 'keep_book', text: 'Take the book with you', emoji: '📕' },
+            { id: 'tear_page', text: 'Tear out the page with your picture', emoji: '📄' }
+        ]
+    },
+    
+    look_up_at_shelves: {
+        text: "👀 **THE INFINITE LIBRARY** 👀\n\nYou crane your neck upward. The shelves don't stop at the ceiling - they continue through it, extending impossibly upward into a darkness filled with stars. You see figures moving between the books up there, tending to volumes that glow with their own light.\n\n*One of them notices you looking and begins to descend.*\n\n**Sanity Loss: -7**\n**Favor Gained: +12**",
+        sanity: -7,
+        favor: 12,
+        choices: [
+            { id: 'wait_for_figure', text: 'Wait for the descending figure', emoji: '⏳' },
+            { id: 'climb_shelves', text: 'Start climbing toward them', emoji: '🧗' },
+            { id: 'hide_in_stacks', text: 'Hide deeper in the stacks', emoji: '📚' }
+        ]
+    },
+    
+    run_to_exit: {
+        text: "🏃 **DESPERATE FLIGHT** 🏃\n\nYou run toward where you remember the exit being, but the library has changed. Corridors of books stretch in impossible directions. You're being herded somewhere.\n\n*You hear your own voice calling your name from somewhere ahead.*\n\n**Sanity Loss: -5**",
+        sanity: -5,
+        favor: 5,
+        choices: [
+            { id: 'follow_voice', text: 'Follow your own voice', emoji: '🗣️' },
+            { id: 'opposite_direction', text: 'Go the opposite direction', emoji: '⬅️' },
+            { id: 'stop_and_think', text: 'Stop and try to orient yourself', emoji: '🤔' }
+        ]
+    },
+    
+    hide_in_stacks: {
+        text: "📚 **AMONG THE FORBIDDEN TOMES** 📚\n\nYou squeeze between the shelves, pressing yourself against volumes that whisper and squirm. The footsteps pass by... but now you realize you're not alone in your hiding spot. Something is breathing in the darkness next to you.\n\n**Sanity Loss: -8**\n**Favor Gained: +15**",
+        sanity: -8,
+        favor: 15,
+        choices: [
+            { id: 'reach_out', text: 'Reach out to touch whatever is there', emoji: '🤚' },
+            { id: 'stay_still', text: 'Remain perfectly still', emoji: '🫥' },
+            { id: 'whisper_hello', text: 'Whisper a greeting', emoji: '👋' }
+        ]
+    },
+    
+    keep_reading_ignore: {
+        text: "📖 **TRANSCENDENT KNOWLEDGE** 📖\n\nYou ignore the presence behind you and continue reading. The final pages reveal the truth: reality is a thin membrane, and you've just learned how to tear it. The presence behind you places a cold hand on your shoulder - not threateningly, but almost... proudly?\n\n*'You're ready,' it whispers. 'We've been waiting so long for someone who could understand.'*\n\n**🏆 ADVENTURE COMPLETE: The Chosen Scholar**\n**Final Sanity Change: -25**\n**Final Favor: +50**",
+        sanity: -25,
+        favor: 50,
+        ending: 'chosen_scholar',
+        achievement: 'Chosen by the Watchers'
+    },
+    
+    close_book_run: {
+        text: "💨 **PANICKED ESCAPE** 💨\n\nYou slam the book shut and bolt. The thing behind you laughs - a sound like breaking glass and crying children. You run through the library, but every exit leads back to the reading room. The book is always there, always open, always waiting.\n\n*You understand now: you never actually left. You never actually entered. You've always been here.*\n\n**🏆 ADVENTURE COMPLETE: Eternal Reader**\n**Final Sanity Change: -15**\n**Final Favor: +20**",
+        sanity: -15,
+        favor: 20,
+        ending: 'eternal_reader',
+        achievement: 'The Library\'s Prisoner'
+    },
+    
+    examine_other_files: {
+        text: "📋 **FORBIDDEN ARCHIVES** 📋\n\nYou pull random files. Each contains impossible information: a complete record of a person who won't be born for a hundred years, detailed notes on a civilization from a planet that doesn't exist, the entire history of a war that happened in dreams.\n\n*Your name appears in every single file, always as a footnote.*\n\n**Sanity Loss: -15**\n**Favor Gained: +25**",
+        sanity: -15,
+        favor: 25,
+        choices: [
+            { id: 'find_your_file', text: 'Find your own file now', emoji: '🗂️' },
+            { id: 'destroy_files', text: 'Try to destroy the files', emoji: '🔥' },
+            { id: 'take_files', text: 'Take as many files as you can carry', emoji: '📁' }
+        ]
+    },
+    
+    flee_basement: {
+        text: "⬆️ **NO ESCAPE FROM KNOWLEDGE** ⬆️\n\nYou run back toward the stairs, but they stretch endlessly upward now. After what feels like hours of climbing, you emerge... in the basement again. The filing cabinets have rearranged themselves to spell out a message:\n\n*'YOU ALREADY KNOW TOO MUCH TO LEAVE'*\n\n**🏆 ADVENTURE COMPLETE: The Archive Keeper**\n**Final Sanity Change: -10**\n**Final Favor: +30**",
+        sanity: -10,
+        favor: 30,
+        ending: 'archive_keeper',
+        achievement: 'Basement Dweller'
+    },
+    
+    examine_shadow: {
+        text: "👥 **SHADOW SELF** 👥\n\nYou look closely at your shadow. It has too many arms. Some of them are reaching for things you can't see. When you raise your hand, only some of the shadow's hands move with you.\n\n*Your shadow turns its head to look at you, though your own head hasn't moved.*\n\n**Sanity Loss: -12**\n**Favor Gained: +18**",
+        sanity: -12,
+        favor: 18,
+        choices: [
+            { id: 'talk_to_shadow', text: 'Try to communicate with it', emoji: '💬' },
+            { id: 'ignore_shadow', text: 'Pretend you didn\'t see anything', emoji: '🙈' },
+            { id: 'test_shadow', text: 'Experiment with your shadow\'s movements', emoji: '🔬' }
+        ]
+    },
+    
+    return_to_library: {
+        text: "↩️ **INEVITABLE RETURN** ↩️\n\nYou walk back into the library. The tome is no longer on the table - it's in your hands. You don't remember picking it up. The pages are different now, filled with your own handwriting describing things you haven't done yet.\n\n*The last entry is dated tomorrow: 'I finally understood.'*\n\n**🏆 ADVENTURE COMPLETE: Paradox Scholar**\n**Final Sanity Change: -20**\n**Final Favor: +35**",
+        sanity: -20,
+        favor: 35,
+        ending: 'paradox_scholar',
+        achievement: 'Temporal Anomaly'
+    },
+    
+    // Additional ending nodes for incomplete chains
+    look_behind: {
+        text: "😱 **FACE TO FACE** 😱\n\nYou spin around. Nothing's there... except your own reflection in a mirror that wasn't there before. But your reflection is reading a different book, and its mouth is moving, mouthing words you can't hear.\n\n*As you watch, your reflection closes its book and walks away, leaving you staring at an empty mirror.*\n\n**🏆 ADVENTURE COMPLETE: Mirror Twin**\n**Final Sanity Change: -15**\n**Final Favor: +25**",
+        sanity: -15,
+        favor: 25,
+        ending: 'mirror_twin',
+        achievement: 'Through the Looking Glass'
+    },
+    
+    keep_book: {
+        text: "📕 **CURSED POSSESSION** 📕\n\nYou take the book with you. It weighs nothing, yet your arms ache from carrying it. When you finally leave the library, you realize you can't let go of it. Your fingers have merged with the binding.\n\n*The book is reading you now.*\n\n**🏆 ADVENTURE COMPLETE: Living Grimoire**\n**Final Sanity Change: -30**\n**Final Favor: +45**",
+        sanity: -30,
+        favor: 45,
+        ending: 'living_grimoire',
+        achievement: 'Bound in Flesh'
+    },
+    
+    tear_page: {
+        text: "📄 **REALITY TEAR** 📄\n\nYou tear out the page with your picture. Reality tears with it. Through the rip, you see yourself in the library, tearing a page, creating another rip, through which you see yourself...\n\n*The recursion is infinite. You are infinite. You have always been tearing this page.*\n\n**🏆 ADVENTURE COMPLETE: Recursion Paradox**\n**Final Sanity Change: -35**\n**Final Favor: +60**",
+        sanity: -35,
+        favor: 60,
+        ending: 'recursion_paradox',
+        achievement: 'Infinite Loop'
+    },
+    
+    wait_for_figure: {
+        text: "⏳ **THE LIBRARIAN DESCENDS** ⏳\n\nThe figure descends with unnatural grace, moving between dimensions you can't perceive. It's wearing a librarian's badge with your name on it. Its face is your face, aged beyond measure.\n\n*'You're late for your shift,' it says. 'You've always worked here. You will always work here.'*\n\n**🏆 ADVENTURE COMPLETE: Eternal Employment**\n**Final Sanity Change: -20**\n**Final Favor: +40**",
+        sanity: -20,
+        favor: 40,
+        ending: 'eternal_employment',
+        achievement: 'The Night Shift'
+    },
+    
+    climb_shelves: {
+        text: "🧗 **ASCENDING TO MADNESS** 🧗\n\nYou climb toward the star-filled darkness. The higher you go, the more the books change - they're written in colors, in emotions, in pure concept. At the top, you find a reading room where entities of pure thought browse impossible texts.\n\n*They welcome you. You realize you can never climb back down. You no longer remember what 'down' means.*\n\n**🏆 ADVENTURE COMPLETE: Ascended Mind**\n**Final Sanity Change: -40**\n**Final Favor: +70**",
+        sanity: -40,
+        favor: 70,
+        ending: 'ascended_mind',
+        achievement: 'Beyond Mortal Comprehension'
+    },
+    
+    follow_voice: {
+        text: "🗣️ **FUTURE ECHO** 🗣️\n\nYou follow your own voice and find yourself - an older version, covered in scars that form mathematical equations. This future you hands you a note and disappears.\n\n*The note says: 'Don't follow your voice.'*\n\n**🏆 ADVENTURE COMPLETE: Temporal Warning**\n**Final Sanity Change: -18**\n**Final Favor: +30**",
+        sanity: -18,
+        favor: 30,
+        ending: 'temporal_warning',
+        achievement: 'Bootstrap Paradox'
+    },
+    
+    opposite_direction: {
+        text: "⬅️ **THE OTHER WAY** ⬅️\n\nYou go opposite to your own voice and find an exit. But as you step through, you realize you're entering the library for the first time. The cycle begins again.\n\n*You've been here before. You'll be here again. Time is a circle in this place.*\n\n**🏆 ADVENTURE COMPLETE: Eternal Return**\n**Final Sanity Change: -15**\n**Final Favor: +25**",
+        sanity: -15,
+        favor: 25,
+        ending: 'eternal_return',
+        achievement: 'Ouroboros'
+    },
+    
+    stop_and_think: {
+        text: "🤔 **MOMENT OF CLARITY** 🤔\n\nYou stop and think. The library wants you to panic, to run, to make mistakes. You close your eyes and remember: you came here by choice. You can leave by choice.\n\n*When you open your eyes, you're outside. The library is gone. But the knowledge remains.*\n\n**🏆 ADVENTURE COMPLETE: Willful Escape**\n**Final Sanity Change: +5**\n**Final Favor: +15**",
+        sanity: 5,
+        favor: 15,
+        ending: 'willful_escape',
+        achievement: 'Mind Over Matter'
+    },
+    
+    reach_out: {
+        text: "🤚 **FIRST CONTACT** 🤚\n\nYour hand touches something that feels like cold silk and burning ice. A hand grasps yours - too many fingers, joints bending the wrong way. It shakes your hand formally, professionally.\n\n*'Pleased to finally meet you,' it says in a voice like rustling paper. 'We've been reading about you.'*\n\n**🏆 ADVENTURE COMPLETE: Diplomatic Contact**\n**Final Sanity Change: -10**\n**Final Favor: +35**",
+        sanity: -10,
+        favor: 35,
+        ending: 'diplomatic_contact',
+        achievement: 'First Contact'
+    },
+    
+    stay_still: {
+        text: "🫥 **PERFECT STILLNESS** 🫥\n\nYou don't move. You don't breathe. You become one with the darkness between the books. Hours pass. Days? Years? When you finally move, you've become something else.\n\n*You understand the books now. You are one of them.*\n\n**🏆 ADVENTURE COMPLETE: Living Literature**\n**Final Sanity Change: -25**\n**Final Favor: +40**",
+        sanity: -25,
+        favor: 40,
+        ending: 'living_literature',
+        achievement: 'Become the Story'
+    },
+    
+    whisper_hello: {
+        text: "👋 **POLITE INTRODUCTION** 👋\n\nYou whisper 'Hello.' The breathing stops. Then, in perfect unison with your own voice, it whispers back: 'Hello.'\n\n*You realize you've been alone the whole time. The breathing was always yours. The whisper was always yours. You were never alone because you were always with yourself.*\n\n**🏆 ADVENTURE COMPLETE: Solipsistic Reality**\n**Final Sanity Change: -22**\n**Final Favor: +38**",
+        sanity: -22,
+        favor: 38,
+        ending: 'solipsistic_reality',
+        achievement: 'Alone Together'
+    },
+    
+    destroy_files: {
+        text: "🔥 **FUTILE DESTRUCTION** 🔥\n\nYou try to burn the files, but they burn with cold fire that doesn't consume them. Instead, the flames show visions of every possible future where you didn't try to destroy them.\n\n*In every vision, you still end up here, trying to burn files that won't burn.*\n\n**🏆 ADVENTURE COMPLETE: Inevitable Fate**\n**Final Sanity Change: -17**\n**Final Favor: +28**",
+        sanity: -17,
+        favor: 28,
+        ending: 'inevitable_fate',
+        achievement: 'Destiny Defied, Destiny Defined'
+    },
+    
+    take_files: {
+        text: "📁 **FORBIDDEN KNOWLEDGE** 📁\n\nYou grab armfuls of files and run. Each one weighs nothing but everything. Outside, you open them to find they're all blank now - except for one that contains your obituary.\n\n*The date keeps changing as you watch.*\n\n**🏆 ADVENTURE COMPLETE: Death's Editor**\n**Final Sanity Change: -20**\n**Final Favor: +45**",
+        sanity: -20,
+        favor: 45,
+        ending: 'deaths_editor',
+        achievement: 'Autobiography of the Dead'
+    },
+    
+    talk_to_shadow: {
+        text: "💬 **SHADOW CONVERSATION** 💬\n\nYou speak to your shadow. It responds by writing messages in shadow on the ground. It claims to be the real you, and that you're the shadow.\n\n*Looking down, you're not sure it's wrong.*\n\n**🏆 ADVENTURE COMPLETE: Shadow Swap**\n**Final Sanity Change: -18**\n**Final Favor: +32**",
+        sanity: -18,
+        favor: 32,
+        ending: 'shadow_swap',
+        achievement: 'Umbral Truth'
+    },
+    
+    ignore_shadow: {
+        text: "🙈 **WILLFUL IGNORANCE** 🙈\n\nYou pretend nothing is wrong and walk away. Your shadow follows, but at a distance now. Sometimes you catch it doing things on its own. You learn to live with it.\n\n*Some things are better left unexamined.*\n\n**🏆 ADVENTURE COMPLETE: Coexistence**\n**Final Sanity Change: -5**\n**Final Favor: +20**",
+        sanity: -5,
+        favor: 20,
+        ending: 'coexistence',
+        achievement: 'Peaceful Denial'
+    },
+    
+    test_shadow: {
+        text: "🔬 **SHADOW SCIENCE** 🔬\n\nYou experiment with your shadow, documenting which movements it mirrors and which it doesn't. You discover it's spelling out a message with its independent movements: coordinates and a date.\n\n*The location is the library. The date is yesterday.*\n\n**🏆 ADVENTURE COMPLETE: Shadow's Message**\n**Final Sanity Change: -12**\n**Final Favor: +35**",
+        sanity: -12,
+        favor: 35,
+        ending: 'shadows_message',
+        achievement: 'Scientific Method'
     }
 };
 
