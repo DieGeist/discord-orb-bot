@@ -22,19 +22,34 @@ const adventureDataFile = path.join(__dirname, 'adventureData.json');
 function loadData(file) {
     try {
         if (fs.existsSync(file)) {
-            return JSON.parse(fs.readFileSync(file, 'utf8'));
+            const data = fs.readFileSync(file, 'utf8');
+            return JSON.parse(data);
         }
     } catch (error) {
         console.error(`Error loading data from ${file}:`, error);
+        // Return empty object if file is corrupted or unreadable
+        if (error.name === 'SyntaxError') {
+            console.log('Data file corrupted, creating new one...');
+            saveData(file, {});
+        }
     }
     return {};
 }
 
 function saveData(file, data) {
     try {
+        // Create backup before saving
+        if (fs.existsSync(file)) {
+            fs.copyFileSync(file, `${file}.backup`);
+        }
         fs.writeFileSync(file, JSON.stringify(data, null, 2));
     } catch (error) {
         console.error(`Error saving data to ${file}:`, error);
+        // Try to restore from backup if save fails
+        if (fs.existsSync(`${file}.backup`)) {
+            console.log('Restoring from backup...');
+            fs.copyFileSync(`${file}.backup`, file);
+        }
     }
 }
 
@@ -72,8 +87,9 @@ function getCultistData(userId) {
             madnessLevel: 0,
             sacrifices: 0,
             timesMadnessReached: 0,
-            timesKilled: 0,  // New field for tracking deaths
-            kills: 0  // New field for tracking successful sacrifices
+            timesKilled: 0,
+            kills: 0,
+            lastMeditation: 0  // Added missing field
         };
         saveData(dataFile, allData);
     }
@@ -86,6 +102,9 @@ function getCultistData(userId) {
     }
     if (allData[userId].kills === undefined) {
         allData[userId].kills = 0;
+    }
+    if (allData[userId].lastMeditation === undefined) {
+        allData[userId].lastMeditation = 0;
     }
     saveData(dataFile, allData);
     return allData[userId];
@@ -1006,7 +1025,7 @@ client.on('interactionCreate', async interaction => {
         
         switch (subcommand) {
             case 'sacrifice_self':
-                const embed = new EmbedBuilder()
+                const sacrificeEmbed = new EmbedBuilder()
                     .setTitle('🔥 THE ULTIMATE SACRIFICE 🔥')
                     .setDescription(`${interaction.user.displayName} offers themselves to the Old Ones...`)
                     .addFields(
@@ -1020,7 +1039,7 @@ client.on('interactionCreate', async interaction => {
                     )
                     .setColor(0x8B0000);
                 
-                // Reset the cultist data but keep track of sacrifices
+                // Reset the cultist data but keep track of sacrifices and persistent stats
                 const sacrificeCount = cultistData.sacrifices + 1;
                 const newCultistData = {
                     artifacts: [],
@@ -1034,21 +1053,25 @@ client.on('interactionCreate', async interaction => {
                     lastSeen: Date.now(),
                     totalMentions: 0,
                     madnessLevel: 0,
-                    sacrifices: sacrificeCount
+                    sacrifices: sacrificeCount,
+                    timesMadnessReached: cultistData.timesMadnessReached || 0,  // Preserve madness history
+                    timesKilled: cultistData.timesKilled || 0,  // Preserve death count
+                    kills: cultistData.kills || 0,  // Preserve kill count
+                    lastMeditation: 0  // Reset meditation cooldown
                 };
                 
                 updateCultistData(userId, newCultistData);
                 
-                embed.addFields({
+                sacrificeEmbed.addFields({
                     name: 'New Life Begins', 
                     value: `You have been reborn ${sacrificeCount} time${sacrificeCount > 1 ? 's' : ''}.\n` +
                            `Starting bonus favor: ${newCultistData.favor}`,
                     inline: true
                 });
                 
-                embed.setFooter({ text: 'The cycle continues. The Old Ones remember all.' });
+                sacrificeEmbed.setFooter({ text: 'The cycle continues. The Old Ones remember all.' });
                 
-                await interaction.reply({ embeds: [embed] });
+                await interaction.reply({ embeds: [sacrificeEmbed] });
                 break;
                 
             case 'meditate':
@@ -1597,10 +1620,16 @@ client.on('interactionCreate', async interaction => {
                 let leaderboard = '';
                 for (let i = 0; i < Math.min(cultists.length, 10); i++) {
                     const cultist = cultists[i];
-                    const user = await client.users.fetch(cultist.id).catch(() => ({ username: 'Unknown Cultist' }));
+                    let username = 'Unknown Cultist';
+                    try {
+                        const user = await client.users.fetch(cultist.id);
+                        username = user.username;
+                    } catch (error) {
+                        console.log(`Could not fetch user ${cultist.id}`);
+                    }
                     const medal = i === 0 ? '🥇' : i === 1 ? '🥈' : i === 2 ? '🥉' : '🔸';
                     const madnessIndicator = cultist.madnessLevel > 0 ? ' 🌀' : '';
-                    leaderboard += `${medal} **${user.username}${madnessIndicator}**\n`;
+                    leaderboard += `${medal} **${username}${madnessIndicator}**\n`;
                     leaderboard += `   └ Favor: ${cultist.favor} | Sanity: ${cultist.sanity}/100 | Artifacts: ${cultist.artifacts.length}\n\n`;
                 }
                 
