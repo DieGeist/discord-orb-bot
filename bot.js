@@ -1423,7 +1423,125 @@ const adventures = {
         favor: 62,
         ending: 'ossuary_scholar',
         achievement: 'Reader of Bone Words'
-    }
+    },
+
+    // Add these to your adventures object in bot.js:
+
+play_organ: {
+    text: "🎹 **THE ORGAN'S SONG** 🎹\n\nYou sit at the organ bench. Your hands touch the keys - they're warm, like skin. The organ plays through you, not with you. The hymn it creates is your biography in minor key. Every mistake you've made is a dischord. Every regret, a sustained note.\n\n**Sanity Loss: -16**\n**Favor Gained: +28**",
+    sanity: -16,
+    favor: 28,
+    choices: [
+        { id: 'play_louder', text: 'Play even louder', emoji: '🔊' },
+        { id: 'stop_playing', text: 'Try to stop playing', emoji: '🛑' },
+        { id: 'sing_along', text: 'Sing along with the organ', emoji: '🎤' }
+    ]
+},
+
+confess_future: {
+    text: "✝️ **CONFESSION OF SINS NOT YET COMMITTED** ✝️\n\nYou enter the confessional. Through the screen, you see your own face. 'Confess what you will do,' your reflection demands. You begin listing sins you haven't committed yet. But as you speak them, you remember doing them. The confession creates the crimes.\n\n**Sanity Loss: -18**\n**Favor Gained: +32**",
+    sanity: -18,
+    favor: 32,
+    choices: [
+        { id: 'confess_all', text: 'Confess everything', emoji: '📜' },
+        { id: 'refuse_confess', text: 'Refuse to confess', emoji: '🚫' },
+        { id: 'reverse_confession', text: 'Confess your virtues instead', emoji: '😇' }
+    ]
+},
+
+other_rooms: {
+    text: "🚪 **THE INFINITE HOTEL** 🚪\n\nYou explore other rooms. Each one is occupied by you, living different lives. Room 1409: you're a surgeon. Room 1410: you're a painter. Room 1411: you never existed. You knock on Room 1412. You answer.\n\n**Sanity Loss: -20**\n**Favor Gained: +35**",
+    sanity: -20,
+    favor: 35,
+    choices: [
+        { id: 'enter_1412', text: 'Enter room 1412', emoji: '🚪' },
+        { id: 'check_all_rooms', text: 'Open every door', emoji: '🔑' },
+        { id: 'find_real_room', text: 'Find your real room', emoji: '🏠' }
+    ]
+},
+
+check_out: {
+    text: "🔑 **CHECKOUT IMPOSSIBLE** 🔑\n\nYou approach the front desk to check out. The clerk (who is also you) smiles. 'You can check out any time you like, but you can never leave.' You realize it's not a hotel - it's a metaphor that became real. Or was always real.\n\n**🏆 ADVENTURE COMPLETE: Hotel California**\n**Final Sanity Change: -25**\n**Final Favor: +45**",
+    sanity: -25,
+    favor: 45,
+    ending: 'hotel_california',
+    achievement: 'You Can Never Leave'
+},
+
+// Terminal endings for church path
+play_louder: {
+    text: "🔊 **FORTISSIMO TO MADNESS** 🔊\n\nYou play louder. The organ screams. Windows shatter. The congregation of shadows applauds. You play so loud that reality cracks. The song becomes you. You become the song. Forever playing, forever played.\n\n**🏆 ADVENTURE COMPLETE: The Eternal Organist**\n**Final Sanity Change: -30**\n**Final Favor: +55**",
+    sanity: -30,
+    favor: 55,
+    ending: 'eternal_organist',
+    achievement: 'Maestro of Madness'
+},
+
+stop_playing: {
+    text: "🛑 **SILENCE WORSE THAN SOUND** 🛑\n\nYou try to stop. Your hands won't obey. The organ has you now. You play until your fingers bleed, then play with the bones beneath. The congregation sways. You realize you've always been playing. You'll always be playing.\n\n**🏆 ADVENTURE COMPLETE: The Prisoner of Sound**\n**Final Sanity Change: -28**\n**Final Favor: +50**",
+    sanity: -28,
+    favor: 50,
+    ending: 'prisoner_sound',
+    achievement: 'Fingers of Fate'
+},
+
+sing_along: {
+    text: "🎤 **HARMONY WITH HORROR** 🎤\n\nYou sing with the organ. Your voice harmonizes with impossible chords. The lyrics are in a language that hurts to speak. The congregation joins in. You're all singing the same song: the hymn of the ending world.\n\n**🏆 ADVENTURE COMPLETE: Chorus of the Damned**\n**Final Sanity Change: -32**\n**Final Favor: +58**",
+    sanity: -32,
+    favor: 58,
+    ending: 'chorus_damned',
+    achievement: 'Voice of the Void'
+},
+
+confess_all: {
+    text: "📜 **TOTAL CONFESSION** 📜\n\nYou confess everything you will ever do wrong. Hours pass. Days. You confess crimes in languages that don't exist yet. When you finish, you're absolved of everything - past, present, and future. You're perfectly innocent. Perfectly empty.\n\n**🏆 ADVENTURE COMPLETE: Absolution Absolute**\n**Final Sanity Change: -35**\n**Final Favor: +62**",
+    sanity: -35,
+    favor: 62,
+    ending: 'absolution_absolute',
+    achievement: 'Perfectly Forgiven'
+},
+
+refuse_confess: {
+    text: "🚫 **DEFIANT SILENCE** 🚫\n\nYou refuse to confess sins you haven't committed. The priest-you screams. The church shakes. By refusing to confess, you've prevented the future. Or doomed it. You'll never know which.\n\n**🏆 ADVENTURE COMPLETE: The Unconfessed**\n**Final Sanity Change: -20**\n**Final Favor: +40**",
+    sanity: -20,
+    favor: 40,
+    ending: 'unconfessed',
+    achievement: 'Silent Rebellion'
+},
+
+reverse_confession: {
+    text: "😇 **VIRTUES AS SINS** 😇\n\nYou confess your good deeds. Each one is treated as a crime. Kindness is weakness. Love is obsession. Hope is delusion. By the end, you're guilty of being human. The priest absolves you by erasing you.\n\n**🏆 ADVENTURE COMPLETE: Guilty of Good**\n**Final Sanity Change: -38**\n**Final Favor: +68**",
+    sanity: -38,
+    favor: 68,
+    ending: 'guilty_good',
+    achievement: 'Saint of the Fallen'
+},
+
+// Terminal endings for hotel path
+enter_1412: {
+    text: "🚪 **MEETING YOURSELF** 🚪\n\nYou enter room 1412. Inside, you're sitting on the bed, waiting. 'Took you long enough,' you say to yourself. You both smile. You both know. There's only one bed. Someone has to leave. Neither of you do.\n\n**🏆 ADVENTURE COMPLETE: Room for One**\n**Final Sanity Change: -25**\n**Final Favor: +48**",
+    sanity: -25,
+    favor: 48,
+    ending: 'room_for_one',
+    achievement: 'Double Occupancy'
+},
+
+check_all_rooms: {
+    text: "🔑 **ALL THE DOORS** 🔑\n\nYou open every door. Every room contains you. Every you is living a different life. You realize you're living all of them simultaneously. The hotel is your mind. The rooms are your choices. You can't leave because there's nowhere else to go.\n\n**🏆 ADVENTURE COMPLETE: The Self Hotel**\n**Final Sanity Change: -42**\n**Final Favor: +75**",
+    sanity: -42,
+    favor: 75,
+    ending: 'self_hotel',
+    achievement: 'Infinite Occupancy'
+},
+
+find_real_room: {
+    text: "🏠 **THE REAL ROOM** 🏠\n\nYou search for your real room. You find it: Room 0. Inside is nothing. Not darkness - the absence of existence. This is who you really are. Nothing. The hotel was always empty. You were the only guest. You were the hotel.\n\n**🏆 ADVENTURE COMPLETE: Room Zero**\n**Final Sanity Change: -50**\n**Final Favor: +85**",
+    sanity: -50,
+    favor: 85,
+    ending: 'room_zero',
+    achievement: 'The Absence at the Heart'
+}
+
 };
 
 // Function to create adventure buttons
