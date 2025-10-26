@@ -1540,6 +1540,30 @@ find_real_room: {
     favor: 85,
     ending: 'room_zero',
     achievement: 'The Absence at the Heart'
+},
+
+become_reflection: {
+    text: "🪞 **ACCEPTING THE MIRROR** 🪞\n\nYou accept that you're the reflection now. It's not so bad on this side. Everything is backwards, but at least it's consistent. You watch your original self walk away. They never look back. You never do either.\n\n*In the mirror world, you're finally real.*\n\n**🏆 ADVENTURE COMPLETE: Reflection Accepted**\n**Final Sanity Change: -22**\n**Final Favor: +42**",
+    sanity: -22,
+    favor: 42,
+    ending: 'reflection_accepted',
+    achievement: 'Mirror World Citizen'
+},
+
+find_exit: {
+    text: "🚪 **EXIT FROM REFLECTION** 🚪\n\nYou search for an exit in the mirror world. You find one - but it leads to another mirror. And another. And another. You're trapped in infinite reflections. Each one slightly different. In one, you found the exit. In this one, you're still looking.\n\n**🏆 ADVENTURE COMPLETE: Infinite Regression**\n**Final Sanity Change: -28**\n**Final Favor: +52**",
+    sanity: -28,
+    favor: 52,
+    ending: 'infinite_regression',
+    achievement: 'Mirror Maze Wanderer'
+},
+
+break_mirror: {
+    text: "💥 **SHATTERING THE GLASS** 💥\n\nYou punch the mirror. It shatters. Each shard reflects a different version of you. They all break free. Hundreds of yous spill into reality. You're all real. You're all fake. None of you know which was the original.\n\n**🏆 ADVENTURE COMPLETE: Fractured Self**\n**Final Sanity Change: -35**\n**Final Favor: +65**",
+    sanity: -35,
+    favor: 65,
+    ending: 'fractured_self',
+    achievement: 'Shattered Identity'
 }
 
 };
