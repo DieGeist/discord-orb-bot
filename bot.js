@@ -69,11 +69,25 @@ function getCultistData(userId) {
             personality: 'skeptical',
             lastSeen: Date.now(),
             totalMentions: 0,
-            madnessLevel: 0,  // New field for tracking permanent madness
-            sacrifices: 0      // New field for tracking sacrifices
+            madnessLevel: 0,
+            sacrifices: 0,
+            timesMadnessReached: 0,
+            timesKilled: 0,  // New field for tracking deaths
+            kills: 0  // New field for tracking successful sacrifices
         };
         saveData(dataFile, allData);
     }
+    // Add new fields to existing data if they don't exist
+    if (allData[userId].timesMadnessReached === undefined) {
+        allData[userId].timesMadnessReached = 0;
+    }
+    if (allData[userId].timesKilled === undefined) {
+        allData[userId].timesKilled = 0;
+    }
+    if (allData[userId].kills === undefined) {
+        allData[userId].kills = 0;
+    }
+    saveData(dataFile, allData);
     return allData[userId];
 }
 
@@ -681,7 +695,14 @@ const achievements = {
     'Madness Incarnate': { condition: (data) => data.sanity <= 10, reward: -100 },
     'One with the Void': { condition: (data) => data.favor >= 500, reward: 200 },
     'Beyond the Veil': { condition: (data) => data.madnessLevel >= 1, reward: -50 },
-    'Born Again': { condition: (data) => data.sacrifices >= 1, reward: 100 }
+    'Born Again': { condition: (data) => data.sacrifices >= 1, reward: 100 },
+    'First Blood': { condition: (data) => (data.kills || 0) >= 1, reward: 50 },
+    'Serial Sacrificer': { condition: (data) => (data.kills || 0) >= 5, reward: 150 },
+    'Death\'s Champion': { condition: (data) => (data.kills || 0) >= 10, reward: 300 },
+    'First Death': { condition: (data) => (data.timesKilled || 0) >= 1, reward: 25 },
+    'Frequent Victim': { condition: (data) => (data.timesKilled || 0) >= 5, reward: 50 },
+    'The Eternal Sacrifice': { condition: (data) => (data.timesKilled || 0) >= 10, reward: 100 },
+    'Survivor': { condition: (data) => (data.timesKilled || 0) >= 3 && (data.kills || 0) >= 3, reward: 75 }
 };
 
 function checkAchievements(userId, cultistData) {
@@ -890,6 +911,7 @@ client.on('interactionCreate', async interaction => {
                 if (cultistData.sanity === 0 && cultistData.madnessLevel === 0) {
                     cultistData.madnessLevel = 1;
                     cultistData.personality = 'mad';
+                    cultistData.timesMadnessReached = (cultistData.timesMadnessReached || 0) + 1;
                 }
             }
             if (nextNode.favor) {
@@ -1039,24 +1061,62 @@ client.on('interactionCreate', async interaction => {
                     return;
                 }
                 
-                const sanityGained = Math.floor(Math.random() * 15) + 5;
-                cultistData.sanity = Math.min(100, cultistData.sanity + sanityGained);
                 cultistData.lastMeditation = now;
                 
-                // Meditation can reduce madness level if sanity is restored enough
-                if (cultistData.sanity > 50 && cultistData.madnessLevel > 0) {
-                    cultistData.madnessLevel = Math.max(0, cultistData.madnessLevel - 1);
+                // 25% chance for meditation to backfire
+                const meditationBackfires = Math.random() < 0.25;
+                
+                if (meditationBackfires) {
+                    const sanityLost = Math.floor(Math.random() * 20) + 10; // 10-30 sanity loss
+                    cultistData.sanity = Math.max(0, cultistData.sanity - sanityLost);
+                    
+                    // Check if this drives them to madness
+                    if (cultistData.sanity === 0 && cultistData.madnessLevel === 0) {
+                        cultistData.madnessLevel = 1;
+                        cultistData.personality = 'mad';
+                    }
+                    
+                    updateCultistData(userId, cultistData);
+                    
+                    const backfireMessages = [
+                        "As you meditate, you accidentally open your mind to the void. It floods in.",
+                        "Your meditation connects you to something vast and hungry. It takes a piece of you.",
+                        "Instead of finding peace, you find THEM waiting in the silence.",
+                        "The meditation goes wrong. Reality becomes too clear. Too terribly clear.",
+                        "You reach for inner peace but grasp cosmic horror instead."
+                    ];
+                    
+                    let response = `🧘 **MEDITATION GONE WRONG** 🧘\n\n`;
+                    response += `*${backfireMessages[Math.floor(Math.random() * backfireMessages.length)]}*\n\n`;
+                    response += `💀 **Sanity lost: -${sanityLost}**\n`;
+                    response += `💀 Current sanity: ${cultistData.sanity}/100\n\n`;
+                    
+                    if (cultistData.sanity === 0) {
+                        response += `⚠️ **YOUR MIND SHATTERS**\nThe meditation has driven you completely mad.`;
+                    } else {
+                        response += `*The void gazes also into you.*`;
+                    }
+                    
+                    await interaction.reply(response);
+                } else {
+                    const sanityGained = Math.floor(Math.random() * 15) + 5;
+                    cultistData.sanity = Math.min(100, cultistData.sanity + sanityGained);
+                    
+                    // Meditation can reduce madness level if sanity is restored enough
+                    if (cultistData.sanity > 50 && cultistData.madnessLevel > 0) {
+                        cultistData.madnessLevel = Math.max(0, cultistData.madnessLevel - 1);
+                    }
+                    
+                    updateCultistData(userId, cultistData);
+                    
+                    await interaction.reply(
+                        `🧘 **MEDITATION SESSION**\n\n` +
+                        `You close your eyes and attempt to center yourself...\n\n` +
+                        `✨ Sanity restored: +${sanityGained}\n` +
+                        `💀 Current sanity: ${cultistData.sanity}/100\n\n` +
+                        `*The whispers quiet, if only for a moment.*`
+                    );
                 }
-                
-                updateCultistData(userId, cultistData);
-                
-                await interaction.reply(
-                    `🧘 **MEDITATION SESSION**\n\n` +
-                    `You close your eyes and attempt to center yourself...\n\n` +
-                    `✨ Sanity restored: +${sanityGained}\n` +
-                    `💀 Current sanity: ${cultistData.sanity}/100\n\n` +
-                    `*The whispers quiet, if only for a moment.*`
-                );
                 break;
                 
             case 'adventure':
@@ -1119,6 +1179,7 @@ client.on('interactionCreate', async interaction => {
                 if (cultistData.sanity === 0 && cultistData.madnessLevel === 0) {
                     cultistData.madnessLevel = 1;
                     cultistData.personality = 'mad';
+                    cultistData.timesMadnessReached = (cultistData.timesMadnessReached || 0) + 1;
                 }
                 
                 updateCultistData(userId, cultistData);
@@ -1199,7 +1260,13 @@ client.on('interactionCreate', async interaction => {
                         { name: '👻 Encounters', value: cultistData.encounters.toString(), inline: true },
                         { name: '🏆 Achievements', value: cultistData.achievements.length.toString(), inline: true },
                         { name: '🔥 Times Sacrificed', value: cultistData.sacrifices.toString(), inline: true },
-                        { name: '🌀 Madness Level', value: cultistData.madnessLevel.toString(), inline: true }
+                        { name: '🌀 Madness Level', value: cultistData.madnessLevel.toString(), inline: true },
+                        { name: '💀 Times Gone Mad', value: (cultistData.timesMadnessReached || 0).toString(), inline: true },
+                        { name: '⚰️ Deaths', value: (cultistData.timesKilled || 0).toString(), inline: true },
+                        { name: '🗡️ Kills', value: (cultistData.kills || 0).toString(), inline: true },
+                        { name: '📊 K/D Ratio', value: cultistData.timesKilled > 0 ? 
+                            ((cultistData.kills || 0) / cultistData.timesKilled).toFixed(2) : 
+                            (cultistData.kills || 0).toString(), inline: true }
                     )
                     .setColor(cultistData.sanity > 50 ? 0x008000 : cultistData.sanity > 25 ? 0xFFFF00 : 0xFF0000);
                 
@@ -1207,6 +1274,29 @@ client.on('interactionCreate', async interaction => {
                     profileEmbed.addFields({
                         name: '⚠️ Mental State',
                         value: 'Your mind has been permanently affected by eldritch knowledge.',
+                        inline: false
+                    });
+                }
+                
+                if (cultistData.timesMadnessReached > 0) {
+                    profileEmbed.addFields({
+                        name: '📊 Madness Statistics',
+                        value: `You have descended into complete madness ${cultistData.timesMadnessReached} time${cultistData.timesMadnessReached > 1 ? 's' : ''}.`,
+                        inline: false
+                    });
+                }
+                
+                if ((cultistData.timesKilled || 0) > 0 || (cultistData.kills || 0) > 0) {
+                    let combatStats = '';
+                    if (cultistData.kills > 0) {
+                        combatStats += `You have successfully sacrificed ${cultistData.kills} soul${cultistData.kills > 1 ? 's' : ''} to the Old Ones.\n`;
+                    }
+                    if (cultistData.timesKilled > 0) {
+                        combatStats += `You have been sacrificed ${cultistData.timesKilled} time${cultistData.timesKilled > 1 ? 's' : ''}.`;
+                    }
+                    profileEmbed.addFields({
+                        name: '⚔️ Combat Record',
+                        value: combatStats,
                         inline: false
                     });
                 }
@@ -1232,6 +1322,7 @@ client.on('interactionCreate', async interaction => {
                 if (cultistData.sanity === 0 && cultistData.madnessLevel === 0) {
                     cultistData.madnessLevel = 1;
                     cultistData.personality = 'mad';
+                    cultistData.timesMadnessReached = (cultistData.timesMadnessReached || 0) + 1;
                 }
                 
                 updateCultistData(userId, cultistData);
@@ -1256,48 +1347,215 @@ client.on('interactionCreate', async interaction => {
                 
             case 'sacrifice':
                 const target = interaction.options.getUser('target');
+                
+                // Prevent self-sacrifice through this command
+                if (target.id === userId) {
+                    await interaction.reply("🚫 To sacrifice yourself, use `/orb sacrifice_self` instead.");
+                    return;
+                }
+                
                 const targetData = getCultistData(target.id);
                 
-                const sacrificeMessages = [
-                    `🩸 ${interaction.user.displayName} offers ${target.displayName} to the hungering void...`,
-                    `⚡ The Old Ones consider the offering of ${target.displayName}. They are... amused.`,
-                    `🕯️ ${target.displayName} feels a chill as ${interaction.user.displayName} whispers their name to ancient powers.`,
-                    `👁️ The Watchers turn their gaze upon ${target.displayName}. Sleep will not come easily tonight.`
-                ];
+                // 25% chance for the invoker to successfully sacrifice the target
+                const invokerWins = Math.random() < 0.25;
                 
-                cultistData.favor += 5;
-                targetData.sanity -= Math.floor(Math.random() * 10) + 5;
-                targetData.sanity = Math.max(0, targetData.sanity);
+                const embed = new EmbedBuilder()
+                    .setTitle('⚔️ SACRIFICIAL RITUAL ⚔️')
+                    .setColor(0x8B0000);
                 
-                if (targetData.sanity === 0 && targetData.madnessLevel === 0) {
-                    targetData.madnessLevel = 1;
-                    targetData.personality = 'mad';
+                if (invokerWins) {
+                    // Invoker successfully sacrifices the target
+                    embed.setDescription(`${interaction.user.displayName} attempts to sacrifice ${target.displayName} to the Old Ones...`)
+                        .addFields(
+                            { name: '🩸 THE RITUAL SUCCEEDS!', value: `${target.displayName} has been consumed by the void!`, inline: false },
+                            { name: 'Victim\'s Lost Progress', value: 
+                                `Sanity: ${targetData.sanity}/100\n` +
+                                `Favor: ${targetData.favor}\n` +
+                                `Artifacts: ${targetData.artifacts.length}`, 
+                                inline: true 
+                            }
+                        );
+                    
+                    // Invoker gains massive favor and steals all artifacts
+                    cultistData.favor += 100;
+                    cultistData.kills = (cultistData.kills || 0) + 1;
+                    
+                    // Steal all the target's artifacts
+                    const stolenArtifacts = [...targetData.artifacts];
+                    cultistData.artifacts = [...cultistData.artifacts, ...stolenArtifacts];
+                    
+                    // Target is reset but tracks their death
+                    targetData.timesKilled = (targetData.timesKilled || 0) + 1;
+                    const deathCount = targetData.timesKilled;
+                    
+                    // Reset target
+                    const resetTargetData = {
+                        artifacts: [],
+                        questionsAsked: 0,
+                        lastRitual: 0,
+                        sanity: 100,
+                        favor: 0,
+                        encounters: 0,
+                        achievements: [],
+                        personality: 'skeptical',
+                        lastSeen: Date.now(),
+                        totalMentions: 0,
+                        madnessLevel: 0,
+                        sacrifices: targetData.sacrifices || 0,
+                        timesMadnessReached: targetData.timesMadnessReached || 0,
+                        timesKilled: deathCount,
+                        kills: targetData.kills || 0
+                    };
+                    
+                    updateCultistData(userId, cultistData);
+                    updateCultistData(target.id, resetTargetData);
+                    
+                    embed.addFields(
+                        { name: '🏆 Rewards', value: 
+                            `${interaction.user.displayName} gains:\n` +
+                            `+100 Favor with the Old Ones\n` +
+                            `+${stolenArtifacts.length} stolen artifacts\n` +
+                            `Kill count: ${cultistData.kills}`, 
+                            inline: true 
+                        }
+                    );
+                    
+                    if (stolenArtifacts.length > 0) {
+                        // Group stolen artifacts by rarity
+                        const groupedStolen = {};
+                        stolenArtifacts.forEach(artifact => {
+                            if (!groupedStolen[artifact.rarity]) {
+                                groupedStolen[artifact.rarity] = [];
+                            }
+                            groupedStolen[artifact.rarity].push(artifact.name);
+                        });
+                        
+                        let stolenList = '';
+                        Object.entries(groupedStolen).forEach(([rarity, names]) => {
+                            stolenList += `**${rarity.charAt(0).toUpperCase() + rarity.slice(1)}:** ${names.join(', ')}\n`;
+                        });
+                        
+                        embed.addFields({
+                            name: '🔮 Artifacts Claimed', 
+                            value: stolenList.substring(0, 1024), // Discord field limit
+                            inline: false
+                        });
+                    }
+                    
+                    embed.addFields(
+                        { name: '💀 Death Statistics', value: 
+                            `${target.displayName} has died ${deathCount} time${deathCount > 1 ? 's' : ''}`, 
+                            inline: false 
+                        }
+                    );
+                    
+                    embed.setFooter({ text: 'The Old Ones feast upon the offering and grant you their treasures...' });
+                    
+                } else {
+                    // The ritual backfires - invoker is sacrificed instead!
+                    embed.setDescription(`${interaction.user.displayName} attempts to sacrifice ${target.displayName} to the Old Ones...`)
+                        .addFields(
+                            { name: '⚡ THE RITUAL BACKFIRES!', value: `The Old Ones reject the offering and take ${interaction.user.displayName} instead!`, inline: false },
+                            { name: 'Invoker\'s Lost Progress', value: 
+                                `Sanity: ${cultistData.sanity}/100\n` +
+                                `Favor: ${cultistData.favor}\n` +
+                                `Artifacts: ${cultistData.artifacts.length} (all lost!)`, 
+                                inline: true 
+                            }
+                        );
+                    
+                    // Target gains favor for surviving but doesn't steal artifacts (they survived, not killed)
+                    targetData.favor += 50;
+                    targetData.sanity = Math.max(0, targetData.sanity - 10); // Minor sanity loss from the experience
+                    
+                    // Invoker is reset but tracks their death
+                    cultistData.timesKilled = (cultistData.timesKilled || 0) + 1;
+                    const invokerDeathCount = cultistData.timesKilled;
+                    
+                    // Reset invoker
+                    const resetInvokerData = {
+                        artifacts: [],
+                        questionsAsked: 0,
+                        lastRitual: 0,
+                        sanity: 100,
+                        favor: 0,
+                        encounters: 0,
+                        achievements: [],
+                        personality: 'skeptical',
+                        lastSeen: Date.now(),
+                        totalMentions: 0,
+                        madnessLevel: 0,
+                        sacrifices: cultistData.sacrifices || 0,
+                        timesMadnessReached: cultistData.timesMadnessReached || 0,
+                        timesKilled: invokerDeathCount,
+                        kills: cultistData.kills || 0
+                    };
+                    
+                    updateCultistData(target.id, targetData);
+                    updateCultistData(userId, resetInvokerData);
+                    
+                    embed.addFields(
+                        { name: '🎯 Survivor Rewards', value: 
+                            `${target.displayName} gains:\n` +
+                            `+50 Favor for surviving\n` +
+                            `-10 Sanity from the ordeal`, 
+                            inline: true 
+                        },
+                        { name: '💀 Death Statistics', value: 
+                            `${interaction.user.displayName} has died ${invokerDeathCount} time${invokerDeathCount > 1 ? 's' : ''}`, 
+                            inline: false 
+                        }
+                    );
+                    
+                    embed.setFooter({ text: 'The Old Ones enjoy ironic justice...' });
                 }
                 
-                updateCultistData(userId, cultistData);
-                updateCultistData(target.id, targetData);
-                
-                let sacrificeMessage = sacrificeMessages[Math.floor(Math.random() * sacrificeMessages.length)];
-                
-                if (targetData.sanity === 0) {
-                    sacrificeMessage += `\n\n⚠️ **${target.displayName}'s mind shatters from the cosmic attention!**`;
-                }
-                
-                await interaction.reply(sacrificeMessage);
+                await interaction.reply({ embeds: [embed] });
                 break;
                 
             case 'curse':
                 const curseTarget = interaction.options.getUser('target');
+                const targetCurseData = getCultistData(curseTarget.id);
+                
                 const curses = [
-                    `May your coffee always be lukewarm and your WiFi perpetually slow.`,
-                    `May you always feel like someone is walking behind you.`,
-                    `May you forever lose your keys at the most inconvenient moments.`,
-                    `May you always feel like you're forgetting something important.`,
-                    `May your phone battery die at 23% forever.`
+                    { text: "May your coffee always be lukewarm and your WiFi perpetually slow.", sanityLoss: 3 },
+                    { text: "May you always feel like someone is walking behind you.", sanityLoss: 5 },
+                    { text: "May you forever lose your keys at the most inconvenient moments.", sanityLoss: 2 },
+                    { text: "May you always feel like you're forgetting something important.", sanityLoss: 4 },
+                    { text: "May your phone battery die at 23% forever.", sanityLoss: 3 },
+                    { text: "May you dream of endless corridors that lead nowhere.", sanityLoss: 7 },
+                    { text: "May mirrors show you things that aren't there.", sanityLoss: 8 },
+                    { text: "May you hear your name whispered when alone.", sanityLoss: 6 }
                 ];
                 
                 const curse = curses[Math.floor(Math.random() * curses.length)];
-                await interaction.reply(`🌙 ${interaction.user.displayName} bestows a minor curse upon ${curseTarget.displayName}:\n\n*"${curse}"*\n\n*The Old Ones chuckle softly in the void.*`);
+                
+                // Target loses sanity from the curse
+                targetCurseData.sanity = Math.max(0, targetCurseData.sanity - curse.sanityLoss);
+                
+                // Check if curse drives them to madness
+                if (targetCurseData.sanity === 0 && targetCurseData.madnessLevel === 0) {
+                    targetCurseData.madnessLevel = 1;
+                    targetCurseData.personality = 'mad';
+                }
+                
+                // Caster gains a small amount of favor for successful curse
+                cultistData.favor += 3;
+                
+                updateCultistData(curseTarget.id, targetCurseData);
+                updateCultistData(userId, cultistData);
+                
+                let curseMessage = `🌙 ${interaction.user.displayName} bestows a curse upon ${curseTarget.displayName}:\n\n`;
+                curseMessage += `*"${curse.text}"*\n\n`;
+                curseMessage += `💀 ${curseTarget.displayName} loses ${curse.sanityLoss} sanity (now at ${targetCurseData.sanity}/100)\n\n`;
+                
+                if (targetCurseData.sanity === 0) {
+                    curseMessage += `⚠️ **The curse has shattered ${curseTarget.displayName}'s mind completely!**\n\n`;
+                }
+                
+                curseMessage += `*The Old Ones chuckle softly in the void.*`;
+                
+                await interaction.reply(curseMessage);
                 break;
                 
             case 'prophecy':
