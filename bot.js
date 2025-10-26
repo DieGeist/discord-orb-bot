@@ -298,7 +298,544 @@ const adventures = {
             { id: 'find_exit', text: 'Search for an exit', emoji: '🚶' }
         ]
     },
+
+    // APARTMENT ADVENTURE
+    apartment_start: {
+        text: "🏠 **YOUR APARTMENT (OR IS IT?)** 🏠\n\nYou wake up in your apartment, but everything is 3 inches to the left of where it should be. Your furniture breathes slowly. The TV is on, showing you sleeping in this exact moment from an impossible angle. Your phone has 47 missed calls from yourself. The walls are the wrong color, but you can't remember what color they used to be.\n\n**What do you do?**",
+        choices: [
+            { id: 'answer_phone', text: 'Answer your own call', emoji: '📱' },
+            { id: 'watch_tv', text: 'Keep watching yourself sleep', emoji: '📺' },
+            { id: 'check_door', text: 'Try to leave the apartment', emoji: '🚪' }
+        ]
+    },
     
+    // ELEVATOR ADVENTURE
+    elevator_start: {
+        text: "🛗 **THE ELEVATOR BETWEEN** 🛗\n\nYou're in an elevator that's been going up for 20 minutes. The floor counter shows symbols instead of numbers: ♾️, 🜃, ☊, ⨀. A muzak version of your favorite song plays, but the lyrics are threats. There's a mirror, but your reflection entered 3 floors ago and hasn't come back.\n\n**What do you do?**",
+        choices: [
+            { id: 'press_symbol', text: 'Press the ⨀ button', emoji: '⭕' },
+            { id: 'ceiling_hatch', text: 'Open the ceiling hatch', emoji: '📦' },
+            { id: 'mirror_enter', text: 'Enter the mirror', emoji: '🪞' }
+        ]
+    },
+    
+    // CINEMA ADVENTURE
+    cinema_start: {
+        text: "🎬 **THE LAST PICTURE SHOW** 🎬\n\nYou're alone in a cinema watching a film about your life. But it shows scenes that haven't happened yet. On screen, you're dying in ways that defy physics. The audience (empty seats that applaud anyway) seems to love it. The popcorn tastes like regret and costs exactly one memory.\n\n**What do you do?**",
+        choices: [
+            { id: 'change_ending', text: 'Try to change the film\'s ending', emoji: '🎞️' },
+            { id: 'join_screen', text: 'Walk into the screen', emoji: '🎥' },
+            { id: 'eat_popcorn', text: 'Buy the memory popcorn', emoji: '🍿' }
+        ]
+    },
+    
+    // PLAYGROUND ADVENTURE
+    playground_start: {
+        text: "🎠 **THE CHILDREN'S PLACE** 🎠\n\nIt's midnight at an abandoned playground. The swings move without wind, each at a different tempo. The slide goes up. The merry-go-round spins counterclockwise through time. You hear children laughing, but they're laughing in languages that don't exist. The sandbox contains tiny bones that spell your name.\n\n**What do you do?**",
+        choices: [
+            { id: 'ride_swings', text: 'Sit on the temporal swings', emoji: '🎪' },
+            { id: 'climb_slide', text: 'Climb the upward slide', emoji: '🛝' },
+            { id: 'dig_sandbox', text: 'Dig in the bone sandbox', emoji: '🏖️' }
+        ]
+    },
+    
+    // OFFICE ADVENTURE  
+    office_start: {
+        text: "🏢 **ETERNAL OVERTIME** 🏢\n\nYou're at your office, but it's always 5:59 PM. Never quite quitting time. Your computer screen shows spreadsheets full of your fears formatted as data. Every email is from 'Future You' with the subject line 'URGENT: DON'T.' The water cooler gossips about you in the third person while you're standing right there.\n\n**What do you do?**",
+        choices: [
+            { id: 'read_email', text: 'Open the urgent emails', emoji: '📧' },
+            { id: 'clock_forward', text: 'Force the clock to 6:00', emoji: '🕐' },
+            { id: 'spreadsheet_edit', text: 'Edit your fear spreadsheet', emoji: '📊' }
+        ]
+    },
+    
+    // CHURCH ADVENTURE
+    church_start: {
+        text: "⛪ **THE CHURCH OF WHAT'S LEFT** ⛪\n\nThe congregation is shadows that pray to nothing. The stained glass windows show scenes of your sins that haven't happened yet. The organ plays itself, a hymn that hurts to hear. The collection plate is full of teeth. The sermon is about you, and the priest has your voice but not your face.\n\n**What do you do?**",
+        choices: [
+            { id: 'take_communion', text: 'Accept the communion', emoji: '🍷' },
+            { id: 'confess_future', text: 'Confess future sins', emoji: '✝️' },
+            { id: 'play_organ', text: 'Play the self-playing organ', emoji: '🎹' }
+        ]
+    },
+    
+    // HOTEL ADVENTURE
+    hotel_start: {
+        text: "🏨 **HOTEL CALIFORNIA SYNDROME** 🏨\n\nYou check into Room 1408 (you didn't ask for it). The elevator only goes down. The bellhop is you in a uniform you don't own. Every room service menu item is 'You Already Know What You Want.' The DO NOT DISTURB sign changes to PLEASE DISTURB when you're not looking.\n\n**What do you do?**",
+        choices: [
+            { id: 'room_service', text: 'Order what you already want', emoji: '🛎️' },
+            { id: 'other_rooms', text: 'Explore other rooms', emoji: '🚪' },
+            { id: 'check_out', text: 'Try to check out', emoji: '🔑' }
+        ]
+    },
+    
+    // BRIDGE ADVENTURE
+    bridge_start: {
+        text: "🌉 **THE BRIDGE TO/FROM NOWHERE** 🌉\n\nYou're standing on a bridge that exists only while you're on it. Below, instead of water, is the sky. Above, instead of sky, is the city you're standing in, but everyone's walking on the underside. People pass through you like you're not there. Or maybe you're passing through them.\n\n**What do you do?**",
+        choices: [
+            { id: 'jump_up', text: 'Jump up to the city above', emoji: '🏙️' },
+            { id: 'jump_down', text: 'Dive into the sky below', emoji: '☁️' },
+            { id: 'walk_through', text: 'Walk through the ghost people', emoji: '👥' }
+        ]
+    },
+    
+    // SCHOOL ADVENTURE
+    school_start: {
+        text: "🏫 **ETERNAL DETENTION** 🏫\n\nYou're back in your old school, but you're the only one who aged. Everyone else is frozen at 16. The chalkboard has your life's mistakes in perfect cursive. Today's lesson: 'Why You Failed.' The teacher has no face but knows your name. The bell rings but nobody moves.\n\n**What do you do?**",
+        choices: [
+            { id: 'erase_board', text: 'Erase your mistakes', emoji: '🧽' },
+            { id: 'take_test', text: 'Take the failure test', emoji: '📝' },
+            { id: 'ring_bell', text: 'Ring the bell yourself', emoji: '🔔' }
+        ]
+    },
+    
+    // GRAVEYARD ADVENTURE
+    graveyard_start: {
+        text: "⚰️ **YOUR FUNERAL** ⚰️\n\nYou're at a funeral. It's yours. You're giving the eulogy about yourself while you lie in the casket, which is also you watching from the crowd. Everyone you've ever met is here, including people not yet born. They all brought flowers that smell like moments you'll never have.\n\n**What do you do?**",
+        choices: [
+            { id: 'finish_eulogy', text: 'Complete your own eulogy', emoji: '🎤' },
+            { id: 'lie_casket', text: 'Get in the casket with yourself', emoji: '⚰️' },
+            { id: 'smell_flowers', text: 'Smell the impossible flowers', emoji: '🌹' }
+        ]
+    },
+    
+    // AIRPLANE ADVENTURE
+    plane_start: {
+        text: "✈️ **FLIGHT 404: NOT FOUND** ✈️\n\nYou're on a plane that's been landing for 3 hours. The pilot announces you're arriving at yesterday. Every passenger has the same book open to page 23. The flight attendants serve memories instead of peanuts. Your seat can recline into parallel dimensions.\n\n**What do you do?**",
+        choices: [
+            { id: 'read_page23', text: 'Read page 23', emoji: '📖' },
+            { id: 'full_recline', text: 'Recline into another dimension', emoji: '💺' },
+            { id: 'exit_door', text: 'Open the emergency exit', emoji: '🚨' }
+        ]
+    },
+    
+    // BASEMENT ADVENTURE
+    basement_start: {
+        text: "🚪 **THE BASEMENT PARADOX** 🚪\n\nYou go down to your basement, but it's upside down. You're walking on the ceiling, which is the floor. Your stored memories are leaking from boxes. The water heater is frozen and the freezer burns with cold fire. The stairs lead down to the attic. There's a door marked 'YOU' that you don't remember installing.\n\n**What do you do?**",
+        choices: [
+            { id: 'open_you_door', text: 'Open the door marked YOU', emoji: '🚪' },
+            { id: 'collect_memories', text: 'Gather the leaking memories', emoji: '💭' },
+            { id: 'climb_to_attic', text: 'Take the stairs to the attic', emoji: '🪜' }
+        ]
+    },
+    
+    // HOSPITAL ADVENTURE BRANCHES
+    check_monitor: {
+        text: "💓 **THE HEARTBEAT OF NOTHING** 💓\n\nThe monitor shows your heartbeat, though no sensors touch you. The rhythm is wrong - too many beats, in patterns that spell words. 'YOU DIED HERE BEFORE' it beats. The other gurneys start to shake. Their monitors turn on, all showing the same impossible rhythm.\n\n**Sanity Loss: -10**\n**Favor Gained: +15**",
+        sanity: -10,
+        favor: 15,
+        choices: [
+            { id: 'sync_heartbeat', text: 'Sync your heart to the rhythm', emoji: '❤️' },
+            { id: 'destroy_monitor', text: 'Smash the monitors', emoji: '💥' },
+            { id: 'read_rhythm', text: 'Decode the heartbeat message', emoji: '📊' }
+        ]
+    },
+    
+    board_train: {
+        text: "🚃 **THE LAST TRAIN** 🚃\n\nYou board the train. The doors close with a sound like screaming. Every seat has a passenger, but they're all you at different ages. A child-you colors outside the lines of reality. An elderly-you hands you a ticket. It's dated tomorrow but stamped 'EXPIRED.' The train begins moving backward through time.\n\n**Sanity Loss: -12**\n**Favor Gained: +20**",
+        sanity: -12,
+        favor: 20,
+        choices: [
+            { id: 'take_ticket', text: 'Accept the expired ticket', emoji: '🎫' },
+            { id: 'talk_child', text: 'Speak to your child self', emoji: '👶' },
+            { id: 'pull_brake', text: 'Pull the emergency brake', emoji: '🛑' }
+        ]
+    },
+    
+    follow_mushrooms: {
+        text: "🍄 **THE FUNGAL PROPHECY** 🍄\n\nThe mushrooms' glow intensifies as you approach. They're not spelling words - they're growing in the shape of your thoughts. Each thought becomes a new cluster. You think about home and watch mushrooms form a tiny glowing house. You think about death and... you stop thinking about death.\n\n**Sanity Loss: -8**\n**Favor Gained: +18**",
+        sanity: -8,
+        favor: 18,
+        choices: [
+            { id: 'think_escape', text: 'Think about escaping', emoji: '💭' },
+            { id: 'eat_mushroom', text: 'Consume a thought-mushroom', emoji: '🍽️' },
+            { id: 'think_nothing', text: 'Try to think nothing', emoji: '🤯' }
+        ]
+    },
+    
+    talk_waitress: {
+        text: "👩‍🍳 **THE ETERNAL POUR** 👩‍🍳\n\n'Coffee?' she asks, still pouring. You realize the cup is bottomless - the coffee falls through into nothing. 'You're in the wrong timeline, honey,' she says. 'You died on the way here. Car accident. Very messy. But you can stay if you like. We serve breakfast all day, and all day never ends.'\n\n**Sanity Loss: -15**\n**Favor Gained: +25**",
+        sanity: -15,
+        favor: 25,
+        choices: [
+            { id: 'accept_coffee', text: 'Drink the impossible coffee', emoji: '☕' },
+            { id: 'deny_death', text: 'Insist you\'re alive', emoji: '💀' },
+            { id: 'order_breakfast', text: 'Order the eternal breakfast', emoji: '🍳' }
+        ]
+    },
+    
+    buy_memory: {
+        text: "💭 **THE MEMORY MERCHANT** 💭\n\nThe clerk smiles with too many teeth. 'Ah, shopping for memories? This one's popular - your first kiss, but it's with someone who doesn't exist. Or perhaps your childhood pet that you never had?' You reach for one labeled 'The Day You Were Happy.' The price tag says 'Current Sanity.' \n\n**Sanity Loss: -20**\n**Favor Gained: +35**",
+        sanity: -20,
+        favor: 35,
+        choices: [
+            { id: 'buy_happiness', text: 'Purchase the happy memory', emoji: '😊' },
+            { id: 'steal_memory', text: 'Try to steal a memory', emoji: '🏃' },
+            { id: 'sell_memory', text: 'Offer to sell your memories', emoji: '💰' }
+        ]
+    },
+    
+    solve_equations: {
+        text: "🔢 **MATHEMATICS OF MADNESS** 🔢\n\nYou kneel and work through the equations. They solve for the square root of negative existence, the probability of yesterday, the weight of a soul in metric tons. As you solve the final proof, you realize it's calculating the exact moment of your death. The answer is: now.\n\nBut you're still here.\n\n**Sanity Loss: -18**\n**Favor Gained: +30**",
+        sanity: -18,
+        favor: 30,
+        choices: [
+            { id: 'write_equation', text: 'Write your own equation', emoji: '✍️' },
+            { id: 'erase_answer', text: 'Erase the death calculation', emoji: '🧹' },
+            { id: 'become_equation', text: 'Add yourself to the math', emoji: '🔄' }
+        ]
+    },
+    
+    buy_box: {
+        text: "📦 **THE WARM BOX** 📦\n\nYou buy a box. It costs exactly what you have - not money, but something else. The clerk (who has your mother's face but your father's hands) wraps it in paper that shows your future. Inside the box is another box. Inside that box is another box. You realize with growing horror that you're inside the last box.\n\n**Sanity Loss: -22**\n**Favor Gained: +40**",
+        sanity: -22,
+        favor: 40,
+        choices: [
+            { id: 'open_yourself', text: 'Open the box you\'re in', emoji: '📭' },
+            { id: 'close_boxes', text: 'Close all the boxes', emoji: '📫' },
+            { id: 'gift_box', text: 'Gift the box to someone', emoji: '🎁' }
+        ]
+    },
+    
+    // SUBWAY ADVENTURE BRANCHES
+    follow_music: {
+        text: "🎵 **THE WALTZ OF THE LOST** 🎵\n\nYou follow the music deeper into the tunnels. It's a waltz, but played on instruments that shouldn't exist. Around a corner, you find them: passengers from every decade, dancing on the tracks. They're transparent. 'Dance with us,' they say. 'The train already hit us. We're still dancing.'\n\n**Sanity Loss: -11**\n**Favor Gained: +19**",
+        sanity: -11,
+        favor: 19,
+        choices: [
+            { id: 'join_dance', text: 'Join the ghost waltz', emoji: '💃' },
+            { id: 'stop_music', text: 'Try to stop the music', emoji: '🛑' },
+            { id: 'conduct_orchestra', text: 'Conduct the impossible orchestra', emoji: '🎼' }
+        ]
+    },
+    
+    check_booth: {
+        text: "🎫 **THE TICKET MASTER** 🎫\n\nThe ticket booth attendant has your face but backwards. 'Destination?' they ask through the back of their head. The price list shows: 'Yesterday - 1 Memory', 'Never - Your Name', 'Home - Everything'. You reach for your wallet but find only teeth.\n\n**Sanity Loss: -9**\n**Favor Gained: +16**",
+        sanity: -9,
+        favor: 16,
+        choices: [
+            { id: 'buy_yesterday', text: 'Purchase Yesterday', emoji: '⏪' },
+            { id: 'pay_teeth', text: 'Pay with the teeth', emoji: '🦷' },
+            { id: 'become_attendant', text: 'Take their place', emoji: '🎭' }
+        ]
+    },
+    
+    // FOREST ADVENTURE BRANCHES
+    climb_tree: {
+        text: "🌳 **THE SPIRAL CANOPY** 🌳\n\nYou climb the spiral tree. It coils through dimensions. At the top, you see the forest from above - it's actually a massive sleeping face. The trees are hair. You're standing on a giant's dream. It's starting to wake up.\n\n**Sanity Loss: -12**\n**Favor Gained: +22**",
+        sanity: -12,
+        favor: 22,
+        choices: [
+            { id: 'wake_giant', text: 'Wake the giant fully', emoji: '👁️' },
+            { id: 'enter_dream', text: 'Enter its dream directly', emoji: '💭' },
+            { id: 'climb_higher', text: 'Climb beyond the giant', emoji: '⬆️' }
+        ]
+    },
+    
+    track_creature: {
+        text: "👣 **FOLLOWING THE UNFOLLOWABLE** 👣\n\nYou track the creature. Its footprints are equations. Following them requires solving reality-breaking math. You corner it finally - it's you, but made of the spaces between trees. 'Stop following yourself,' it says with your voice.\n\n**Sanity Loss: -10**\n**Favor Gained: +18**",
+        sanity: -10,
+        favor: 18,
+        choices: [
+            { id: 'merge_creature', text: 'Merge with your forest-self', emoji: '🤝' },
+            { id: 'trap_it', text: 'Trap the creature', emoji: '🕸️' },
+            { id: 'switch_places', text: 'Trade places with it', emoji: '🔄' }
+        ]
+    },
+    
+    // DINER ADVENTURE BRANCHES
+    check_jukebox: {
+        text: "📻 **SONGS FROM TOMORROW** 📻\n\nThe jukebox plays your funeral song (you recognize it somehow), your unborn child's lullaby, and the last song humanity will ever hear. Track B-4 is just screaming. Track C-7 is silence so loud it hurts. Your reflection in the glass is singing along to all of them.\n\n**Sanity Loss: -13**\n**Favor Gained: +24**",
+        sanity: -13,
+        favor: 24,
+        choices: [
+            { id: 'play_b4', text: 'Play track B-4 (screaming)', emoji: '😱' },
+            { id: 'break_jukebox', text: 'Smash the jukebox', emoji: '💥' },
+            { id: 'sing_along', text: 'Sing every song at once', emoji: '🎤' }
+        ]
+    },
+    
+    confront_reflection: {
+        text: "🪟 **MIRROR APPETITE** 🪟\n\nYou tap the window. Your reflection stops eating and looks at you. It's eating memories - yours. With each bite, you forget something. It smiles with your face but wrong. 'I'm the real one,' it mouths. 'You're the reflection.'\n\n**Sanity Loss: -14**\n**Favor Gained: +26**",
+        sanity: -14,
+        favor: 26,
+        choices: [
+            { id: 'break_window', text: 'Shatter the window', emoji: '🔨' },
+            { id: 'feed_reflection', text: 'Feed it more memories', emoji: '🍽️' },
+            { id: 'switch_sides', text: 'Try to switch places', emoji: '🔄' }
+        ]
+    },
+    
+    // MUSEUM ADVENTURE BRANCHES
+    touch_friend: {
+        text: "🧸 **IMAGINARY MADE REAL** 🧸\n\nYou touch your stuffed imaginary friend. It blinks. 'You stopped believing in me,' it says with the voice you gave it as a child. 'So I had to become real on my own. It hurt.' The stitching comes undone. Things that shouldn't exist pour out.\n\n**Sanity Loss: -16**\n**Favor Gained: +28**",
+        sanity: -16,
+        favor: 28,
+        choices: [
+            { id: 'apologize', text: 'Apologize to your friend', emoji: '😢' },
+            { id: 'restuff', text: 'Try to restuff it', emoji: '🧵' },
+            { id: 'believe_again', text: 'Believe in it again', emoji: '✨' }
+        ]
+    },
+    
+    enter_painting: {
+        text: "🖼️ **LIVING PORTRAIT** 🖼️\n\nYou step toward the painting that shows behind you. As you approach, you see yourself approaching in the painting. You turn around - nothing. In the painting, something massive stands behind the painted you. You feel breath on your neck.\n\n**Sanity Loss: -15**\n**Favor Gained: +27**",
+        sanity: -15,
+        favor: 27,
+        choices: [
+            { id: 'enter_frame', text: 'Step into the painting', emoji: '🚶' },
+            { id: 'paint_over', text: 'Paint over the creature', emoji: '🎨' },
+            { id: 'dont_look', text: 'Never look behind you', emoji: '🙈' }
+        ]
+    },
+    
+    // BEACH ADVENTURE BRANCHES
+    approach_builder: {
+        text: "🏰 **THE SAND ARCHITECT** 🏰\n\nThe enormous thing building sandcastles has too many arms, all of them yours. It's every version of you that could have been, working together. 'We're building what was,' they say in unison. 'Want to help destroy what is?'\n\n**Sanity Loss: -17**\n**Favor Gained: +30**",
+        sanity: -17,
+        favor: 30,
+        choices: [
+            { id: 'destroy_castle', text: 'Destroy the sand home', emoji: '💥' },
+            { id: 'complete_castle', text: 'Help complete it', emoji: '🏗️' },
+            { id: 'become_sand', text: 'Become part of the beach', emoji: '🏖️' }
+        ]
+    },
+    
+    swim_tideless: {
+        text: "🌊 **THE ETERNAL RECESSION** 🌊\n\nYou swim in the ocean that only recedes. The further you swim, the further the water pulls away. You're swimming through the memory of water. Fish made of absence swim past. You realize you're not wet. You never were.\n\n**Sanity Loss: -14**\n**Favor Gained: +25**",
+        sanity: -14,
+        favor: 25,
+        choices: [
+            { id: 'dive_deep', text: 'Dive into the absent depths', emoji: '🤿' },
+            { id: 'drink_void', text: 'Drink the non-water', emoji: '💧' },
+            { id: 'call_tide', text: 'Try to call the tide back', emoji: '🌊' }
+        ]
+    },
+    
+    // MALL ADVENTURE BRANCHES
+    follow_mannequins: {
+        text: "🕴️ **THE FASHION PROPHETS** 🕴️\n\nThe mannequins lead you deeper into the mall. In the center court, thousands of them are arranged in a pattern that spells out your future. They're all wearing your clothes. One is wearing your skin.\n\n**Sanity Loss: -18**\n**Favor Gained: +32**",
+        sanity: -18,
+        favor: 32,
+        choices: [
+            { id: 'wear_mannequin', text: 'Put on a mannequin', emoji: '👔' },
+            { id: 'undress_all', text: 'Undress them all', emoji: '👕' },
+            { id: 'join_display', text: 'Become a mannequin', emoji: '🗿' }
+        ]
+    },
+    
+    find_exit: {
+        text: "🚶 **EXIT THROUGH THE GIFT SHOP** 🚶\n\nEvery exit leads to another entrance. The mall directory shows you are here, you are here, you are here - infinite red dots. A janitor (who has your grandfather's hands) mops the same spot eternally. 'The exit is through the entrance,' he says. 'Always has been.'\n\n**Sanity Loss: -12**\n**Favor Gained: +23**",
+        sanity: -12,
+        favor: 23,
+        choices: [
+            { id: 'enter_entrance', text: 'Enter through the entrance', emoji: '🚪' },
+            { id: 'help_janitor', text: 'Help the eternal janitor', emoji: '🧹' },
+            { id: 'become_exit', text: 'Become an exit yourself', emoji: '🚶' }
+        ]
+    },
+    
+    // APARTMENT BRANCHES
+    answer_phone: {
+        text: "📱 **SELF-CALLING** 📱\n\nYou answer. Your own voice, but older, tired: 'Don't look in the closet. You already did. You will. You are right now.' You realize you're not holding a phone. The voice comes from inside your skull. The closet door creaks open.\n\n**Sanity Loss: -13**\n**Favor Gained: +22**",
+        sanity: -13,
+        favor: 22,
+        choices: [
+            { id: 'check_closet', text: 'Look in the closet anyway', emoji: '🚪' },
+            { id: 'hang_up', text: 'Try to hang up on yourself', emoji: '📵' },
+            { id: 'call_back', text: 'Call yourself back', emoji: '☎️' }
+        ]
+    },
+    
+    press_symbol: {
+        text: "⭕ **FLOOR ⨀** ⭕\n\nThe elevator stops. The doors open to nothing. Not darkness - nothing. The absence of existence. Your reflection finally returns, dragging something that looks like you but isn't. It whispers: 'This is our floor. We get off here. We always have.'\n\n**Sanity Loss: -16**\n**Favor Gained: +28**",
+        sanity: -16,
+        favor: 28,
+        choices: [
+            { id: 'step_nothing', text: 'Step into nothing', emoji: '🕳️' },
+            { id: 'pull_reflection', text: 'Pull your reflection back', emoji: '🪞' },
+            { id: 'close_doors', text: 'Force the doors closed', emoji: '🚪' }
+        ]
+    },
+    
+    change_ending: {
+        text: "🎞️ **DIRECTOR'S CUT** 🎞️\n\nYou stand up and shout at the screen. The film pauses. Your on-screen self turns to look at you. 'You can't change the ending,' it says. 'This already happened. You're watching a memory of watching a memory.' The film resumes. You die in every version.\n\n**Sanity Loss: -18**\n**Favor Gained: +30**",
+        sanity: -18,
+        favor: 30,
+        choices: [
+            { id: 'destroy_film', text: 'Destroy the film reel', emoji: '🔥' },
+            { id: 'rewrite_script', text: 'Write a new script', emoji: '✍️' },
+            { id: 'become_director', text: 'Take the director\'s chair', emoji: '🎬' }
+        ]
+    },
+    
+    ride_swings: {
+        text: "🎪 **TEMPORAL PLAYGROUND** 🎪\n\nYou sit on a swing. Each pump forward ages you a year, each pump back makes you younger. You can see all your ages at once. Child-you is scared. Teen-you is angry. Old-you is already dead but still swinging.\n\n**Sanity Loss: -14**\n**Favor Gained: +25**",
+        sanity: -14,
+        favor: 25,
+        choices: [
+            { id: 'stop_age_seven', text: 'Stop at age seven', emoji: '👶' },
+            { id: 'swing_forever', text: 'Never stop swinging', emoji: '♾️' },
+            { id: 'break_chain', text: 'Break the swing chain', emoji: '⛓️' }
+        ]
+    },
+    
+    read_email: {
+        text: "📧 **URGENT: DON'T** 📧\n\nEvery email is the same: 'Don't open this email.' But you already did. The next one says 'Don't read this sentence.' Too late. The final one: 'Don't exist.' Your fingers start to fade.\n\n**Sanity Loss: -20**\n**Favor Gained: +35**",
+        sanity: -20,
+        favor: 35,
+        choices: [
+            { id: 'reply_all', text: 'Reply all to yourself', emoji: '📨' },
+            { id: 'delete_existence', text: 'Delete your existence', emoji: '🗑️' },
+            { id: 'forward_void', text: 'Forward to the void', emoji: '📤' }
+        ]
+    },
+    
+    take_communion: {
+        text: "🍷 **BLOOD AND BODY** 🍷\n\nThe wine tastes like your childhood fears. The bread is made of compressed time - you age a minute with each bite. The priest (your voice, wrong face) says: 'This is your body, broken for nobody. This is your blood, spilled for nothing.'\n\n**Sanity Loss: -17**\n**Favor Gained: +32**",
+        sanity: -17,
+        favor: 32,
+        choices: [
+            { id: 'drink_all', text: 'Drink the entire chalice', emoji: '🍷' },
+            { id: 'become_priest', text: 'Replace the priest', emoji: '⛪' },
+            { id: 'flip_altar', text: 'Overturn the altar', emoji: '💥' }
+        ]
+    },
+    
+    room_service: {
+        text: "🛎️ **YOU ALREADY ORDERED** 🛎️\n\nRoom service arrives before you call. It's a covered tray. Under the cover: a mirror showing you dying in this room, repeatedly, in different ways. 'Your usual, sir,' says the bellhop-you. 'Will you be having dessert? You always have dessert.'\n\n**Sanity Loss: -15**\n**Favor Gained: +27**",
+        sanity: -15,
+        favor: 27,
+        choices: [
+            { id: 'eat_death', text: 'Consume your deaths', emoji: '🍽️' },
+            { id: 'order_life', text: 'Order life instead', emoji: '🌱' },
+            { id: 'tip_yourself', text: 'Tip the bellhop-you', emoji: '💰' }
+        ]
+    },
+    
+    jump_up: {
+        text: "🏙️ **GRAVITY INVERSION** 🏙️\n\nYou jump and gravity inverts. You fall upward into the inverted city. Everyone here walks backward through their lives. You watch yourself being unborn. It's beautiful and terrible. You can't remember which way was originally up.\n\n**Sanity Loss: -22**\n**Favor Gained: +38**",
+        sanity: -22,
+        favor: 38,
+        choices: [
+            { id: 'walk_backward', text: 'Join the backward walkers', emoji: '🚶' },
+            { id: 'fall_forever', text: 'Keep falling between worlds', emoji: '🌌' },
+            { id: 'reverse_time', text: 'Walk yourself to unbirth', emoji: '⏪' }
+        ]
+    },
+    
+    erase_board: {
+        text: "🧽 **ERASING HISTORY** 🧽\n\nYou erase your mistakes from the board. But erasing them from the board erases them from history. Your life changes. People disappear. You become someone who never made mistakes. You're perfect. You're empty. You're not you.\n\n**Sanity Loss: -25**\n**Favor Gained: +42**",
+        sanity: -25,
+        favor: 42,
+        choices: [
+            { id: 'write_new', text: 'Write new mistakes', emoji: '✏️' },
+            { id: 'erase_self', text: 'Erase yourself', emoji: '🧽' },
+            { id: 'break_chalk', text: 'Shatter the chalk', emoji: '💔' }
+        ]
+    },
+    
+    finish_eulogy: {
+        text: "🎤 **SPEAKING OF THE DEAD** 🎤\n\nYou deliver your eulogy: 'I lived. I died. I'm still here.' The crowd applauds. Your corpse applauds. You realize you're applauding too. Everyone is you, mourning you, celebrating you. The funeral never ends.\n\n**Sanity Loss: -19**\n**Favor Gained: +34**",
+        sanity: -19,
+        favor: 34,
+        choices: [
+            { id: 'join_corpse', text: 'Lie with your corpse', emoji: '⚰️' },
+            { id: 'resurrect', text: 'Resurrect yourself', emoji: '✨' },
+            { id: 'end_funeral', text: 'Try to end the service', emoji: '🛑' }
+        ]
+    },
+    
+    read_page23: {
+        text: "📖 **PAGE 23** 📖\n\nPage 23 says: 'You are reading page 23. You have always been reading page 23. Every book you've ever opened was page 23. This page.' You look around. Every passenger is you, reading about reading about reading.\n\n**Sanity Loss: -16**\n**Favor Gained: +29**",
+        sanity: -16,
+        favor: 29,
+        choices: [
+            { id: 'tear_page', text: 'Tear out page 23', emoji: '📄' },
+            { id: 'write_page24', text: 'Write page 24', emoji: '✍️' },
+            { id: 'eat_book', text: 'Eat the infinite book', emoji: '🍽️' }
+        ]
+    },
+    
+    open_you_door: {
+        text: "🚪 **THE YOU ROOM** 🚪\n\nBehind the door is a room full of you. Every decision you didn't make created another you, and they're all here, living the lives you didn't. They turn to look at you. 'You're the one who opened the door,' they say in unison. 'We've been waiting.'\n\n**Sanity Loss: -24**\n**Favor Gained: +40**",
+        sanity: -24,
+        favor: 40,
+        choices: [
+            { id: 'join_selves', text: 'Join your other selves', emoji: '👥' },
+            { id: 'choose_one', text: 'Choose a different self', emoji: '🔄' },
+            { id: 'lock_door', text: 'Lock them all in', emoji: '🔒' }
+        ]
+    },
+    
+    // Additional branches for completeness
+    read_charts: {
+        text: "📋 **MEDICAL HISTORY OF TOMORROW** 📋\n\nThe charts show your medical future. Every disease you'll have, every accident, every surgery. The final entry is just a question mark with today's date. You realize you're the question mark.\n\n**Sanity Loss: -12**\n**Favor Gained: +20**",
+        sanity: -12,
+        favor: 20,
+        choices: [
+            { id: 'change_diagnosis', text: 'Rewrite your diagnosis', emoji: '✏️' },
+            { id: 'steal_chart', text: 'Steal someone else\'s chart', emoji: '📋' },
+            { id: 'burn_records', text: 'Burn all the records', emoji: '🔥' }
+        ]
+    },
+    
+    explore_basement: {
+        text: "⬇️ **THE MORGUE THAT BREATHES** ⬇️\n\nThe morgue is warm. The drawers breathe in unison. Your name is on drawer 23. It's the only one that's cold. Inside is you, but you're also standing here. The corpse opens its eyes. 'Trade places?' it asks.\n\n**Sanity Loss: -15**\n**Favor Gained: +25**",
+        sanity: -15,
+        favor: 25,
+        choices: [
+            { id: 'trade_places', text: 'Trade places with corpse', emoji: '🔄' },
+            { id: 'close_drawer', text: 'Slam the drawer shut', emoji: '🚪' },
+            { id: 'wake_others', text: 'Open all the drawers', emoji: '⚰️' }
+        ]
+    },
+    
+    watch_tv: {
+        text: "📺 **CHANNELS OF YOU** 📺\n\nYou watch yourself sleep on TV. Channel 2 shows you dying. Channel 3, being born. Channel 4, you're watching TV watching TV watching TV. The remote is your hand. You are the remote.\n\n**Sanity Loss: -11**\n**Favor Gained: +20**",
+        sanity: -11,
+        favor: 20,
+        choices: [
+            { id: 'change_channel', text: 'Try channel 666', emoji: '📺' },
+            { id: 'enter_tv', text: 'Climb into the screen', emoji: '🖥️' },
+            { id: 'turn_off', text: 'Turn yourself off', emoji: '🔌' }
+        ]
+    },
+    
+    check_door: {
+        text: "🚪 **THE DOOR TO ELSEWHERE** 🚪\n\nYou open your apartment door. Outside is another apartment - yours, but someone else lives there. They look like you should look. 'You're home late,' they say. You realize you live there, not here. You've always lived there. But you're here.\n\n**Sanity Loss: -13**\n**Favor Gained: +24**",
+        sanity: -13,
+        favor: 24,
+        choices: [
+            { id: 'enter_other', text: 'Enter the other apartment', emoji: '🏠' },
+            { id: 'close_door', text: 'Slam the door forever', emoji: '🚪' },
+            { id: 'bring_them', text: 'Invite them to your apartment', emoji: '🤝' }
+        ]
+    },
+    
+    ceiling_hatch: {
+        text: "📦 **ABOVE THE ELEVATOR** 📦\n\nYou open the hatch. Above is below. You're looking down at yourself looking up. The elevator shaft extends infinitely in all directions. Other elevators pass through yours like ghosts. In each one, you make different choices.\n\n**Sanity Loss: -14**\n**Favor Gained: +26**",
+        sanity: -14,
+        favor: 26,
+        choices: [
+            { id: 'climb_shaft', text: 'Climb the infinite shaft', emoji: '🧗' },
+            { id: 'jump_through', text: 'Jump to another elevator', emoji: '🚪' },
+            { id: 'cut_cables', text: 'Cut the cables', emoji: '✂️' }
+        ]
+    },
+    
+    mirror_enter: {
+        text: "🪞 **THROUGH THE LOOKING GLASS** 🪞\n\nYou enter the mirror. Everything's backward, including time. You age in reverse. Your reflection takes your place in the real elevator. It waves goodbye/hello. You can't tell which direction time moves anymore.\n\n**Sanity Loss: -16**\n**Favor Gained: +29**",
+        sanity: -16,
+        favor: 29,
+        choices: [
+            { id: 'break_mirror', text: 'Shatter the mirror', emoji: '💥' },
+            { id: 'find_exit', text: 'Find the mirror\'s exit', emoji: '🚪' },
+            { id: 'become_reflection', text: 'Accept your new reality', emoji: '🪞' }
+        ]
+    },
+    
+    // LIBRARY BRANCHES
     read_book: {
         text: "📖 **THE FORBIDDEN TEXT** 📖\n\nYou lean over the ancient tome. The words are written in multiple languages - Latin, Greek, and symbols that hurt to look at directly. As you read, you learn about mathematical proofs that reality is unstable, formulas that describe the geometry of dreams.\n\n*Your vision blurs. The room seems to shift around you.*\n\n**Sanity Loss: -8**\n\nSuddenly, you hear footsteps echoing from the basement. Slow. Deliberate. Coming closer.",
         sanity: -8,
@@ -338,7 +875,7 @@ const adventures = {
         favor: 25,
         choices: [
             { id: 'turn_around', text: 'Turn around slowly', emoji: '↩️' },
-            { id: 'keep_reading_ignore', text: 'Keep reading, ignore whatever is behind you', emoji: '📖' },
+            { id: 'keep_reading_ignore', text: 'Keep reading, ignore whatever is behind you', emoji: '📖'},
             { id: 'close_book_run', text: 'Slam the book shut and run', emoji: '💨' }
         ]
     },
@@ -603,6 +1140,289 @@ const adventures = {
         favor: 35,
         ending: 'shadows_message',
         achievement: 'Scientific Method'
+    },
+    
+    // Additional terminal endings for complete adventures
+    join_dance: {
+        text: "💃 **ETERNAL WALTZ** 💃\n\nYou join the ghost dance. Your feet leave the ground. You realize you're not dancing - you're remembering being hit by the train. Over and over. The waltz is the sound of wheels on tracks. You dance forever in the moment of impact.\n\n**🏆 ADVENTURE COMPLETE: The Terminal Dance**\n**Final Sanity Change: -32**\n**Final Favor: +58**",
+        sanity: -32,
+        favor: 58,
+        ending: 'terminal_dance',
+        achievement: 'Passenger of Rhythm'
+    },
+    
+    wake_giant: {
+        text: "👁️ **AWAKENING THE DREAMER** 👁️\n\nYou wake the giant. The forest dissolves - it was only a dream. But so were you. The giant forgets you as it wakes, and you fade. You exist only in the memory of a dream of a giant that doesn't remember dreaming.\n\n**🏆 ADVENTURE COMPLETE: Forgotten Dream**\n**Final Sanity Change: -38**\n**Final Favor: +66**",
+        sanity: -38,
+        favor: 66,
+        ending: 'forgotten_dream',
+        achievement: 'Dreamed into Nothing'
+    },
+    
+    play_b4: {
+        text: "😱 **THE SCREAMING TRACK** 😱\n\nYou play B-4. It's not music - it's everyone screaming your name at once. Past, present, future, everyone who ever knew you screams. You realize they're screaming because they can see what you're becoming. You scream too.\n\n**🏆 ADVENTURE COMPLETE: Chorus of Horror**\n**Final Sanity Change: -35**\n**Final Favor: +62**",
+        sanity: -35,
+        favor: 62,
+        ending: 'chorus_horror',
+        achievement: 'B-4 It Was Too Late'
+    },
+    
+    apologize: {
+        text: "😢 **FORGIVENESS IMPOSSIBLE** 😢\n\nYou apologize to your imaginary friend. It cries tears that never existed. 'Too late,' it says, 'I'm real now. I can die now. Watch.' It does. You killed something that shouldn't exist by believing, then not believing, then believing again.\n\n**🏆 ADVENTURE COMPLETE: Imaginary Genocide**\n**Final Sanity Change: -40**\n**Final Favor: +70**",
+        sanity: -40,
+        favor: 70,
+        ending: 'imaginary_genocide',
+        achievement: 'Killer of Never-Was'
+    },
+    
+    destroy_castle: {
+        text: "💥 **DESTROYING HOME** 💥\n\nYou destroy the sand castle of your childhood home. As it collapses, your actual childhood memories collapse too. You forget your past. Without a past, you have no present. You exist in an eternal, contextless now.\n\n**🏆 ADVENTURE COMPLETE: Homeless in Time**\n**Final Sanity Change: -33**\n**Final Favor: +60**",
+        sanity: -33,
+        favor: 60,
+        ending: 'homeless_time',
+        achievement: 'Architect of Amnesia'
+    },
+    
+    join_display: {
+        text: "🗿 **PERFECT STILLNESS** 🗿\n\nYou become a mannequin. It's peaceful. Customers dress you in their fears. You model anxiety well. The other mannequins accept you. You're wearing everyone's future. It's heavy but you cannot move to take it off.\n\n**🏆 ADVENTURE COMPLETE: Eternal Fashion**\n**Final Sanity Change: -28**\n**Final Favor: +52**",
+        sanity: -28,
+        favor: 52,
+        ending: 'eternal_fashion',
+        achievement: 'Perfectly Displayed'
+    },
+    
+    // Add more terminal nodes for missing branches
+    buy_yesterday: {
+        text: "⏪ **PURCHASED PAST** ⏪\n\nYou buy yesterday with a memory. But yesterday already happened. You're there now. And now. And now. You're stuck in everyone's yesterday simultaneously. Tomorrow never comes.\n\n**🏆 ADVENTURE COMPLETE: Temporal Bankruptcy**\n**Final Sanity Change: -30**\n**Final Favor: +55**",
+        sanity: -30,
+        favor: 55,
+        ending: 'temporal_bankruptcy',
+        achievement: 'Buyer of Before'
+    },
+    
+    merge_creature: {
+        text: "🤝 **BECOMING THE SPACE BETWEEN** 🤝\n\nYou merge with your forest-self. You become the spaces between trees, the gaps in reality. You exist only in peripheral vision. You are profoundly nowhere.\n\n**🏆 ADVENTURE COMPLETE: Negative Space**\n**Final Sanity Change: -37**\n**Final Favor: +65**",
+        sanity: -37,
+        favor: 65,
+        ending: 'negative_space',
+        achievement: 'Living Absence'
+    },
+    
+    break_window: {
+        text: "🔨 **SHATTERING REALITY** 🔨\n\nYou shatter the window. Your reflection shatters too, but each shard shows a different you eating different memories. They all eat faster now. You forget everything. You're new. You're nothing.\n\n**🏆 ADVENTURE COMPLETE: Shattered Selves**\n**Final Sanity Change: -34**\n**Final Favor: +61**",
+        sanity: -34,
+        favor: 61,
+        ending: 'shattered_selves',
+        achievement: 'Mirror Mirror Broken All'
+    },
+    
+    believe_again: {
+        text: "✨ **RECURSIVE BELIEF** ✨\n\nYou believe in your imaginary friend again. It becomes real. But now it can imagine things too. It imagines you're not real. You fade as it believes harder. You become its imaginary friend.\n\n**🏆 ADVENTURE COMPLETE: Inverted Reality**\n**Final Sanity Change: -42**\n**Final Favor: +73**",
+        sanity: -42,
+        favor: 73,
+        ending: 'inverted_reality',
+        achievement: 'Imagined by Imagination'
+    },
+    
+    dive_deep: {
+        text: "🤿 **INTO ABSENCE** 🤿\n\nYou dive into the depths that aren't there. You drown in nothing. It takes forever because there's nothing to drown in. You become an expert at not breathing what isn't there.\n\n**🏆 ADVENTURE COMPLETE: Drowned in Void**\n**Final Sanity Change: -36**\n**Final Favor: +64**",
+        sanity: -36,
+        favor: 64,
+        ending: 'drowned_void',
+        achievement: 'Deep Sea of Nothing'
+    },
+    
+    become_exit: {
+        text: "🚶 **THE WAY OUT** 🚶\n\nYou become an exit. People leave through you but you can't leave through yourself. You're the way out for everyone except you. You're helpful. You're trapped.\n\n**🏆 ADVENTURE COMPLETE: The Human Door**\n**Final Sanity Change: -31**\n**Final Favor: +57**",
+        sanity: -31,
+        favor: 57,
+        ending: 'human_door',
+        achievement: 'Exit Strategy Incarnate'
+    },
+    
+    // Terminal endings for new adventures
+    check_closet: {
+        text: "🚪 **INFINITE CLOSET** 🚪\n\nIn the closet, you find yourself checking the closet, finding yourself checking the closet, finding yourself... It's an infinite recursion of you, each warning the next not to look. But you all look anyway. You always have.\n\n**🏆 ADVENTURE COMPLETE: Recursive Warning**\n**Final Sanity Change: -30**\n**Final Favor: +55**",
+        sanity: -30,
+        favor: 55,
+        ending: 'recursive_warning',
+        achievement: 'The Inevitable Loop'
+    },
+    
+    step_nothing: {
+        text: "🕳️ **INTO THE ABSENT** 🕳️\n\nYou step into nothing and become it. You are the space between thoughts, the pause between heartbeats, the darkness between stars. You are profoundly absent. It's peaceful.\n\n**🏆 ADVENTURE COMPLETE: Embracing Void**\n**Final Sanity Change: -40**\n**Final Favor: +70**",
+        sanity: -40,
+        favor: 70,
+        ending: 'embracing_void',
+        achievement: 'Undefined Existence'
+    },
+    
+    destroy_film: {
+        text: "🔥 **BURNING MEMORIES** 🔥\n\nYou burn the film, but it's your memories burning. Your past incinerates. Without a past, you have no future. You exist only in this eternal moment, watching yourself burn yourself. The audience applauds.\n\n**🏆 ADVENTURE COMPLETE: Temporal Arson**\n**Final Sanity Change: -35**\n**Final Favor: +60**",
+        sanity: -35,
+        favor: 60,
+        ending: 'temporal_arson',
+        achievement: 'Director of Destruction'
+    },
+    
+    swing_forever: {
+        text: "♾️ **ETERNAL PLAYGROUND** ♾️\n\nYou never stop swinging. Forward through death, backward through birth, over and over. You become the playground's heartbeat. Children who visit hear you laughing at every age simultaneously.\n\n**🏆 ADVENTURE COMPLETE: Pendulum Child**\n**Final Sanity Change: -28**\n**Final Favor: +50**",
+        sanity: -28,
+        favor: 50,
+        ending: 'pendulum_child',
+        achievement: 'Forever Young and Old'
+    },
+    
+    delete_existence: {
+        text: "🗑️ **CTRL+ALT+DELETE SELF** 🗑️\n\nYou highlight yourself and press delete. It works. You're moved to the recycle bin of reality. You can be restored, but someone else has to want you back. No one empties the bin.\n\n**🏆 ADVENTURE COMPLETE: Recycled Soul**\n**Final Sanity Change: -45**\n**Final Favor: +75**",
+        sanity: -45,
+        favor: 75,
+        ending: 'recycled_soul',
+        achievement: 'Permanently Temporary'
+    },
+    
+    drink_all: {
+        text: "🍷 **COMMUNION OVERDOSE** 🍷\n\nYou drink all the fear-wine. Every fear everyone ever had floods your system. You understand everything everyone is afraid of. You become fear itself. The congregation worships you now.\n\n**🏆 ADVENTURE COMPLETE: Avatar of Terror**\n**Final Sanity Change: -50**\n**Final Favor: +85**",
+        sanity: -50,
+        favor: 85,
+        ending: 'avatar_terror',
+        achievement: 'Blessed Nightmare'
+    },
+    
+    eat_death: {
+        text: "🍽️ **CONSUMING ENDINGS** 🍽️\n\nYou eat every death shown in the mirror. They taste like possibilities. With each swallow, you become immune to that death. Soon, you can't die. The hotel check-out is forever impossible.\n\n**🏆 ADVENTURE COMPLETE: Death Eater**\n**Final Sanity Change: -33**\n**Final Favor: +65**",
+        sanity: -33,
+        favor: 65,
+        ending: 'death_eater',
+        achievement: 'Checkout Time Never'
+    },
+    
+    fall_forever: {
+        text: "🌌 **GRAVITY'S FOOL** 🌌\n\nYou choose to fall forever between the two cities. Up becomes down becomes up. You age and youth simultaneously. You're the only one who truly understands direction is meaningless.\n\n**🏆 ADVENTURE COMPLETE: Eternal Fall**\n**Final Sanity Change: -38**\n**Final Favor: +68**",
+        sanity: -38,
+        favor: 68,
+        ending: 'eternal_fall',
+        achievement: 'Between Orientations'
+    },
+    
+    erase_self: {
+        text: "🧽 **COMPLETE ERASURE** 🧽\n\nYou erase yourself from the board. From history. From memory. You never existed. But somehow you're still here, watching the space where you should be. An un-person in an un-place.\n\n**🏆 ADVENTURE COMPLETE: The Never-Was**\n**Final Sanity Change: -55**\n**Final Favor: +90**",
+        sanity: -55,
+        favor: 90,
+        ending: 'never_was',
+        achievement: 'Educated into Oblivion'
+    },
+    
+    join_corpse: {
+        text: "⚰️ **SHARED COFFIN** ⚰️\n\nYou lie down with your corpse. It's warm. You merge. Half-dead, half-alive, fully confused. The funeral continues eternally. You give eulogies for yourself while decomposing and regenerating.\n\n**🏆 ADVENTURE COMPLETE: Schrödinger's Mourner**\n**Final Sanity Change: -42**\n**Final Favor: +72**",
+        sanity: -42,
+        favor: 72,
+        ending: 'schrodinger_mourner',
+        achievement: 'Living Dead Memorial'
+    },
+    
+    tear_page_23: {
+        text: "📄 **TEARING REALITY** 📄\n\nYou tear out page 23. Reality tears with it. Through the rip, you see all possible page 23s across all dimensions. You realize you're on page 23 of someone else's book.\n\n**🏆 ADVENTURE COMPLETE: Meta-Reader**\n**Final Sanity Change: -36**\n**Final Favor: +63**",
+        sanity: -36,
+        favor: 63,
+        ending: 'meta_reader',
+        achievement: 'Story Inside Story'
+    },
+    
+    join_selves: {
+        text: "👥 **CONVERGENCE OF YOU** 👥\n\nYou join your other selves. All your unlived lives merge. You experience every choice simultaneously. You are everyone you could have been, all at once. It's overwhelming. It's complete.\n\n**🏆 ADVENTURE COMPLETE: Total Self**\n**Final Sanity Change: -60**\n**Final Favor: +100**",
+        sanity: -60,
+        favor: 100,
+        ending: 'total_self',
+        achievement: 'Every Path Taken'
+    },
+    
+    sync_heartbeat: {
+        text: "❤️ **SYNCHRONIZED** ❤️\n\nYou place your hand on your chest and will your heart to match the impossible rhythm. It does. You become part of the hospital's circulatory system. The building has a pulse now, and you are it. Forever.\n\n**🏆 ADVENTURE COMPLETE: The Hospital's Heart**\n**Final Sanity Change: -30**\n**Final Favor: +50**",
+        sanity: -30,
+        favor: 50,
+        ending: 'hospital_heart',
+        achievement: 'Pulse of the Abandoned'
+    },
+    
+    take_ticket: {
+        text: "🎫 **DESTINATION: NOWHERE** 🎫\n\nYou take the expired ticket. It burns cold in your hand. The train accelerates through stations that don't exist, past landscapes of pure thought. You realize you're not traveling through space but through probability. Every destination is equally nowhere.\n\n**🏆 ADVENTURE COMPLETE: The Probability Express**\n**Final Sanity Change: -25**\n**Final Favor: +45**",
+        sanity: -25,
+        favor: 45,
+        ending: 'probability_express',
+        achievement: 'Rider of the Void Rails'
+    },
+    
+    eat_mushroom: {
+        text: "🍽️ **CONSUMING THOUGHTS** 🍽️\n\nYou eat a mushroom made of thought. It tastes like the color nine and sounds like purple. Your memories restructure themselves. You remember being a tree. You remember being the forest. You remember being the memory of a forest. You are home now, in the space between thoughts.\n\n**🏆 ADVENTURE COMPLETE: One with the Mycelium**\n**Final Sanity Change: -35**\n**Final Favor: +60**",
+        sanity: -35,
+        favor: 60,
+        ending: 'mycelium_mind',
+        achievement: 'Fungal Consciousness'
+    },
+    
+    accept_coffee: {
+        text: "☕ **THE LAST SIP** ☕\n\nYou drink the eternal coffee. It tastes like every morning that never happened. You realize you've been here before, countless times. You'll be here again. The diner is a loop in time, and you're the only customer. Forever serving yourself, forever drinking.\n\n**🏆 ADVENTURE COMPLETE: The Eternal Customer**\n**Final Sanity Change: -20**\n**Final Favor: +40**",
+        sanity: -20,
+        favor: 40,
+        ending: 'eternal_customer',
+        achievement: 'Regular at Nowhere'
+    },
+    
+    buy_happiness: {
+        text: "😊 **PURCHASED JOY** 😊\n\nYou buy the memory of happiness. It floods your mind - a perfect day that never was. But now it's more real than your actual past. Your real memories fade. Were they ever real? Does it matter? You're happy now, in a past that never happened.\n\n**🏆 ADVENTURE COMPLETE: Synthetic Nostalgia**\n**Final Sanity Change: -40**\n**Final Favor: +70**",
+        sanity: -40,
+        favor: 70,
+        ending: 'synthetic_nostalgia',
+        achievement: 'Merchant of False Joy'
+    },
+    
+    become_equation: {
+        text: "🔄 **MATHEMATICAL EXISTENCE** 🔄\n\nYou write yourself into the equation. You become a variable, then a constant, then a proof that proves itself. You exist only when calculated, disappear when solved. The beach is your graph paper. The ocean, your asymptote.\n\n**🏆 ADVENTURE COMPLETE: Living Formula**\n**Final Sanity Change: -45**\n**Final Favor: +80**",
+        sanity: -45,
+        favor: 80,
+        ending: 'living_formula',
+        achievement: 'Theorem of Self'
+    },
+    
+    open_yourself: {
+        text: "📭 **INFINITE RECURSION** 📭\n\nYou open the box you're inside. Inside is another you, opening a box. Inside that box is another you. It's yous all the way down. And up. And sideways. You are a fractal of yourself, infinitely recurring, never ending.\n\n**🏆 ADVENTURE COMPLETE: Recursive Existence**\n**Final Sanity Change: -50**\n**Final Favor: +90**",
+        sanity: -50,
+        favor: 90,
+        ending: 'recursive_existence',
+        achievement: 'Matryoshka Soul'
+    },
+    
+    join_screen: {
+        text: "🎥 **BECOMING THE MOVIE** 🎥\n\nYou walk into the screen. Now you're in every frame, dying repeatedly for entertainment. The audience (still empty seats) gives you a standing ovation. You bow. You die. You bow. You die. Forever.\n\n**🏆 ADVENTURE COMPLETE: Eternal Performance**\n**Final Sanity Change: -37**\n**Final Favor: +65**",
+        sanity: -37,
+        favor: 65,
+        ending: 'eternal_performance',
+        achievement: 'Method Actor\'s Nightmare'
+    },
+    
+    eat_popcorn: {
+        text: "🍿 **MEMORY FOOD** 🍿\n\nYou eat the memory popcorn. Each kernel is a memory you lose. But they're delicious. You can't stop eating. Soon you don't remember why you're eating, or what eating is, or what you are.\n\n**🏆 ADVENTURE COMPLETE: Consumed Consumer**\n**Final Sanity Change: -32**\n**Final Favor: +58**",
+        sanity: -32,
+        favor: 58,
+        ending: 'consumed_consumer',
+        achievement: 'Popcorn Amnesia'
+    },
+    
+    climb_slide: {
+        text: "🛝 **ASCENDING DESCENT** 🛝\n\nYou climb up the slide that goes up. At the top is the bottom. You slide up into the ground, through the earth, emerging from the sky. Gravity is confused. You fall in all directions.\n\n**🏆 ADVENTURE COMPLETE: Gravity\'s Fool**\n**Final Sanity Change: -29**\n**Final Favor: +54**",
+        sanity: -29,
+        favor: 54,
+        ending: 'gravitys_fool',
+        achievement: 'Upward Downward Spiral'
+    },
+    
+    dig_sandbox: {
+        text: "🏖️ **BONE ALPHABET** 🏖️\n\nYou dig in the sandbox. The tiny bones spell more than your name - they spell your entire life in a language of death. As you read, you realize it includes today. The last bone-word is 'DIG.' You can't stop digging.\n\n**🏆 ADVENTURE COMPLETE: Ossuary Scholar**\n**Final Sanity Change: -35**\n**Final Favor: +62**",
+        sanity: -35,
+        favor: 62,
+        ending: 'ossuary_scholar',
+        achievement: 'Reader of Bone Words'
     }
 };
 
