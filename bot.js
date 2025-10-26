@@ -1564,6 +1564,210 @@ break_mirror: {
     favor: 65,
     ending: 'fractured_self',
     achievement: 'Shattered Identity'
+},
+
+// APARTMENT PATH - answer_phone branches
+hang_up: {
+    text: "📵 **DISCONNECTING FROM YOURSELF** 📵\n\nYou try to hang up on yourself. But you're not holding a phone. The voice continues inside your skull. 'You can't hang up on yourself,' it says. 'I AM you.' The closet door opens wider.\n\n**🏆 ADVENTURE COMPLETE: Internal Call**\n**Final Sanity Change: -18**\n**Final Favor: +35**",
+    sanity: -18,
+    favor: 35,
+    ending: 'internal_call',
+    achievement: 'Disconnected Self'
+},
+
+call_back: {
+    text: "☎️ **CALLING YOURSELF** ☎️\n\nYou dial your own number. It rings. You answer. Both versions of you speak at once, creating a feedback loop of warnings. 'Don't call back,' you both say. Too late. You're stuck in an infinite call with yourself. Forever on hold.\n\n**🏆 ADVENTURE COMPLETE: Eternal Hold**\n**Final Sanity Change: -25**\n**Final Favor: +48**",
+    sanity: -25,
+    favor: 48,
+    ending: 'eternal_hold',
+    achievement: 'Self-Service Loop'
+},
+
+// ELEVATOR PATH - press_symbol branches
+pull_reflection: {
+    text: "🪞 **SAVING YOUR REFLECTION** 🪞\n\nYou grab your reflection's hand and pull. It resists - it wants to stay in the nothing. You pull harder. It comes through, dragging the void with it. Now there are two of you, and the nothing is inside the elevator too.\n\n**🏆 ADVENTURE COMPLETE: Doubled Void**\n**Final Sanity Change: -30**\n**Final Favor: +55**",
+    sanity: -30,
+    favor: 55,
+    ending: 'doubled_void',
+    achievement: 'Reflection Rescue'
+},
+
+close_doors: {
+    text: "🚪 **REFUSING THE VOID** 🚪\n\nYou slam the emergency button. The doors close on nothing. The elevator lurches upward, escaping. But you left part of yourself in that nothing. You feel lighter. Emptier. Something essential is missing.\n\n**🏆 ADVENTURE COMPLETE: Partial Escape**\n**Final Sanity Change: -20**\n**Final Favor: +38**",
+    sanity: -20,
+    favor: 38,
+    ending: 'partial_escape',
+    achievement: 'Incomplete Exit'
+},
+
+// CINEMA PATH - change_ending branches
+rewrite_script: {
+    text: "✍️ **AUTHOR OF YOUR FATE** ✍️\n\nYou grab a pen and start rewriting. The film changes in real-time. You write yourself surviving, thriving, escaping. But the new script requires other people to die instead. Every happy ending you write creates a tragedy elsewhere.\n\n**🏆 ADVENTURE COMPLETE: Zero-Sum Story**\n**Final Sanity Change: -32**\n**Final Favor: +58**",
+    sanity: -32,
+    favor: 58,
+    ending: 'zero_sum_story',
+    achievement: 'Tragic Author'
+},
+
+become_director: {
+    text: "🎬 **TAKING CONTROL** 🎬\n\nYou sit in the director's chair. The film stops. Everyone looks at you - the audience, the actors, yourself on screen. 'What now?' they ask. You realize you don't know how to direct your own life. You never have.\n\n**🏆 ADVENTURE COMPLETE: Director's Block**\n**Final Sanity Change: -28**\n**Final Favor: +52**",
+    sanity: -28,
+    favor: 52,
+    ending: 'directors_block',
+    achievement: 'Auteur of Nothing'
+},
+
+// PLAYGROUND PATH - ride_swings branches
+stop_age_seven: {
+    text: "👶 **FROZEN IN CHILDHOOD** 👶\n\nYou stop swinging at age seven. You're seven forever now. The knowledge of your adult life fades. You remember the future as a dream. You play on the playground eternally, never growing, never leaving.\n\n**🏆 ADVENTURE COMPLETE: Eternal Child**\n**Final Sanity Change: -25**\n**Final Favor: +45**",
+    sanity: -25,
+    favor: 45,
+    ending: 'eternal_child',
+    achievement: 'Peter Pan Syndrome'
+},
+
+break_chain: {
+    text: "⛓️ **BREAKING FREE** ⛓️\n\nYou grab the swing's chain and pull until it snaps. Time stops. You're no longer moving through ages. You're stuck at the moment of breaking - forever in the act of escaping, never quite free.\n\n**🏆 ADVENTURE COMPLETE: Frozen Rebellion**\n**Final Sanity Change: -30**\n**Final Favor: +55**",
+    sanity: -30,
+    favor: 55,
+    ending: 'frozen_rebellion',
+    achievement: 'Chain Breaker'
+},
+
+// OFFICE PATH - read_email branches
+reply_all: {
+    text: "📨 **REPLY ALL TO YOURSELF** 📨\n\nYou hit Reply All. Every version of you from every moment receives your message: 'HELP.' They all reply simultaneously. Your inbox explodes with thousands of pleas from yourself. You spend eternity reading your own cries for help.\n\n**🏆 ADVENTURE COMPLETE: Email Hell**\n**Final Sanity Change: -35**\n**Final Favor: +62**",
+    sanity: -35,
+    favor: 62,
+    ending: 'email_hell',
+    achievement: 'Inbox Infinity'
+},
+
+forward_void: {
+    text: "📤 **FORWARDING TO NOTHING** 📤\n\nYou forward all the emails to the void. The void reads them. The void responds. Its message is simple: 'SEEN.' Nothing changes. Everything continues. You work forever in an office that doesn't exist.\n\n**🏆 ADVENTURE COMPLETE: Acknowledged by Nothing**\n**Final Sanity Change: -28**\n**Final Favor: +50**",
+    sanity: -28,
+    favor: 50,
+    ending: 'acknowledged_nothing',
+    achievement: 'Void Mail'
+},
+
+// CHURCH PATH - take_communion branches
+become_priest: {
+    text: "⛪ **TAKING THE CLOTH** ⛪\n\nYou push the priest aside and take their place. The congregation of shadows looks at you expectantly. You realize you must give them communion. But the wine is your blood. The bread is your flesh. You serve yourself to yourself.\n\n**🏆 ADVENTURE COMPLETE: Self-Sacrifice**\n**Final Sanity Change: -40**\n**Final Favor: +72**",
+    sanity: -40,
+    favor: 72,
+    ending: 'self_sacrifice',
+    achievement: 'Priest of the Self'
+},
+
+flip_altar: {
+    text: "💥 **DESECRATION** 💥\n\nYou overturn the altar. The church screams. Shadows flee. The priest-you vanishes. You're alone in a ruined church. Outside, you hear knocking. Many fists. Many voices. All yours. You've angered yourself.\n\n**🏆 ADVENTURE COMPLETE: Sacred Rage**\n**Final Sanity Change: -32**\n**Final Favor: +58**",
+    sanity: -32,
+    favor: 58,
+    ending: 'sacred_rage',
+    achievement: 'Iconoclast'
+},
+
+// HOTEL PATH - room_service branches
+order_life: {
+    text: "🌱 **ORDERING EXISTENCE** 🌱\n\nYou order 'life' from the menu. Room service brings a mirror. You look into it and see yourself living - all the moments you missed, all the joy you forgot. But it's just a recording. Your real life is here, in this hotel, ordering from a menu.\n\n**🏆 ADVENTURE COMPLETE: Vicarious Living**\n**Final Sanity Change: -28**\n**Final Favor: +52**",
+    sanity: -28,
+    favor: 52,
+    ending: 'vicarious_living',
+    achievement: 'Life Observer'
+},
+
+tip_yourself: {
+    text: "💰 **SELF-GRATUITY** 💰\n\nYou tip the bellhop-you everything you have. They smile and hand it back. 'You already paid,' they say. 'You've always been paying. This is what you paid for: this moment, this confusion, this hotel. Your tip was your life.'\n\n**🏆 ADVENTURE COMPLETE: Ultimate Transaction**\n**Final Sanity Change: -25**\n**Final Favor: +48**",
+    sanity: -25,
+    favor: 48,
+    ending: 'ultimate_transaction',
+    achievement: 'Self-Service Fee'
+},
+
+// BRIDGE PATH - jump_up branches
+walk_backward: {
+    text: "🚶 **REVERSE PEDESTRIAN** 🚶\n\nYou join the backward walkers. You un-live your life. Mistakes unmake themselves. Births become deaths become births. You walk backward through time until you reach the moment before you were conceived. Then what?\n\n**🏆 ADVENTURE COMPLETE: Reverse Life**\n**Final Sanity Change: -33**\n**Final Favor: +60**",
+    sanity: -33,
+    favor: 60,
+    ending: 'reverse_life',
+    achievement: 'Backward Born'
+},
+
+reverse_time: {
+    text: "⏪ **REWINDING EXISTENCE** ⏪\n\nYou walk yourself backward to unbirth. You become younger, smaller, simpler. Cell by cell, you unbecome. At the moment of your unconception, you understand: you were never born. You're a memory that hasn't happened yet.\n\n**🏆 ADVENTURE COMPLETE: Never Born**\n**Final Sanity Change: -45**\n**Final Favor: +78**",
+    sanity: -45,
+    favor: 78,
+    ending: 'never_born',
+    achievement: 'Unborn Again'
+},
+
+// SCHOOL PATH - erase_board branches
+write_new: {
+    text: "✍️ **REWRITING HISTORY** ✍️\n\nYou write new mistakes on the board. Better mistakes. Interesting failures. Glorious disasters. Your life rewrites itself around them. You become someone who failed spectacularly instead of someone who succeeded quietly.\n\n**🏆 ADVENTURE COMPLETE: Magnificent Failure**\n**Final Sanity Change: -22**\n**Final Favor: +42**",
+    sanity: -22,
+    favor: 42,
+    ending: 'magnificent_failure',
+    achievement: 'Architect of Better Errors'
+},
+
+break_chalk: {
+    text: "💔 **SHATTERING THE TOOL** 💔\n\nYou break the chalk into dust. No more writing. No more erasing. Your mistakes are permanent now, but so are your victories. The board is full and final. The teacher nods. 'Class dismissed. Forever.'\n\n**🏆 ADVENTURE COMPLETE: Final Lesson**\n**Final Sanity Change: -18**\n**Final Favor: +35**",
+    sanity: -18,
+    favor: 35,
+    ending: 'final_lesson',
+    achievement: 'Chalk Destroyer'
+},
+
+// GRAVEYARD PATH - finish_eulogy branches
+resurrect: {
+    text: "✨ **RISING FROM DEATH** ✨\n\nYou command yourself to resurrect. Your corpse sits up. You embrace yourself. The funeral becomes a celebration. But you're still dead. You're just moving. You're a corpse that forgot to stop. The celebration never ends.\n\n**🏆 ADVENTURE COMPLETE: Living Corpse**\n**Final Sanity Change: -35**\n**Final Favor: +65**",
+    sanity: -35,
+    favor: 65,
+    ending: 'living_corpse',
+    achievement: 'Zombie Self'
+},
+
+end_funeral: {
+    text: "🛑 **ENDING THE SERVICE** 🛑\n\nYou try to end the funeral. The crowd won't disperse. Your corpse won't stay buried. The service continues without you. You realize: you're not at your funeral. You're in it. The service is your afterlife.\n\n**🏆 ADVENTURE COMPLETE: Eternal Service**\n**Final Sanity Change: -30**\n**Final Favor: +55**",
+    sanity: -30,
+    favor: 55,
+    ending: 'eternal_service',
+    achievement: 'Perpetual Mourning'
+},
+
+// AIRPLANE PATH - read_page23 branches
+write_page24: {
+    text: "✍️ **AUTHORING TOMORROW** ✍️\n\nYou write page 24. It says: 'You land safely. Everything is fine.' The plane lurches. You've changed the story. But now page 25 appears, written in blood: 'But at what cost?' You look around. Every passenger is you. And they're all dead except one.\n\n**🏆 ADVENTURE COMPLETE: Author's Price**\n**Final Sanity Change: -38**\n**Final Favor: +68**",
+    sanity: -38,
+    favor: 68,
+    ending: 'authors_price',
+    achievement: 'Page Turner'
+},
+
+eat_book: {
+    text: "🍽️ **CONSUMING THE STORY** 🍽️\n\nYou eat the book. Page 23 tastes like regret. You consume every word, every letter, every story. The book is inside you now. You are the book. When people read you, they get stuck on page 23. Forever.\n\n**🏆 ADVENTURE COMPLETE: Living Literature**\n**Final Sanity Change: -42**\n**Final Favor: +75**",
+    sanity: -42,
+    favor: 75,
+    ending: 'living_literature_alt',
+    achievement: 'Book Eater'
+},
+
+// BASEMENT PATH - open_you_door branches
+choose_one: {
+    text: "🔄 **CHOOSING ANOTHER LIFE** 🔄\n\nYou pick a different you - the one who made better choices. You try to swap places. It works. You're them now. But slowly, you realize: they made different mistakes. Same pain, different shape. You can change your life but not escape it.\n\n**🏆 ADVENTURE COMPLETE: Different Same**\n**Final Sanity Change: -30**\n**Final Favor: +55**",
+    sanity: -30,
+    favor: 55,
+    ending: 'different_same',
+    achievement: 'Life Swapper'
+},
+
+lock_door: {
+    text: "🔒 **IMPRISONING POSSIBILITIES** 🔒\n\nYou slam the door and lock it. Your other selves pound from inside. Their screams echo through your basement. You've trapped every life you didn't live. They rage. They plead. They promise they'll be quiet. They never are.\n\n**🏆 ADVENTURE COMPLETE: Warden of Lost Paths**\n**Final Sanity Change: -35**\n**Final Favor: +62**",
+    sanity: -35,
+    favor: 62,
+    ending: 'warden_paths',
+    achievement: 'Jailer of Selves'
 }
 
 };
