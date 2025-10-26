@@ -160,7 +160,26 @@ function generateMadnessText() {
         "The mi-go harvest thoughts like corn",
         "BLACK STARS RISE AND STRANGE MOONS CIRCLE",
         "Have you seen the Yellow Sign? HAVE YOU SEEN IT?",
-        "THE DREAMER AWAKENS THE DREAMER AWAKENS"
+        "THE DREAMER AWAKENS THE DREAMER AWAKENS",
+        "Carcosa Carcosa the city that dreams of you",
+        "THE WENDIGO WALKS ON LEGS OF STARLIGHT",
+        "Seven seven seven but never eight NEVER EIGHT",
+        "The colors from space have names we cannot speak",
+        "HASTUR HASTUR HASTUR",
+        "The shoggoth remembers when we were slaves",
+        "Time is a flat circle rolling down a spiral staircase",
+        "THE KING IN YELLOW REMOVES HIS MASK",
+        "Your bones sing the frequency of dying stars",
+        "The rats in the walls spell out your true name",
+        "MOTHER HYDRA FATHER DAGON THEY RISE THEY RISE",
+        "I am the hole in things I am the end of everything",
+        "The pigeons are not pigeons THE PIGEONS ARE NOT PIGEONS",
+        "Count backwards from infinity I DARE YOU",
+        "The moon has too many teeth tonight",
+        "Your shadow went home without you",
+        "THE WORMS THAT WALK IN STRAIGHT LINES",
+        "Reality.exe has stopped responding",
+        "The universe is a beautiful corpse AND WE ARE THE MAGGOTS"
     ];
     
     // Shuffle the array for true randomness
@@ -174,14 +193,109 @@ function checkMadnessResponse(cultistData) {
     return cultistData.sanity <= 0 || cultistData.madnessLevel >= 3;
 }
 
-// Adventure system data
+// Multiple adventure starting points
+const adventureStarters = [
+    'library_start',
+    'hospital_start', 
+    'subway_start',
+    'forest_start',
+    'diner_start',
+    'museum_start',
+    'beach_start',
+    'mall_start',
+    'apartment_start',
+    'elevator_start',
+    'cinema_start',
+    'playground_start',
+    'office_start',
+    'church_start',
+    'hotel_start',
+    'bridge_start',
+    'school_start',
+    'graveyard_start',
+    'plane_start',
+    'basement_start'
+];
+
+// Adventure system data - now with multiple storylines
 const adventures = {
-    start: {
+    // LIBRARY ADVENTURE
+    library_start: {
         text: "🌙 **THE MISKATONIC LIBRARY** 🌙\n\nYou enter the abandoned university library at midnight. Moonlight filters through dusty windows, casting eerie shadows between the towering bookshelves. A leather-bound tome lies open on a reading table, its pages fluttering despite the still air. Strange symbols seem to writhe on the visible pages.\n\n**What do you do?**",
         choices: [
             { id: 'read_book', text: 'Read the mysterious book', emoji: '📖' },
             { id: 'explore_stacks', text: 'Explore the book stacks', emoji: '📚' },
             { id: 'leave_immediately', text: 'Leave immediately', emoji: '🚪' }
+        ]
+    },
+    
+    // HOSPITAL ADVENTURE
+    hospital_start: {
+        text: "🏥 **ST. MARY'S ABANDONED HOSPITAL** 🏥\n\nThe emergency room doors hang open, creaking in a wind you can't feel. Inside, gurneys are arranged in a perfect circle. In the center, a heart monitor beeps steadily, though it's not connected to anything. The walls are covered in what looks like medical charts, but the writing keeps changing when you're not looking directly at it.\n\n**What do you do?**",
+        choices: [
+            { id: 'check_monitor', text: 'Examine the heart monitor', emoji: '💓' },
+            { id: 'read_charts', text: 'Study the medical charts', emoji: '📋' },
+            { id: 'explore_basement', text: 'Head to the basement morgue', emoji: '⬇️' }
+        ]
+    },
+    
+    // SUBWAY ADVENTURE  
+    subway_start: {
+        text: "🚇 **THE FORGOTTEN STATION** 🚇\n\nYou descend into a subway station that shouldn't exist. It's not on any map, but here you are. A single train car sits on the tracks, doors open, interior lights flickering. The destination board shows symbols that hurt to read. You hear distant music - a waltz? - echoing from the tunnels.\n\n**What do you do?**",
+        choices: [
+            { id: 'board_train', text: 'Board the mysterious train', emoji: '🚃' },
+            { id: 'follow_music', text: 'Follow the music into tunnels', emoji: '🎵' },
+            { id: 'check_booth', text: 'Investigate the ticket booth', emoji: '🎫' }
+        ]
+    },
+    
+    // FOREST ADVENTURE
+    forest_start: {
+        text: "🌲 **THE WHISPERING WOODS** 🌲\n\nYou're lost in a forest where the trees grow in perfect spirals. The path behind you is gone. Ahead, bioluminescent mushrooms spell out words in a language you almost understand. Something massive moves between the trees, always just out of sight. The moon above has too many crescents.\n\n**What do you do?**",
+        choices: [
+            { id: 'follow_mushrooms', text: 'Follow the mushroom messages', emoji: '🍄' },
+            { id: 'climb_tree', text: 'Climb the tallest spiral tree', emoji: '🌳' },
+            { id: 'track_creature', text: 'Track the moving creature', emoji: '👣' }
+        ]
+    },
+    
+    // DINER ADVENTURE
+    diner_start: {
+        text: "☕ **THE 24-HOUR DINER** ☕\n\nIt's 3 AM at a roadside diner you don't remember stopping at. The waitress has been pouring the same cup of coffee for five minutes - it never overflows. Every customer has the same face but different bodies. The jukebox plays songs that haven't been written yet. Your reflection in the window is eating something you're not.\n\n**What do you do?**",
+        choices: [
+            { id: 'talk_waitress', text: 'Speak to the waitress', emoji: '👩‍🍳' },
+            { id: 'check_jukebox', text: 'Investigate the jukebox', emoji: '📻' },
+            { id: 'confront_reflection', text: 'Confront your reflection', emoji: '🪟' }
+        ]
+    },
+    
+    // MUSEUM ADVENTURE
+    museum_start: {
+        text: "🏛️ **THE MUSEUM OF LOST THINGS** 🏛️\n\nYou're the only visitor in a museum that claims to display 'things that never were.' The exhibits include your childhood imaginary friend (stuffed), a jar of 'yesterday's weather,' and a painting that shows what's happening behind you right now. The gift shop sells memories you don't remember losing.\n\n**What do you do?**",
+        choices: [
+            { id: 'touch_friend', text: 'Touch your imaginary friend', emoji: '🧸' },
+            { id: 'buy_memory', text: 'Purchase a lost memory', emoji: '💭' },
+            { id: 'enter_painting', text: 'Step toward the painting', emoji: '🖼️' }
+        ]
+    },
+    
+    // BEACH ADVENTURE  
+    beach_start: {
+        text: "🏖️ **THE RECURSIVE SHORE** 🏖️\n\nYou stand on a beach where the tide goes out but never comes in. The sand beneath your feet spells out equations that solve for impossible numbers. In the distance, something enormous is building sandcastles that look exactly like your childhood home. The sun sets in all directions simultaneously.\n\n**What do you do?**",
+        choices: [
+            { id: 'solve_equations', text: 'Solve the sand equations', emoji: '🔢' },
+            { id: 'approach_builder', text: 'Approach the castle builder', emoji: '🏰' },
+            { id: 'swim_tideless', text: 'Swim in the tideless ocean', emoji: '🌊' }
+        ]
+    },
+    
+    // MALL ADVENTURE
+    mall_start: {
+        text: "🛍️ **THE INFINITE MALL** 🛍️\n\nYou're in a shopping mall that extends forever in all directions. Every store sells the same thing: a small wooden box that's always warm to the touch. The mannequins track you with their eyes and rearrange themselves when you blink. The muzak is playing backwards and you understand every word.\n\n**What do you do?**",
+        choices: [
+            { id: 'buy_box', text: 'Purchase a wooden box', emoji: '📦' },
+            { id: 'follow_mannequins', text: 'Follow the mannequins', emoji: '🕴️' },
+            { id: 'find_exit', text: 'Search for an exit', emoji: '🚶' }
         ]
     },
     
@@ -1151,7 +1265,10 @@ client.on('interactionCreate', async interaction => {
                     return;
                 }
                 
-                const startNode = adventures.start;
+                // Randomly select an adventure starter
+                const randomStarter = adventureStarters[Math.floor(Math.random() * adventureStarters.length)];
+                const startNode = adventures[randomStarter];
+                
                 const adventureEmbed = new EmbedBuilder()
                     .setTitle('🔮 ELDRITCH ADVENTURE 🔮')
                     .setDescription(startNode.text)
@@ -1165,13 +1282,13 @@ client.on('interactionCreate', async interaction => {
                 const buttons = createAdventureButtons(startNode.choices);
                 
                 setActiveAdventure(userId, {
-                    currentNode: 'start',
+                    currentNode: randomStarter,
                     startTime: Date.now(),
                     totalSanityChange: 0,
                     totalFavorChange: 0
                 });
                 
-                console.log(`Adventure started for user ${userId}`);
+                console.log(`Adventure started for user ${userId} - ${randomStarter}`);
                 
                 await interaction.reply({
                     embeds: [adventureEmbed],
@@ -1548,7 +1665,29 @@ client.on('interactionCreate', async interaction => {
                     { text: "May your phone battery die at 23% forever.", sanityLoss: 3 },
                     { text: "May you dream of endless corridors that lead nowhere.", sanityLoss: 7 },
                     { text: "May mirrors show you things that aren't there.", sanityLoss: 8 },
-                    { text: "May you hear your name whispered when alone.", sanityLoss: 6 }
+                    { text: "May you hear your name whispered when alone.", sanityLoss: 6 },
+                    { text: "May every clock you see show a different time.", sanityLoss: 4 },
+                    { text: "May you always wake at 3:33 AM for no reason.", sanityLoss: 5 },
+                    { text: "May doorknobs feel wet when they're dry.", sanityLoss: 3 },
+                    { text: "May you smell sulfur when you're happy.", sanityLoss: 4 },
+                    { text: "May your peripheral vision betray you constantly.", sanityLoss: 6 },
+                    { text: "May every photo of you slowly change when not observed.", sanityLoss: 7 },
+                    { text: "May you hear footsteps in your attic at night (you don't have an attic).", sanityLoss: 8 },
+                    { text: "May your teeth feel loose when you're nervous.", sanityLoss: 5 },
+                    { text: "May shadows move independently of their sources.", sanityLoss: 6 },
+                    { text: "May you always count one extra stair in the dark.", sanityLoss: 5 },
+                    { text: "May your reflection blink first.", sanityLoss: 9 },
+                    { text: "May you find doors in your home you don't remember.", sanityLoss: 8 },
+                    { text: "May your dreams leak into your waking hours.", sanityLoss: 10 },
+                    { text: "May you hear the ocean in empty rooms.", sanityLoss: 4 },
+                    { text: "May streetlights flicker as you pass beneath them.", sanityLoss: 3 },
+                    { text: "May you taste metal before something bad happens.", sanityLoss: 5 },
+                    { text: "May your childhood toys appear in impossible places.", sanityLoss: 6 },
+                    { text: "May you see faces in wood grain that remember you.", sanityLoss: 7 },
+                    { text: "May your GPS always add 6.66 miles to every trip.", sanityLoss: 4 },
+                    { text: "May you find wet footprints leading to your bed each morning.", sanityLoss: 8 },
+                    { text: "May familiar places feel suddenly foreign.", sanityLoss: 6 },
+                    { text: "May you hear laughter from empty elevators.", sanityLoss: 5 }
                 ];
                 
                 const curse = curses[Math.floor(Math.random() * curses.length)];
@@ -1560,6 +1699,7 @@ client.on('interactionCreate', async interaction => {
                 if (targetCurseData.sanity === 0 && targetCurseData.madnessLevel === 0) {
                     targetCurseData.madnessLevel = 1;
                     targetCurseData.personality = 'mad';
+                    targetCurseData.timesMadnessReached = (targetCurseData.timesMadnessReached || 0) + 1;
                 }
                 
                 // Caster gains a small amount of favor for successful curse
