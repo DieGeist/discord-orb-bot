@@ -1951,6 +1951,30 @@ enter_entrance: {
     favor: 45,
     ending: 'loop_walker',
     achievement: 'Entrance Exit'
+},
+
+read_rhythm: {
+    text: "📊 **DECODING THE HEARTBEAT** 📊\n\nYou study the rhythm carefully. The pattern spells out coordinates, dates, times. They're all the moments you almost died but didn't. Car accidents you narrowly avoided. Illnesses you fought off. The monitor is tracking your near-deaths. The last entry is today. Right now.\n\n**🏆 ADVENTURE COMPLETE: Catalog of Near Misses**\n**Final Sanity Change: -27**\n**Final Favor: +50**",
+    sanity: -27,
+    favor: 50,
+    ending: 'near_misses',
+    achievement: 'Death\'s Accountant'
+},
+
+sync_heartbeat: {
+    text: "❤️ **SYNCHRONIZED** ❤️\n\nYou place your hand on your chest and will your heart to match the impossible rhythm. It does. You become part of the hospital's circulatory system. The building has a pulse now, and you are it. Forever.\n\n**🏆 ADVENTURE COMPLETE: The Hospital's Heart**\n**Final Sanity Change: -30**\n**Final Favor: +50**",
+    sanity: -30,
+    favor: 50,
+    ending: 'hospital_heart',
+    achievement: 'Pulse of the Abandoned'
+},
+
+destroy_monitor: {
+    text: "💥 **KILLING THE MESSAGE** 💥\n\nYou smash the monitor. Glass flies. Sparks scatter. The beeping stops. Silence. Then... all the other monitors start beeping in unison. They're all showing your heartbeat now. You can't destroy the message. The message is you.\n\n**🏆 ADVENTURE COMPLETE: Inescapable Rhythm**\n**Final Sanity Change: -25**\n**Final Favor: +45**",
+    sanity: -25,
+    favor: 45,
+    ending: 'inescapable_rhythm',
+    achievement: 'Monitor Smasher'
 }
 
 };
