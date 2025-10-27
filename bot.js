@@ -1975,6 +1975,284 @@ destroy_monitor: {
     favor: 45,
     ending: 'inescapable_rhythm',
     achievement: 'Monitor Smasher'
+},
+
+gift_box: {
+    text: "🎁 **GIFTING RECURSION** 🎁\n\nYou try to gift the box to someone. But everyone in the mall is you. You gift it to yourself. Yourself unwraps it. Inside is another box. Your other self gifts it back. You're trapped in an eternal gift exchange with yourself. The most thoughtful present: infinite recursion.\n\n**🏆 ADVENTURE COMPLETE: Self Gifting**\n**Final Sanity Change: -30**\n**Final Favor: +55**",
+    sanity: -30,
+    favor: 55,
+    ending: 'self_gifting',
+    achievement: 'Gift to Self'
+},
+
+close_boxes: {
+    text: "📫 **CLOSING INFINITY** 📫\n\nYou try to close all the boxes at once. They resist. Boxes within boxes within boxes. As you close the outermost box, you realize you're sealing yourself inside. The final box closes. You're in the dark. You are the box now.\n\n**🏆 ADVENTURE COMPLETE: Boxed In**\n**Final Sanity Change: -28**\n**Final Favor: +52**",
+    sanity: -28,
+    favor: 52,
+    ending: 'boxed_in',
+    achievement: 'Living Package'
+},
+
+// SUBWAY PATH - follow_music branches
+stop_music: {
+    text: "🛑 **SILENCING THE WALTZ** 🛑\n\nYou find the source - an old gramophone, playing itself. You lift the needle. The music stops. The dancers freeze mid-step, then crumble to dust. You hear crying from the tunnels. You've ended their dance. They'll never forgive you.\n\n**🏆 ADVENTURE COMPLETE: Dance Killer**\n**Final Sanity Change: -22**\n**Final Favor: +42**",
+    sanity: -22,
+    favor: 42,
+    ending: 'dance_killer',
+    achievement: 'Silence the Music'
+},
+
+conduct_orchestra: {
+    text: "🎼 **MAESTRO OF THE DEAD** 🎼\n\nYou raise your arms and conduct. The invisible orchestra follows your lead. You conduct them faster, slower, softer, louder. The ghosts dance to your rhythm. You're the maestro of the damned. The concert never ends.\n\n**🏆 ADVENTURE COMPLETE: Eternal Conductor**\n**Final Sanity Change: -28**\n**Final Favor: +52**",
+    sanity: -28,
+    favor: 52,
+    ending: 'eternal_conductor',
+    achievement: 'Ghost Conductor'
+},
+
+// SUBWAY PATH - check_booth branches
+pay_teeth: {
+    text: "🦷 **DENTAL CURRENCY** 🦷\n\nYou hand over the teeth. The attendant counts them carefully. 'Insufficient,' they say. 'You need all of them.' You feel your remaining teeth loosen. They fall out one by one. You pay the full price. Your ticket says 'Nowhere.'\n\n**🏆 ADVENTURE COMPLETE: Toothless Traveler**\n**Final Sanity Change: -30**\n**Final Favor: +55**",
+    sanity: -30,
+    favor: 55,
+    ending: 'toothless_traveler',
+    achievement: 'Paid in Teeth'
+},
+
+become_attendant: {
+    text: "🎭 **THE NEW ATTENDANT** 🎭\n\nYou push your backward-faced self aside and take their place in the booth. People approach. They're all you. 'Destination?' you ask. They all say 'Home.' You realize you don't know where that is. You've become the one who can't help.\n\n**🏆 ADVENTURE COMPLETE: Useless Guide**\n**Final Sanity Change: -25**\n**Final Favor: +48**",
+    sanity: -25,
+    favor: 48,
+    ending: 'useless_guide',
+    achievement: 'Lost Ticket Master'
+},
+
+// SUBWAY PATH - board_train branches
+talk_child: {
+    text: "👶 **CONVERSATION WITH INNOCENCE** 👶\n\nYou sit next to your child self. 'Does it get better?' they ask. You don't know how to answer. You lie. 'Yes.' They know you're lying. 'That's okay,' they say. 'I would have lied too.' The train keeps moving backward through time.\n\n**🏆 ADVENTURE COMPLETE: Honest Lies**\n**Final Sanity Change: -20**\n**Final Favor: +40**",
+    sanity: -20,
+    favor: 40,
+    ending: 'honest_lies',
+    achievement: 'Child Conversation'
+},
+
+pull_brake: {
+    text: "🛑 **EMERGENCY STOP** 🛑\n\nYou pull the emergency brake. The train stops violently. All the versions of you fly forward. When you stand up, you're all the same age now. The train has stopped in the exact moment you pulled the brake. Forever. You're stuck in the act of stopping.\n\n**🏆 ADVENTURE COMPLETE: Frozen Transit**\n**Final Sanity Change: -28**\n**Final Favor: +52**",
+    sanity: -28,
+    favor: 52,
+    ending: 'frozen_transit',
+    achievement: 'Brake Puller'
+},
+
+// FOREST PATH - track_creature branches
+trap_it: {
+    text: "🕸️ **TRAPPING YOURSELF** 🕸️\n\nYou set a trap. It works. You catch the creature that is you. It looks at you sadly. 'You've trapped yourself,' it says. 'Now neither of us can leave.' The forest grows around the trap. You're both prisoners now.\n\n**🏆 ADVENTURE COMPLETE: Self-Trapped**\n**Final Sanity Change: -25**\n**Final Favor: +45**",
+    sanity: -25,
+    favor: 45,
+    ending: 'self_trapped',
+    achievement: 'Hunter Hunted'
+},
+
+switch_places: {
+    text: "🔄 **TRADING FORMS** 🔄\n\nYou and the creature trade places. You become the spaces between trees. It becomes flesh. You watch yourself walk away wearing your body. Being nothing is surprisingly peaceful. Until you realize you can never go back.\n\n**🏆 ADVENTURE COMPLETE: Negative Existence**\n**Final Sanity Change: -35**\n**Final Favor: +62**",
+    sanity: -35,
+    favor: 62,
+    ending: 'negative_existence',
+    achievement: 'Space Between'
+},
+
+// FOREST PATH - climb_tree branches
+enter_dream: {
+    text: "💭 **INTO THE GIANT'S MIND** 💭\n\nYou enter the giant's dream directly. Inside, you're in a forest. It's the same forest. You realize: you never left. You've always been in the dream. The giant is dreaming that it's dreaming. You're a dream within a dream within a dream.\n\n**🏆 ADVENTURE COMPLETE: Recursive Dreamer**\n**Final Sanity Change: -32**\n**Final Favor: +58**",
+    sanity: -32,
+    favor: 58,
+    ending: 'recursive_dreamer',
+    achievement: 'Dream Inception'
+},
+
+climb_higher: {
+    text: "⬆️ **BEYOND THE DREAMER** ⬆️\n\nYou climb past the giant. Higher and higher. You reach a place where dreams end. Where reality is just a concept. You see everything at once. It's too much. You fall. But you never land. You're still falling. Forever between knowing and forgetting.\n\n**🏆 ADVENTURE COMPLETE: Beyond Comprehension**\n**Final Sanity Change: -45**\n**Final Favor: +80**",
+    sanity: -45,
+    favor: 80,
+    ending: 'beyond_comprehension',
+    achievement: 'Climbed Too High'
+},
+
+// HOSPITAL PATH - read_charts branches
+change_diagnosis: {
+    text: "✍️ **REWRITING ILLNESS** ✍️\n\nYou grab a pen and change your diagnoses. 'Cancer' becomes 'Perfectly Healthy.' 'Heart Disease' becomes 'Strong Heart.' As you write, you feel different. Better. Until you realize: you erased your future but not your past. The diseases still happened. They're just not written down.\n\n**🏆 ADVENTURE COMPLETE: Denial Written**\n**Final Sanity Change: -30**\n**Final Favor: +55**",
+    sanity: -30,
+    favor: 55,
+    ending: 'denial_written',
+    achievement: 'Medical Revisionist'
+},
+
+steal_chart: {
+    text: "📋 **IDENTITY SWAP** 📋\n\nYou steal someone else's chart. It's healthier. You swap names. You're them now. But their diseases follow. You realize: you can change the chart but not the body. You're wearing someone else's medical history like a costume.\n\n**🏆 ADVENTURE COMPLETE: False Patient**\n**Final Sanity Change: -25**\n**Final Favor: +48**",
+    sanity: -25,
+    favor: 48,
+    ending: 'false_patient',
+    achievement: 'Chart Thief'
+},
+
+burn_records: {
+    text: "🔥 **ERASING MEDICAL HISTORY** 🔥\n\nYou burn all the charts. Past, present, future - all gone. The hospital screams. Without records, it has no purpose. The building begins to fade. You've erased not just your medical history, but the entire hospital. You're cured. You're also erased.\n\n**🏆 ADVENTURE COMPLETE: Medical Arsonist**\n**Final Sanity Change: -35**\n**Final Favor: +65**",
+    sanity: -35,
+    favor: 65,
+    ending: 'medical_arsonist',
+    achievement: 'Hospital Burner'
+},
+
+// HOSPITAL PATH - explore_basement branches
+trade_places: {
+    text: "🔄 **CORPSE EXCHANGE** 🔄\n\nYou trade places with your corpse. You're cold now. Still. The corpse takes your warmth and walks away wearing your life. You're the one in the drawer now. Sometimes visitors come. They cry. You can't tell them you're still here.\n\n**🏆 ADVENTURE COMPLETE: Living Morgue**\n**Final Sanity Change: -32**\n**Final Favor: +58**",
+    sanity: -32,
+    favor: 58,
+    ending: 'living_morgue',
+    achievement: 'Drawer Dweller'
+},
+
+close_drawer: {
+    text: "🚪 **SEALING YOURSELF** 🚪\n\nYou slam the drawer shut. Darkness. You hear yourself breathing on both sides of the drawer. You're trapped with yourself. Inside and outside. The corpse-you and the living-you. Neither can leave without the other.\n\n**🏆 ADVENTURE COMPLETE: Double Locked**\n**Final Sanity Change: -28**\n**Final Favor: +52**",
+    sanity: -28,
+    favor: 52,
+    ending: 'double_locked',
+    achievement: 'Self Sealed'
+},
+
+wake_others: {
+    text: "⚰️ **MORGUE AWAKENING** ⚰️\n\nYou open every drawer. Every corpse sits up. They're all you from different timelines. Every death you might have had. They all look at you with empty eyes. 'Why did you wake us?' they ask. You have no answer. They won't go back to sleep.\n\n**🏆 ADVENTURE COMPLETE: Army of Deaths**\n**Final Sanity Change: -40**\n**Final Favor: +72**",
+    sanity: -40,
+    favor: 72,
+    ending: 'army_deaths',
+    achievement: 'Morgue Master'
+},
+
+// APARTMENT PATH - watch_tv branches
+change_channel: {
+    text: "📺 **CHANNEL 666** 📺\n\nYou flip to channel 666. Static. Then your face forms in the noise. Then another. And another. Every channel is you now. Every station broadcasts your existence. You're on every screen in the world. You are television.\n\n**🏆 ADVENTURE COMPLETE: Broadcast Self**\n**Final Sanity Change: -30**\n**Final Favor: +55**",
+    sanity: -30,
+    favor: 55,
+    ending: 'broadcast_self',
+    achievement: 'Universal Broadcast'
+},
+
+enter_tv: {
+    text: "🖥️ **BECOMING THE SCREEN** 🖥️\n\nYou climb into the TV. Inside, everything is pixels. You are pixels. People watch you on their screens. You perform for them. You can't stop performing. You're content now. Forever streaming.\n\n**🏆 ADVENTURE COMPLETE: Living Content**\n**Final Sanity Change: -28**\n**Final Favor: +52**",
+    sanity: -28,
+    favor: 52,
+    ending: 'living_content',
+    achievement: 'Human Television'
+},
+
+turn_off: {
+    text: "🔌 **SELF SHUTDOWN** 🔌\n\nYou unplug yourself. Everything goes dark. Silent. Peaceful. You're off now. But you can still think. You're aware of being off. You're conscious of unconsciousness. The worst kind of sleep.\n\n**🏆 ADVENTURE COMPLETE: Powered Down**\n**Final Sanity Change: -25**\n**Final Favor: +45**",
+    sanity: -25,
+    favor: 45,
+    ending: 'powered_down',
+    achievement: 'Self Off Switch'
+},
+
+// APARTMENT PATH - check_door branches
+enter_other: {
+    text: "🏠 **HOME INVASION** 🏠\n\nYou enter their apartment. They enter yours. You swap lives. In their apartment, everything is slightly better. Their coffee is warmer. Their bed more comfortable. But you realize: they got your life. And your life was better. You've traded down.\n\n**🏆 ADVENTURE COMPLETE: Downgrade**\n**Final Sanity Change: -22**\n**Final Favor: +42**",
+    sanity: -22,
+    favor: 42,
+    ending: 'downgrade',
+    achievement: 'Life Trader'
+},
+
+bring_them: {
+    text: "🤝 **DOUBLING DOWN** 🤝\n\nYou invite them in. Now there are two of you in one apartment. You live together. You are roommates with yourself. You argue about dishes. You share rent. You split bills. Living with yourself is exhausting.\n\n**🏆 ADVENTURE COMPLETE: Worst Roommate**\n**Final Sanity Change: -20**\n**Final Favor: +40**",
+    sanity: -20,
+    favor: 40,
+    ending: 'worst_roommate',
+    achievement: 'Self Roommate'
+},
+
+// ELEVATOR PATH - ceiling_hatch branches
+climb_shaft: {
+    text: "🧗 **INFINITE ASCENT** 🧗\n\nYou climb the shaft. Up and up. There's no top. Just endless elevator shafts in all directions. You pass other yous climbing other shafts. Some going up, some down, some sideways. You wave. They don't wave back. You're all too focused on climbing.\n\n**🏆 ADVENTURE COMPLETE: Eternal Climber**\n**Final Sanity Change: -32**\n**Final Favor: +58**",
+    sanity: -32,
+    favor: 58,
+    ending: 'eternal_climber',
+    achievement: 'Shaft Walker'
+},
+
+jump_through: {
+    text: "🚪 **ELEVATOR HOPPING** 🚪\n\nYou leap to another elevator. Inside, you make a different choice. You leap again. And again. Each elevator a different decision. You're experiencing every possible choice simultaneously. You are infinite. You are exhausted.\n\n**🏆 ADVENTURE COMPLETE: Choice Jumper**\n**Final Sanity Change: -35**\n**Final Favor: +65**",
+    sanity: -35,
+    favor: 65,
+    ending: 'choice_jumper',
+    achievement: 'Quantum Leaper'
+},
+
+cut_cables: {
+    text: "✂️ **FALLING FOREVER** ✂️\n\nYou cut the cables. The elevator falls. You fall. Everything falls. But there's no bottom. You're in perpetual free fall. The sensation of falling becomes your entire existence. You are the fall itself.\n\n**🏆 ADVENTURE COMPLETE: Eternal Descent**\n**Final Sanity Change: -38**\n**Final Favor: +68**",
+    sanity: -38,
+    favor: 68,
+    ending: 'eternal_descent',
+    achievement: 'Forever Falling'
+},
+
+// GRAVEYARD PATH - finish_eulogy branches  
+lie_casket: {
+    text: "⚰️ **JOINING YOURSELF** ⚰️\n\nYou climb into the casket with your corpse. It's crowded. Uncomfortable. Your corpse is cold. You try to get comfortable. The lid closes. You're buried together. You and you. Forever embracing death.\n\n**🏆 ADVENTURE COMPLETE: Self Burial**\n**Final Sanity Change: -30**\n**Final Favor: +55**",
+    sanity: -30,
+    favor: 55,
+    ending: 'self_burial',
+    achievement: 'Coffin Companion'
+},
+
+smell_flowers: {
+    text: "🌹 **FUTURE FRAGRANCE** 🌹\n\nYou smell the flowers. Each one smells like a moment you'll never have. A kiss that won't happen. A child never born. A book never written. The fragrance of unlived life is overwhelming. Beautiful. Tragic. You can't stop smelling them.\n\n**🏆 ADVENTURE COMPLETE: Scent of Loss**\n**Final Sanity Change: -28**\n**Final Favor: +52**",
+    sanity: -28,
+    favor: 52,
+    ending: 'scent_loss',
+    achievement: 'Future Sniffer'
+},
+
+// AIRPLANE PATH - read_page23 branches
+tear_page_23: {
+    text: "📄 **TEARING REALITY** 📄\n\nYou tear out page 23. Reality tears with it. Through the rip, you see all possible page 23s across all dimensions. You realize you're on page 23 of someone else's book. Someone tears that page. You feel yourself ripping.\n\n**🏆 ADVENTURE COMPLETE: Meta-Reader**\n**Final Sanity Change: -36**\n**Final Favor: +63**",
+    sanity: -36,
+    favor: 63,
+    ending: 'meta_reader_alt',
+    achievement: 'Page Tearer'
+},
+
+// AIRPLANE PATH - full_recline branches
+full_recline: {
+    text: "💺 **DIMENSIONAL RECLINE** 💺\n\nYou recline fully into another dimension. It's quieter here. More legroom. But the flight attendants are geometric shapes. The meal is pure mathematics. You've reclined out of reality. The seat won't go back up.\n\n**🏆 ADVENTURE COMPLETE: Beyond First Class**\n**Final Sanity Change: -30**\n**Final Favor: +55**",
+    sanity: -30,
+    favor: 55,
+    ending: 'beyond_first_class',
+    achievement: 'Dimension Recliner'
+},
+
+exit_door: {
+    text: "🚨 **EMERGENCY EXIT** 🚨\n\nYou open the emergency exit mid-flight. Instead of air, there's nothing. Not sky - the absence of everything. You step out anyway. You fall through layers of reality. Each layer is yesterday. You're falling through time itself.\n\n**🏆 ADVENTURE COMPLETE: Time Jumper**\n**Final Sanity Change: -35**\n**Final Favor: +65**",
+    sanity: -35,
+    favor: 65,
+    ending: 'time_jumper',
+    achievement: 'Exit at 30,000 Feet'
+},
+
+// BASEMENT PATH - collect_memories branches
+collect_memories: {
+    text: "💭 **GATHERING THE SPILLED** 💭\n\nYou gather your leaking memories. They're sticky, viscous. You stuff them back into boxes but they keep leaking. Some memories mix together. Your childhood and your future blend. Your first kiss tastes like your last meal. Everything is confused.\n\n**🏆 ADVENTURE COMPLETE: Mixed Memories**\n**Final Sanity Change: -28**\n**Final Favor: +52**",
+    sanity: -28,
+    favor: 52,
+    ending: 'mixed_memories',
+    achievement: 'Memory Mixer'
+},
+
+climb_to_attic: {
+    text: "🪜 **ASCENDING TO DESCEND** 🪜\n\nYou climb the stairs that lead down to the attic. The paradox makes you dizzy. You arrive at the attic which is also the basement which is also both and neither. You've reached the place that can't exist. You belong here now.\n\n**🏆 ADVENTURE COMPLETE: Paradox Dweller**\n**Final Sanity Change: -32**\n**Final Favor: +58**",
+    sanity: -32,
+    favor: 58,
+    ending: 'paradox_dweller',
+    achievement: 'Impossible Navigator'
 }
 
 };
@@ -2346,7 +2624,7 @@ const commands = [
         ),
 ];
 
-client.once('ready', async () => {
+client.once('clientReady', async () => {
     console.log(`The Watcher stirs... Logged in as ${client.user.tag}`);
     
     const rest = new REST({ version: '10' }).setToken(process.env.DISCORD_TOKEN);
