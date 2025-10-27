@@ -1768,6 +1768,189 @@ lock_door: {
     favor: 62,
     ending: 'warden_paths',
     achievement: 'Jailer of Selves'
+},
+
+// MALL PATH - follow_mannequins branches
+undress_all: {
+    text: "👕 **STRIPPING THE PROPHETS** 👕\n\nYou undress every mannequin. Beneath their clothes is smooth plastic. Beneath the plastic is you - your face, your body, your scars. Every mannequin is you. You've been modeling yourself this whole time.\n\n**🏆 ADVENTURE COMPLETE: Self Model**\n**Final Sanity Change: -32**\n**Final Favor: +58**",
+    sanity: -32,
+    favor: 58,
+    ending: 'self_model',
+    achievement: 'Fashion Victim'
+},
+
+wear_mannequin: {
+    text: "👔 **WEARING THE HOLLOW** 👔\n\nYou put on a mannequin like a suit. It fits perfectly. You stand in the display window. Customers walk by. You're the perfect model - still, silent, empty. Hours pass. Days. Years. You forget you were ever anything else.\n\n**🏆 ADVENTURE COMPLETE: Perfect Display**\n**Final Sanity Change: -28**\n**Final Favor: +50**",
+    sanity: -28,
+    favor: 50,
+    ending: 'perfect_display',
+    achievement: 'Mannequin Merger'
+},
+
+// SCHOOL PATH - erase_board branches
+take_test: {
+    text: "📝 **THE FAILURE EXAM** 📝\n\nYou take the test. Every question is about a mistake you made. 'Why did you say that?' 'Why didn't you try harder?' 'Why are you like this?' You answer honestly. You fail. The teacher smiles. 'Perfect score,' they say.\n\n**🏆 ADVENTURE COMPLETE: Failed Perfectly**\n**Final Sanity Change: -25**\n**Final Favor: +45**",
+    sanity: -25,
+    favor: 45,
+    ending: 'failed_perfectly',
+    achievement: 'A+ in Failure'
+},
+
+ring_bell: {
+    text: "🔔 **ENDING CLASS** 🔔\n\nYou ring the bell yourself. It echoes forever. The students unfreeze and age rapidly. Years of detention pass in seconds. They graduate, grow old, die. You're still in the classroom. The bell is still ringing. Class never ends.\n\n**🏆 ADVENTURE COMPLETE: Eternal Detention**\n**Final Sanity Change: -30**\n**Final Favor: +55**",
+    sanity: -30,
+    favor: 55,
+    ending: 'eternal_detention',
+    achievement: 'Bell Ringer'
+},
+
+// OFFICE PATH - clock_forward branches
+clock_forward: {
+    text: "🕐 **FORCING TIME** 🕐\n\nYou grab the clock and force it to 6:00. Time lurches forward. You age. The office ages. Everything fast-forwards. But 6:00 never comes. The clock shows 5:59:59... 5:59:58... 5:59:57... It's counting down now. To what?\n\n**🏆 ADVENTURE COMPLETE: Countdown to Nothing**\n**Final Sanity Change: -28**\n**Final Favor: +52**",
+    sanity: -28,
+    favor: 52,
+    ending: 'countdown_nothing',
+    achievement: 'Time Thief'
+},
+
+spreadsheet_edit: {
+    text: "📊 **EDITING YOUR FEARS** 📊\n\nYou open the spreadsheet of fears and start deleting rows. 'Fear of death' - deleted. 'Fear of failure' - deleted. With each deletion, you feel lighter. Then you realize: the fears kept you human. Without them, you're just data in a spreadsheet.\n\n**🏆 ADVENTURE COMPLETE: Quantified Self**\n**Final Sanity Change: -32**\n**Final Favor: +58**",
+    sanity: -32,
+    favor: 58,
+    ending: 'quantified_self',
+    achievement: 'Data Ghost'
+},
+
+// PLAYGROUND PATH - climb_slide branches (if not already added)
+// This might already exist from my previous response, but adding just in case
+stop_and_think: {
+    text: "🤔 **MOMENT OF CLARITY** 🤔\n\nYou stop climbing. You think. The slide is impossible. The playground is a trap. You close your eyes and remember: you came here by choice. You can leave by choice. When you open your eyes, you're outside. The playground is gone. But the memory remains.\n\n**🏆 ADVENTURE COMPLETE: Willful Escape**\n**Final Sanity Change: +5**\n**Final Favor: +15**",
+    sanity: 5,
+    favor: 15,
+    ending: 'willful_escape_alt',
+    achievement: 'Clear Minded'
+},
+
+// CINEMA PATH - eat_popcorn continuation (this should already exist but adding the variant)
+join_screen: {
+    text: "🎥 **BECOMING THE MOVIE** 🎥\n\nYou walk into the screen. Now you're in every frame, dying repeatedly for entertainment. The audience (still empty seats) gives you a standing ovation. You bow. You die. You bow. You die. Forever.\n\n**🏆 ADVENTURE COMPLETE: Eternal Performance**\n**Final Sanity Change: -37**\n**Final Favor: +65**",
+    sanity: -37,
+    favor: 65,
+    ending: 'eternal_performance',
+    achievement: 'Method Actor\'s Nightmare'
+},
+
+// Additional missing branches from various paths
+think_escape: {
+    text: "💭 **THINKING YOUR WAY OUT** 💭\n\nYou think about escaping. The mushrooms grow a path. You follow it. It leads deeper into the forest. You realize: thinking about escape is not the same as escaping. The path closes behind you. The forest grows thicker. Your thoughts are trapped too.\n\n**🏆 ADVENTURE COMPLETE: Thought Prison**\n**Final Sanity Change: -30**\n**Final Favor: +55**",
+    sanity: -30,
+    favor: 55,
+    ending: 'thought_prison',
+    achievement: 'Prisoner of Mind'
+},
+
+think_nothing: {
+    text: "🤯 **THE VOID OF THOUGHT** 🤯\n\nYou try to think nothing. The mushrooms stop growing. The forest stops breathing. Everything stops. You've broken reality by refusing to think. In the silence, you hear it: the universe asking 'why did you stop thinking me?'\n\n**🏆 ADVENTURE COMPLETE: Thoughtless Void**\n**Final Sanity Change: -40**\n**Final Favor: +70**",
+    sanity: -40,
+    favor: 70,
+    ending: 'thoughtless_void',
+    achievement: 'Empty Mind'
+},
+
+deny_death: {
+    text: "💀 **DENYING THE INEVITABLE** 💀\n\nYou insist you're alive. The waitress shrugs. 'Have it your way, honey.' But nothing changes. You're still in the diner. The coffee still pours endlessly. You realize: being alive and being dead feel exactly the same here.\n\n**🏆 ADVENTURE COMPLETE: Schrödinger's Customer**\n**Final Sanity Change: -20**\n**Final Favor: +40**",
+    sanity: -20,
+    favor: 40,
+    ending: 'schrodingers_customer',
+    achievement: 'Living Dead Diner'
+},
+
+order_breakfast: {
+    text: "🍳 **ETERNAL BREAKFAST** 🍳\n\nYou order breakfast. It arrives instantly. Eggs, bacon, toast - all your favorites. But with each bite, you forget something. A name. A face. A memory. The breakfast is delicious. You order it again. And again. Until you're just hunger eating itself.\n\n**🏆 ADVENTURE COMPLETE: Amnesia Diner**\n**Final Sanity Change: -33**\n**Final Favor: +60**",
+    sanity: -33,
+    favor: 60,
+    ending: 'amnesia_diner',
+    achievement: 'Forgetful Feast'
+},
+
+steal_memory: {
+    text: "🃏 **MEMORY THIEF** 🃏\n\nYou grab a memory and run. Alarms sound. Security (all with your face) chase you. You escape into the real world. You open your stolen memory. It's not yours - it's someone else's childhood. You're living a stolen life now.\n\n**🏆 ADVENTURE COMPLETE: Identity Theft**\n**Final Sanity Change: -28**\n**Final Favor: +52**",
+    sanity: -28,
+    favor: 52,
+    ending: 'identity_theft',
+    achievement: 'Memory Bandit'
+},
+
+sell_memory: {
+    text: "💰 **SELLING YOUR PAST** 💰\n\nYou offer to sell your memories. The clerk's eyes light up. 'All of them?' You nod. They pay handsomely. As you leave, you realize you don't remember entering. You don't remember who you are. You're rich and empty.\n\n**🏆 ADVENTURE COMPLETE: Profitable Amnesia**\n**Final Sanity Change: -35**\n**Final Favor: +65**",
+    sanity: -35,
+    favor: 65,
+    ending: 'profitable_amnesia',
+    achievement: 'Memory Merchant'
+},
+
+write_equation: {
+    text: "✍️ **AUTHORING REALITY** ✍️\n\nYou write your own equation in the sand. It proves you exist. It proves you matter. It solves for happiness. The beach accepts it. Reality rewrites slightly. You feel different. Better? Worse? Just... different. Forever different.\n\n**🏆 ADVENTURE COMPLETE: Equation of Self**\n**Final Sanity Change: -25**\n**Final Favor: +45**",
+    sanity: -25,
+    favor: 45,
+    ending: 'equation_self',
+    achievement: 'Mathematical Existence'
+},
+
+erase_answer: {
+    text: "🧹 **ERASING FATE** 🧹\n\nYou erase your death calculation. The sand rejects it, keeps the answer. You erase harder. The answer burns into your retinas. You'll see it every time you close your eyes. You tried to erase death. Death noted this.\n\n**🏆 ADVENTURE COMPLETE: Death Remembered**\n**Final Sanity Change: -30**\n**Final Favor: +55**",
+    sanity: -30,
+    favor: 55,
+    ending: 'death_remembered',
+    achievement: 'Fate Eraser'
+},
+
+complete_castle: {
+    text: "🏗️ **FINISHING THE PAST** 🏗️\n\nYou help complete the sand castle. It's perfect - exactly like your childhood home. As you place the last grain, you're inside it. You're a child again. But it's made of sand. It's already crumbling. You've built your past to watch it fall.\n\n**🏆 ADVENTURE COMPLETE: Sandcastle Memories**\n**Final Sanity Change: -28**\n**Final Favor: +50**",
+    sanity: -28,
+    favor: 50,
+    ending: 'sandcastle_memories',
+    achievement: 'Architect of Nostalgia'
+},
+
+become_sand: {
+    text: "🏖️ **ONE WITH THE BEACH** 🏖️\n\nYou lie down and let the sand cover you. You become the beach. Every footprint is on you. Every wave washes through you. Tourists build castles from your body. You are everywhere and nowhere. You are every grain. You are the shore.\n\n**🏆 ADVENTURE COMPLETE: Beach Entity**\n**Final Sanity Change: -40**\n**Final Favor: +72**",
+    sanity: -40,
+    favor: 72,
+    ending: 'beach_entity',
+    achievement: 'Living Shore'
+},
+
+drink_void: {
+    text: "💧 **DRINKING NOTHING** 💧\n\nYou cup your hands and drink the non-water. It tastes like un-taste. You swallow nothing and feel it fill you. You're full of emptiness now. Hollow but heavy. You float and sink simultaneously.\n\n**🏆 ADVENTURE COMPLETE: Void Drinker**\n**Final Sanity Change: -32**\n**Final Favor: +58**",
+    sanity: -32,
+    favor: 58,
+    ending: 'void_drinker',
+    achievement: 'Consumer of Nothing'
+},
+
+call_tide: {
+    text: "🌊 **SUMMONING THE WAVES** 🌊\n\nYou call the tide back. It hears you. It returns. But it brings everything that ever drowned with it. Bodies. Ships. Lost things. They all come back. The tide obeys you now. You're responsible for everything it brings.\n\n**🏆 ADVENTURE COMPLETE: Tide Caller**\n**Final Sanity Change: -35**\n**Final Favor: +62**",
+    sanity: -35,
+    favor: 62,
+    ending: 'tide_caller',
+    achievement: 'Ocean\'s Debt'
+},
+
+help_janitor: {
+    text: "🧹 **ETERNAL CLEANING** 🧹\n\nYou grab a mop and help. The spot never gets clean. You mop together. Forever. The janitor smiles. 'Finally, company,' they say. You realize you're both trapped in the same eternal task. At least you're not alone.\n\n**🏆 ADVENTURE COMPLETE: Janitor's Companion**\n**Final Sanity Change: -20**\n**Final Favor: +38**",
+    sanity: -20,
+    favor: 38,
+    ending: 'janitors_companion',
+    achievement: 'Clean Forever'
+},
+
+enter_entrance: {
+    text: "🚪 **PARADOX PORTAL** 🚪\n\nYou enter through the entrance. You exit through the entrance. You're in a loop of entering and exiting. Each cycle takes you deeper into the mall. Or out of it. You can no longer tell the difference.\n\n**🏆 ADVENTURE COMPLETE: Loop Walker**\n**Final Sanity Change: -25**\n**Final Favor: +45**",
+    sanity: -25,
+    favor: 45,
+    ending: 'loop_walker',
+    achievement: 'Entrance Exit'
 }
 
 };
